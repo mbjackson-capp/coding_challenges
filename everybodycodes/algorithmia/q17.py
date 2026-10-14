@@ -1,14 +1,16 @@
 import networkx as nx
 import numpy as np
 from itertools import combinations
+
 from input_data import q17_input1, q17_input2, q17_input3
+from myutils import gridify
 
 
 STAR = "*"
 
 
 def parse_star_chart(star_chart: str):
-    chart = np.array([[spot for spot in row] for row in star_chart.split("\n")]).T
+    chart = gridify(star_chart).T
     star_dict = {}
     index = 1
     for x, row in enumerate(chart):

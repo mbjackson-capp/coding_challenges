@@ -23,7 +23,7 @@ I began doing this activity before highly capable LLMs/coding agents made many p
 
 **How to run stuff**
 
-From anywhere in the repo, run a solution file by prefacing its path with `uv run`, e.g.:
+From repo root, run a solution file by prefacing its path with `uv run`, e.g.:
 
 - `uv run adventofcode/2024/day12.py`
 - `uv run everybodycodes/song/q10.py`

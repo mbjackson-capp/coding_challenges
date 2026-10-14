@@ -1,6 +1,7 @@
 import numpy as np
-from input_data import q3_input1, q3_input2, q3_input3
 
+from input_data import q3_input1, q3_input2, q3_input3
+from myutils import gridify
 
 def neighbors(
     gridmap: np.array,
@@ -40,7 +41,7 @@ def all_neighbors_at_height(
 def survey(note, diag=False, offgrid=False):
     note = note.replace(".", "0")
     note = note.replace("#", "1")
-    grid_map = np.array([[int(char) for char in row] for row in note.split("\n")])
+    grid_map = gridify(note, intify=True)
     max_x, max_y = grid_map.shape
     depth = 0
     while True:

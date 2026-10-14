@@ -3,35 +3,13 @@ from math import inf
 import numpy as np
 import networkx as nx
 import time
+
 from input_data import q13_input1, q13_input2, q13_input3
+from myutils import gridify, neighbor_locs
 
-
-q13_input1 = np.array([[char for char in row] for row in q13_input1.split("\n")])
-q13_input2 = np.array([[char for char in row] for row in q13_input2.split("\n")])
-q13_input3 = np.array([[char for char in row] for row in q13_input3.split("\n")])
-
-
-def neighbor_locs(arr, x, y, include_diag=False):
-    """Returns the indices of neighbors of a location in a square array.
-    TODO: Put this in a utils file"""
-    neighbor_locs = []
-    for dx in range(-1, 2):
-        for dy in range(-1, 2):
-            if dx == dy == 0:
-                continue
-            if not include_diag and dx != 0 and dy != 0:
-                continue
-            else:
-                this_x = x + dx
-                this_y = y + dy
-                if (
-                    this_x >= 0
-                    and this_y >= 0
-                    and this_x < len(arr)
-                    and this_y < len(arr[0])
-                ):
-                    neighbor_locs.append((this_x, this_y))
-    return neighbor_locs
+q13_input1 = gridify(q13_input1)
+q13_input2 = gridify(q13_input2)
+q13_input3 = gridify(q13_input3)
 
 
 IMPASSABLE = ["#", " "]

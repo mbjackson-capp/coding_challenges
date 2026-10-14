@@ -1,25 +1,7 @@
 from aocd import get_data
 import numpy as np
 from itertools import groupby
-from myutils import neighbor_locs
-
-
-def gridify(mapstr: str, intify=False, pad_char=None) -> np.array:
-    """Turn text input of a grid into a numpy array. New parameters:
-    - intify (bool): convert text representation of digits into integers
-    if True, leave as-is otherwise
-    - pad_char (int or str or None): what character, if any, to use for
-    a width-1 pad of grid, in case it makes calculations at edges easier."""
-    # In this problem, padding the grid with "fake" spaces, i.e. neighbors that
-    # always fail the "of the same letter" check, helps properly count perimeter.
-    if intify:
-        input_as_list = [[int(char) for char in row] for row in mapstr.split("\n")]
-    else:
-        input_as_list = [[char for char in row] for row in mapstr.split("\n")]
-    grid = np.array(input_as_list)
-    if pad_char is not None:
-        grid = np.pad(grid, pad_width=1, mode="constant", constant_values=pad_char)
-    return grid
+from myutils import gridify, neighbor_locs
 
 
 seen = set()

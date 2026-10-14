@@ -2,10 +2,9 @@ from aocd import get_data
 from copy import deepcopy
 import numpy as np
 
-input = np.array(
-    [[char for char in row] for row in get_data(day=6, year=2024).split("\n")]
-)
+from myutils import gridify
 
+input = gridify(get_data(day=6, year=2024))
 
 def find_guard(arr: np.ndarray):
     # without type conversion you get, e.g. (array([6]), array([4]))

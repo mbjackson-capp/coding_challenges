@@ -4,6 +4,8 @@ from input_data import q12_input1, q12_input2, q12_input3
 
 np.set_printoptions(linewidth=10000)
 
+from myutils import gridify
+
 
 ### PARTS 1 AND 2 #############################################################
 
@@ -367,7 +369,7 @@ def part3(shower: list[tuple[int, int]]) -> int:
 
 
 if __name__ == "__main__":
-    map1 = np.array([[char for char in row] for row in q12_input1.split("\n")][::-1])
+    map1 = gridify(q12_input1)[::-1]
     print(f"Now running Part 1 and Part 2. This could take several seconds...")
     part1_solution = run(map1)
     print(f"Part 1 solution: {part1_solution}")

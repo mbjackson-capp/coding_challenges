@@ -2,10 +2,11 @@ from aocd import get_data
 #set session token first - https://github.com/wimglenn/advent-of-code-wim/issues/1
 import numpy as np
 
+from myutils import gridify
+
 #Problem statement: https://adventofcode.com/2022/day/8
 
-input = get_data(day=8, year=2022).split('\n')
-input = np.array([[int(char) for char in str] for str in input], dtype=int)
+input = gridify(get_data(day=8, year=2022), intify=True)
 
 DIRS = 'NESW'
 

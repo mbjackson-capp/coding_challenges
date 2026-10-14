@@ -3,10 +3,11 @@ from aocd import get_data
 import numpy as np
 import operator
 
+from myutils import gridify
+
 #Problem statement: https://adventofcode.com/2021/day/3
 
-input = get_data(day=3, year=2021).split('\n')
-input = np.asarray([list(i) for i in input], dtype=int)
+input = gridify(get_data(day=3, year=2021), intify=True)
 
 def part1(input):
     count = np.count_nonzero(input, axis=0)

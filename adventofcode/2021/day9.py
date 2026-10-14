@@ -2,11 +2,11 @@ from aocd import get_data
 #set session token first - https://github.com/wimglenn/advent-of-code-wim/issues/1
 import numpy as np
 
+from myutils import gridify
+
 #Problem statement: https://adventofcode.com/2021/day/9
 
-input = get_data(day=9, year=2021).split('\n')
-
-seafloor = np.array([[int(char) for char in str] for str in input], dtype=int)
+seafloor = gridify(get_data(day=9, year=2021), intify=True)
 
 def neighbor_locs(seafloor, x, y):
     '''Returns the indices of neighbor points that exist on the seafloor'''
@@ -57,7 +57,7 @@ def part2(seafloor):
     low_points = get_low_points(seafloor)
     basin_sizes = [basin_size(point, seafloor) for point in low_points]
     basin_sizes.sort(reverse=True)
-    return np.product(basin_sizes[0:3])
+    return np.prod(basin_sizes[0:3])
 
 
 if __name__ == '__main__':

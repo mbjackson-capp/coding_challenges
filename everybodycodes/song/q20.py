@@ -1,8 +1,10 @@
 from copy import deepcopy
 import networkx as nx
-from input_data import q20_p1, q20_p2, q20_p3
+
 from typing import List, Tuple
 
+from input_data import q20_p1, q20_p2, q20_p3
+from myutils import gridify
 
 # Problem statement: https://everybody.codes/event/2025/quests/20
 
@@ -58,7 +60,7 @@ def part2(data: str):
 def rotated(floor_str: str) -> str:
     """Take a string representation of floor configuration and return a version
     of it rotated 120 degrees clockwise."""
-    floor_old = [[char for char in row] for row in floor_str.split("\n")]
+    floor_old = gridify(floor_str)
     n_rows = len(floor_old)
     row_width = len(floor_old[0])
     floor_new = [[OFFGRID for _ in range(row_width)] for _ in range(n_rows)]
@@ -73,6 +75,7 @@ def rotated(floor_str: str) -> str:
             old_x, old_y = old_value_indices[ix]
             # put value at old index into latest index along new row
             floor_new[r][c] = floor_old[old_x][old_y]
+    # TODO: confirm this still works now that myutils.gridify is used
     new_floorstr = "\n".join(["".join(row) for row in floor_new])
     return new_floorstr
 
@@ -116,14 +119,13 @@ def parse_rotating_input(data0: str) -> nx.DiGraph:
 
     Workhorse method for part 3, which reduces the solution to a simple
     shortest-path algorithm on the graph returned."""
-    layer0 = data0
-    layer0 = [[char for char in row] for row in layer0.split("\n")]
+    layer0 = gridify(data0)
 
     layer1 = rotated(deepcopy(data0))
-    layer1 = [[char for char in row] for row in layer1.split("\n")]
+    layer1 = gridify(layer1)
 
     layer2 = rotated(rotated(deepcopy(data0)))
-    layer2 = [[char for char in row] for row in layer2.split("\n")]
+    layer2 = gridify(layer2)
 
     G = nx.DiGraph()
     datas = [layer0, layer1, layer2]

@@ -1,10 +1,11 @@
 from aocd import get_data
 from functools import reduce
 
+from myutils import gridify
+
 # set session token first - https://github.com/wimglenn/advent-of-code-wim/issues/1
 
-input = get_data(day=3, year=2020).split("\n")
-input = [[chr for chr in line] for line in input]  # create 2d array
+input = gridify(get_data(day=3, year=2020))
 
 WRAP_INDEX = len(input[0])
 SLOPES = [(1, 1), (3, 1), (5, 1), (7, 1), (1, 2)]

@@ -3,13 +3,15 @@ import numpy as np
 import re
 from itertools import combinations
 
+from myutils import gridify
+
 # set session token first - https://github.com/wimglenn/advent-of-code-wim/issues/1
 
 input = get_data(day=8, year=2024)
 
 
 def process(input: str) -> tuple[np.array, set]:
-    input_map = np.array([[char for char in row] for row in input.split("\n")])
+    input_map = gridify(input)
     frequencies = sorted(list(set(re.findall(r"\w|\d", input))))
     return input_map, frequencies
 

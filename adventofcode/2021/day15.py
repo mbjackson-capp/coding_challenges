@@ -3,10 +3,11 @@ from aocd import get_data
 import numpy as np
 import heapq # priority queue implementation that pops lowest priority score
 
+from myutils import gridify
+
 # Problem statement: https://adventofcode.com/2021/day/15
 
-input = get_data(day=15, year=2021).split('\n')
-cavern = np.array([[int(char) for char in str] for str in input], dtype=int)
+cavern = gridify(get_data(day=15, year=2021), intify=True)
 
 def neighbor_locs(sqarray, x, y, include_diag=False):
     '''Returns the indices of neighbors of a location in a square array.

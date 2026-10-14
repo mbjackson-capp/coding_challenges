@@ -56,6 +56,7 @@ def parse_track(track: str) -> str:
     track = [
         row.ljust(width) for row in track
     ]  # some rows of input don't have enough spaces
+    # TODO: consider if myutils.gridify will work here
     arr = np.array([[char for char in row] for row in track])
     track_str = ""
     seen = set()

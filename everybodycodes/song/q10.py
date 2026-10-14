@@ -7,6 +7,8 @@ import numpy as np
 from tqdm import tqdm
 from typing import List, Tuple, Set
 
+from myutils import gridify
+
 
 # Problem statement: https://everybody.codes/event/2025/quests/10
 
@@ -16,10 +18,6 @@ HIDEOUT = "#"
 PLAIN = "."
 
 #### PART 1 & 2 ###############################################################
-
-
-def make_board(board_data: str) -> np.array:
-    return np.array([[cell for cell in row] for row in board_data.split("\n")])
 
 
 def find_dragon(board: np.array) -> Tuple[int, int]:
@@ -103,7 +101,7 @@ def get_edible_sheep_locs(
 
 
 def part1(data: str, moves_allowed=4) -> int:
-    b = make_board(data)
+    b = gridify(data)
     dragon_space = find_dragon(b)
     sheep_spaces = find_symbol(b, SHEEP)
     x_max, y_max = b.shape
@@ -127,7 +125,7 @@ def move_all_sheep(
 
 
 def part2(data: str, n_turns=20) -> int:
-    b = make_board(data)
+    b = gridify(data)
     dragon_space = find_dragon(b)
     sheep_spaces = find_symbol(b, SHEEP)
     hideout_spaces = find_symbol(b, HIDEOUT)
@@ -199,7 +197,7 @@ def is_saved(
 
 class DragonChessGame:
     def __init__(self, board_data: str):
-        board = make_board(board_data)
+        board = gridify(board_data)
         self.max_x, self.max_y = board.shape
 
         self.dragon = find_dragon(board)

@@ -1,37 +1,12 @@
 from aocd import get_data
 import numpy as np
+from myutils import gridify, neighbor_locs
 
-
-
-def gridify(mapstr: str) -> np.array:
-    """TODO: Put this in a utils file"""
-    return np.array([[int(char) for char in row] for row in mapstr.split('\n')])
 
 def get_trail_starts(arr: np.array):
     where_x, where_y = np.where(arr == 0)
     return zip([int(x) for x in where_x], [int(y) for y in where_y])
 
-def neighbor_locs(arr, x, y, include_diag=False):
-    """Returns the indices of neighbors of a location in a square array.
-    TODO: Put this in a utils file"""
-    neighbor_locs = []
-    for dx in range(-1, 2):
-        for dy in range(-1, 2):
-            if dx == dy == 0:
-                continue
-            if not include_diag and dx != 0 and dy != 0:
-                continue
-            else:
-                this_x = x + dx
-                this_y = y + dy
-                if (
-                    this_x >= 0
-                    and this_y >= 0
-                    and this_x < len(arr)
-                    and this_y < len(arr[0])
-                ):
-                    neighbor_locs.append((this_x, this_y))
-    return neighbor_locs 
 
 def get_trails_starting_at(arr: np.ndarray, x, y, prior_step_val=-1):
     """Obtain all valid trails, i.e. paths that are never diagonal,
@@ -73,7 +48,7 @@ def run(arr):
 
 
 if __name__ == '__main__':
-    input = gridify(get_data(day=10, year=2024))
+    input = gridify(get_data(day=10, year=2024), intify=True)
     total_p1_score, total_p2_score, trails = run(input)
     print(f"Part 1 solution: {total_p1_score}")
     print(f"Part 2 solution: {total_p2_score}")

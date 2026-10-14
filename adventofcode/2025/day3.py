@@ -1,13 +1,11 @@
 from aocd import get_data
 from typing import List
 
+from myutils import gridify
+
 # set session token first - https://github.com/wimglenn/advent-of-code-wim/issues/1
 
 # Problem statement: https://adventofcode.com/2025/day/3
-
-
-def bankify(data: str) -> List[List[int]]:
-    return [[int(i) for i in bank] for bank in data.split("\n")]
 
 
 def max_joltage(bank: List[int], size: int = 12) -> str:
@@ -33,7 +31,7 @@ def max_joltage(bank: List[int], size: int = 12) -> str:
 
 
 def solve(data: str, size=12) -> int:
-    banks = bankify(data)
+    banks = gridify(data, intify=True)
     total_joltage = 0
     for bank in banks:
         total_joltage += int(max_joltage(bank, size=size))

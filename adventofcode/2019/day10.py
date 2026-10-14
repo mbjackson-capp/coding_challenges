@@ -1,8 +1,9 @@
 from aocd import get_data
 from math import gcd, atan2
 
+from myutils import gridify
 
-input = [[char for char in row] for row in get_data(day=10, year=2019).split("\n")]
+input = gridify(get_data(day=10, year=2019))
 
 
 def get_sweep_slopes(mp, start: tuple[int, int]):

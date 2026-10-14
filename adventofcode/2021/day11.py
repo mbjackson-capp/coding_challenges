@@ -2,13 +2,14 @@ from aocd import get_data
 #set session token first - https://github.com/wimglenn/advent-of-code-wim/issues/1
 import numpy as np
 
+from myutils import gridify
+
 #Problem statement: https://adventofcode.com/2021/day/11
 
 def step0_octopi():
     '''Since step modifies an ndarray in-place, call part1 and part2 with this
     as its argument to start from step 0 / input state'''
-    input = get_data(day=11, year=2021).split('\n')
-    input = np.array([[int(char) for char in str] for str in input], dtype=int)
+    input = gridify(get_data(day=11, year=2021), intify=True)
     return input
 
 

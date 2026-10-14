@@ -1,12 +1,12 @@
 from aocd import get_data
-import numpy as np
 from collections import Counter
+
+from myutils import gridify
 
 # set session token first - https://github.com/wimglenn/advent-of-code-wim/issues/1
 # Problem statement: https://adventofcode.com/2024/day/4
 
-input = get_data(day=4, year=2024).split("\n")
-input = np.array([[char for char in row] for row in input])
+input = gridify(get_data(day=4, year=2024))
 
 
 def neighbor_locs(arr, x, y, include_diag=True):

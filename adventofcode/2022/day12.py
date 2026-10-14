@@ -1,14 +1,14 @@
 from aocd import get_data
 # set session token first - https://github.com/wimglenn/advent-of-code-wim/issues/1
 import numpy as np
-import heapq # priority queue implementation that pops lowest priority score
-import time
+import heapq 
+
+from myutils import gridify
 
 # Problem statement: https://adventofcode.com/2022/day/12
 
 
-input = get_data(day=12, year=2022).split('\n')
-peak = np.array([[char for char in str] for str in input], dtype=str)
+peak = gridify(get_data(day=12, year=2022))
 
 def start_and_end(map):
     start = tuple(np.argwhere(map == 'S')[0])
