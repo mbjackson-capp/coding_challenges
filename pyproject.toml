@@ -1,0 +1,21 @@
+[project]
+name = "coding-challenges"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "advent-of-code-data",
+    "aocd-example-parser",
+    "beautifulsoup4",
+    "matplotlib",
+    "networkx",
+    "numpy",
+    "pandas",
+    "pebble",
+    "pulp",
+    "shapely",
+    "soupsieve",
+    "tqdm",
+    "urllib3",
+]
