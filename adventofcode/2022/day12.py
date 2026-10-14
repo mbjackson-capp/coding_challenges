@@ -3,7 +3,7 @@ from aocd import get_data
 import numpy as np
 import heapq 
 
-from myutils import gridify
+from myutils import gridify, neighbor_locs
 
 # Problem statement: https://adventofcode.com/2022/day/12
 
@@ -32,24 +32,6 @@ def passable(peak, curr_node, neighbor):
     neigh_x, neigh_y = neighbor
     return (elev(peak[neigh_x, neigh_y]) - elev(peak[curr_x, curr_y]) <= 1)
 
-def neighbor_locs(array, x, y, include_diag=False):
-    '''Returns the indices of neighbors of a location in a square array.
-    Reused with modifications from my 2021 Day 11.'''
-    max_x, max_y = array.shape
-    neighbor_locs = []
-    for dx in range(-1, 2):
-        for dy in range(-1, 2):
-            if dx == dy == 0:
-                continue
-            if not include_diag and dx != 0 and dy != 0:
-                continue
-            else:
-                this_x = x + dx
-                this_y = y + dy
-                if (this_x >= 0 and this_y >= 0
-                    and this_x < max_x and this_y < max_y):
-                    neighbor_locs.append((this_x, this_y))
-    return neighbor_locs
 
 def dijkstra_climb(peak, start_node=(0,0), end_node='default', part=1):
     '''

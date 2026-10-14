@@ -1,40 +1,12 @@
 from aocd import get_data
-# set session token first - https://github.com/wimglenn/advent-of-code-wim/issues/1
 import numpy as np
-import heapq # priority queue implementation that pops lowest priority score
+import heapq 
 
-from myutils import gridify
+from myutils import gridify, neighbor_locs
 
 # Problem statement: https://adventofcode.com/2021/day/15
 
 cavern = gridify(get_data(day=15, year=2021), intify=True)
-
-def neighbor_locs(sqarray, x, y, include_diag=False):
-    '''Returns the indices of neighbors of a location in a square array.
-    Reused with modifications from my 2021 Day 11.'''
-    neighbor_locs = []
-    for dx in range(-1, 2):
-        for dy in range(-1, 2):
-            if dx == dy == 0:
-                continue
-            if not include_diag and dx != 0 and dy != 0:
-                continue
-            else:
-                this_x = x + dx
-                this_y = y + dy
-                if (this_x >= 0 and this_y >= 0
-                    and this_x < len(sqarray) and this_y < len(sqarray)):
-                    neighbor_locs.append((this_x, this_y))
-    return neighbor_locs
-
-def neighbor_vals(sqarray, x, y):
-    '''Returns the values at neighbor points to a given index of a square array.
-    Reused with modifications from my 2021 Day 9.'''
-    neighbors = []
-    for tuple in neighbor_locs(sqarray, x, y):
-        neighbor_x, neighbor_y = tuple
-        neighbors.append(sqarray[neighbor_x][neighbor_y])
-    return neighbors
 
 def expand(cavern):
     '''Create the expanded-size map for Part 2'''
@@ -76,8 +48,6 @@ def dijkstra_pq(cavern, start_node=(0,0), end_node='default', part=1):
         # current node
         curr_x, curr_y = curr_node
         neighbors = [pt for pt in neighbor_locs(cavern, curr_x, curr_y)]
-        # for just unvisited neighbors, add "if not pt in [i[1] for i in priority_queue]" 
-        # to above comprehension. But that's unnecessary and slows performance
         for neighbor in neighbors:
             neigh_x, neigh_y = neighbor
             neigh_dist = curr_dist + cavern[neigh_x][neigh_y]

@@ -5,7 +5,7 @@ from itertools import permutations
 from math import lcm
 
 from input_data import q7_input1, q7_input2, q7_input3, q7_track2, q7_track3
-
+from myutils import neighbor_locs
 
 class Chariot:
     def __init__(self, name, plan, initial_power=10):
@@ -101,28 +101,6 @@ def knight_race(chariots: list[Chariot], track, loops=1):
     order_of_finish = "".join([c.name for c in chariots])
     scores = [c.essence for c in chariots]
     return order_of_finish, scores
-
-
-def neighbor_locs(arr, x, y, include_diag=False):
-    """Returns the indices of neighbors of a location in an array."""
-    neighbor_locs = []
-    for dx in range(-1, 2):
-        for dy in range(-1, 2):
-            if dx == dy == 0:
-                continue
-            if not include_diag and dx != 0 and dy != 0:
-                continue
-            else:
-                this_x = x + dx
-                this_y = y + dy
-                if (
-                    this_x >= 0
-                    and this_y >= 0
-                    and this_x < len(arr)
-                    and this_y < len(arr[0])
-                ):
-                    neighbor_locs.append((this_x, this_y))
-    return neighbor_locs
 
 
 def part3(track):

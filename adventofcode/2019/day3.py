@@ -1,6 +1,6 @@
 from aocd import get_data
 
-# set session token first - https://github.com/wimglenn/advent-of-code-wim/issues/1
+from myutils import manhattan_dist
 
 # Problem statement: https://adventofcode.com/2019/day/3
 
@@ -43,18 +43,6 @@ def read_segment(segment, target_set, t: Tracker):
         elif dir == "D":
             t.y -= 1
         target_set.add((t.x, t.y))
-
-
-def manhattan_dist(p1, p2):
-    """
-    Returns the Manhattan distance between two points in the xy plane.
-
-    Inputs:
-        -point1, point2 (tuple): tuples of length 2, each entry in each tuple
-        is an int; representing points (x, y)
-    Returns (int): Manhattan distance
-    """
-    return abs(p1[0] - p2[0]) + abs(p1[1] - p2[1])
 
 
 def intersection_distances(wire, intersections, t: Tracker):

@@ -1,9 +1,8 @@
 import networkx as nx
-import numpy as np
 from itertools import combinations
 
 from input_data import q17_input1, q17_input2, q17_input3
-from myutils import gridify
+from myutils import gridify, manhattan_dist
 
 
 STAR = "*"
@@ -19,10 +18,6 @@ def parse_star_chart(star_chart: str):
                 star_dict[index] = (int(x) + 1, int(y) + 1)
                 index += 1
     return star_dict
-
-
-def manhattan_dist(star1: tuple[int, int], star2: tuple[int, int]) -> int:
-    return abs(star2[0] - star1[0]) + abs(star2[1] - star1[1])
 
 
 BRIGHT_LIMIT = 6

@@ -1,11 +1,14 @@
 from aocd import get_data
-#set session token first - https://github.com/wimglenn/advent-of-code-wim/issues/1
 
 #Problem statement: https://adventofcode.com/2016/day/1
+
+from myutils import manhattan_dist
 
 input = get_data(day=1, year=2016).split(', ')
 
 DIRS = "NESW"
+
+ORIGIN = (0, 0)
 
 class Car():
     def __init__(self):
@@ -16,9 +19,7 @@ class Car():
         self.visited_a_pt_2x = False
     
     def turn(self, dir: str):
-        '''
-        Turn the car right or left.
-        '''
+        """Turn the car right or left."""
         if dir == 'L':
             self.heading = DIRS[(DIRS.index(self.heading) - 1) % 4]
         elif dir == 'R':
@@ -41,7 +42,8 @@ class Car():
             if block in self.visited and not self.visited_a_pt_2x:
                 print(f'{block} is the first point visited twice!')
                 self.visited_a_pt_2x = True
-                print(f"That's {abs(block[0]) + abs(block[1])} blocks away (part 2)")
+                n_blocks_away = manhattan_dist(block, ORIGIN)
+                print(f"That's {n_blocks_away} blocks away (part 2)")
             self.visited.add(block)
         
         #set Car location to end of the stretch it just drove
