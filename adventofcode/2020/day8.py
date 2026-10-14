@@ -1,7 +1,6 @@
 from aocd import get_data
 from copy import deepcopy
 
-# set session token first - https://github.com/wimglenn/advent-of-code-wim/issues/1
 
 input = get_data(day=8, year=2020).split("\n")
 

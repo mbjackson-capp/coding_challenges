@@ -1,9 +1,7 @@
 from aocd import get_data
 import re
 
-# set session token first - https://github.com/wimglenn/advent-of-code-wim/issues/1
 
-# Problem statement: https://adventofcode.com/2016/day/3
 
 input = [
     [int(num) for num in re.findall(r"\d+", line)]

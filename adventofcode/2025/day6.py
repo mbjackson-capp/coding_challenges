@@ -2,9 +2,7 @@ from aocd import get_data
 from typing import List
 from functools import reduce
 
-# set session token first - https://github.com/wimglenn/advent-of-code-wim/issues/1
 
-# Problem statement: https://adventofcode.com/2025/day/6
 
 input = get_data(day=6, year=2025)
 

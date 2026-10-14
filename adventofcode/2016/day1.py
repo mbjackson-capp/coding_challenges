@@ -1,6 +1,5 @@
 from aocd import get_data
 
-#Problem statement: https://adventofcode.com/2016/day/1
 
 from myutils import manhattan_dist
 

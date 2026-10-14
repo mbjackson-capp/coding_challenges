@@ -2,9 +2,7 @@ from aocd import get_data
 import re
 from collections import Counter
 
-# set session token first - https://github.com/wimglenn/advent-of-code-wim/issues/1
 
-# Problem statement: https://adventofcode.com/2024/day/1
 
 input = get_data(day=1, year=2024).split("\n")
 list_left = []

@@ -1,8 +1,6 @@
 from aocd import get_data
-# set session token first - https://github.com/wimglenn/advent-of-code-wim/issues/1
 import re
 
-# Problem statement: https://adventofcode.com/2021/day/17
 
 input = [int(i) for i in re.findall(r'[-\d]+', get_data(day=17, year=2021))]
 

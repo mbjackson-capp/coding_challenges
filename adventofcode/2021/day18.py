@@ -1,10 +1,8 @@
 from aocd import get_data
-# set session token first - https://github.com/wimglenn/advent-of-code-wim/issues/1
 import re
 from math import floor, ceil
 from ast import literal_eval
 
-#Problem statement: https://adventofcode.com/2021/day/18
 
 input = get_data(day=18, year=2021).split('\n')
     

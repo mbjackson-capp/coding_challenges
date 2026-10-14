@@ -2,7 +2,6 @@ from input_data import q16_p1, q16_p2, q16_p3
 from typing import List
 from functools import reduce
 
-# Problem statement: https://everybody.codes/event/2025/quests/16
 
 
 def wall_block_count(spell: str, width: int = 90) -> int:

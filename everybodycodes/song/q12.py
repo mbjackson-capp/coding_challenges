@@ -4,7 +4,6 @@ from typing import List, Tuple
 from input_data import q_12_p1, q_12_p2, q_12_p3
 from myutils import gridify, neighbor_locs
 
-# Problem statement: https://everybody.codes/event/2025/quests/12
 
 EMPTY = -1
 

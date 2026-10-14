@@ -2,9 +2,7 @@ from aocd import get_data
 from typing import List
 import re
 
-# set session token first - https://github.com/wimglenn/advent-of-code-wim/issues/1
 
-# Problem statement: https://adventofcode.com/2018/day/3
 
 
 def parse_claim(claim):

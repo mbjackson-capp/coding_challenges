@@ -1,9 +1,7 @@
 from aocd import get_data
-#set session token first - https://github.com/wimglenn/advent-of-code-wim/issues/1
 import numpy as np
 import re
 
-#Problem statement: https://adventofcode.com/2021/day/13
 
 input = [i.split(',') for i in get_data(day=13, year=2021).split('\n') if i]
 dots = [tuple(int(i) for i in line) for line in input if len(line) == 2]

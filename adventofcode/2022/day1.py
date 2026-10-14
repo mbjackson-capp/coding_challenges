@@ -1,7 +1,5 @@
 from aocd import get_data
-#set session token first - https://github.com/wimglenn/advent-of-code-wim/issues/1
 
-#Problem statement: https://adventofcode.com/2022/day/1
  
 input = get_data(day=1, year=2022).split('\n')
 

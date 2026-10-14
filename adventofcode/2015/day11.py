@@ -2,7 +2,6 @@ from aocd import get_data
 from collections import Counter
 from itertools import pairwise
 
-# set session token first - https://github.com/wimglenn/advent-of-code-wim/issues/1
 
 input = get_data(day=11, year=2015)
 

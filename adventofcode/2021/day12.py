@@ -1,10 +1,8 @@
 from aocd import get_data
-#set session token first - https://github.com/wimglenn/advent-of-code-wim/issues/1
 import re
 import time
 from collections import Counter
 
-#Problem statement: https://adventofcode.com/2021/day/12
 
 input = get_data(day=12, year=2021).split('\n')
 

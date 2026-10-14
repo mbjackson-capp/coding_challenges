@@ -1,11 +1,9 @@
 from aocd import get_data
-#set session token first - https://github.com/wimglenn/advent-of-code-wim/issues/1
 import numpy as np
 import operator
 
 from myutils import gridify
 
-#Problem statement: https://adventofcode.com/2021/day/3
 
 input = gridify(get_data(day=3, year=2021), intify=True)
 

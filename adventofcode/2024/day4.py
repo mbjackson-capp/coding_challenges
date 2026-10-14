@@ -3,7 +3,6 @@ from collections import Counter
 
 from myutils import gridify, neighbor_locs
 
-# Problem statement: https://adventofcode.com/2024/day/4
 
 input = gridify(get_data(day=4, year=2024))
 

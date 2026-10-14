@@ -2,9 +2,7 @@ from aocd import get_data
 from typing import List
 from collections import Counter
 
-# set session token first - https://github.com/wimglenn/advent-of-code-wim/issues/1
 
-# Problem statement: https://adventofcode.com/2018/day/2
 input = [i for i in get_data(day=2, year=2018).split("\n")]
 
 

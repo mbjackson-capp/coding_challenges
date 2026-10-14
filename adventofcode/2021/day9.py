@@ -1,10 +1,8 @@
 from aocd import get_data
-#set session token first - https://github.com/wimglenn/advent-of-code-wim/issues/1
 import numpy as np
 
 from myutils import gridify, neighbor_locs, neighbors
 
-#Problem statement: https://adventofcode.com/2021/day/9
 
 seafloor = gridify(get_data(day=9, year=2021), intify=True)
 

@@ -4,7 +4,6 @@ from collections import Counter
 import heapq
 from typing import List
 
-# Problem statement: https://everybody.codes/event/2025/quests/3
 
 
 def parse_crates(crate_str: str) -> List[int]:

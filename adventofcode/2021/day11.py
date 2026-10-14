@@ -1,10 +1,8 @@
 from aocd import get_data
-#set session token first - https://github.com/wimglenn/advent-of-code-wim/issues/1
 import numpy as np
 
 from myutils import gridify, neighbor_locs
 
-#Problem statement: https://adventofcode.com/2021/day/11
 
 FLASH = -1
 

@@ -2,7 +2,6 @@ from aocd import get_data
 import re
 from math import floor, ceil
 
-# set session token first - https://github.com/wimglenn/advent-of-code-wim/issues/1
 
 input = get_data(day=5, year=2020).split("\n")
 

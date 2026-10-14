@@ -1,8 +1,6 @@
 from aocd import get_data
-#set session token first - https://github.com/wimglenn/advent-of-code-wim/issues/1
 import re
 
-#Problem statement: https://adventofcode.com/2022/day/2
 
 #'A' represents 'rock', 'B' represents 'paper', 'C' represents 'scissors'
 RPS = {'A': {'beats': 'C', 'loses_to': 'B', 'score': 1},

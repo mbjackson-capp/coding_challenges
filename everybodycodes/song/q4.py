@@ -4,7 +4,6 @@ from typing import List
 from math import floor, ceil
 
 
-# Problem statement: https://everybody.codes/event/2025/quests/4
 
 
 def parse_gears(gear_str: str) -> List[int]:

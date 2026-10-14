@@ -1,10 +1,8 @@
 from aocd import get_data
-#set session token first - https://github.com/wimglenn/advent-of-code-wim/issues/1
 import re
 import numpy as np
 from copy import deepcopy
 
-#Problem statement: https://adventofcode.com/2022/day/5
 
 input = get_data(day=5, year=2022).split('\n')
 

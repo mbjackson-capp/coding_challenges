@@ -1,8 +1,6 @@
 from aocd import get_data
-#set session token first - https://github.com/wimglenn/advent-of-code-wim/issues/1
 import re
 
-#Problem statement: https://adventofcode.com/2021/day/2
 
 class Sub():
     def __init__(self, h=0, d=0, aim=0):

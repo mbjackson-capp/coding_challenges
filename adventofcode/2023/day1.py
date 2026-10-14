@@ -1,8 +1,6 @@
 from aocd import get_data
-#set session token first - https://github.com/wimglenn/advent-of-code-wim/issues/1
 import re
 
-#Problem statement: https://adventofcode.com/2023/day/1
  
 input = get_data(day=1, year=2023).split('\n')
 only_digits_input = [re.sub(r'[A-Za-z]+', '', i) for i in input]

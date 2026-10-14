@@ -10,7 +10,6 @@ from typing import List, Tuple, Set
 from myutils import gridify
 
 
-# Problem statement: https://everybody.codes/event/2025/quests/10
 
 DRAGON = "D"
 SHEEP = "S"

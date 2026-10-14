@@ -5,7 +5,6 @@ from itertools import combinations
 
 from myutils import gridify
 
-# set session token first - https://github.com/wimglenn/advent-of-code-wim/issues/1
 
 input = get_data(day=8, year=2024)
 

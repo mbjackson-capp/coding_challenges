@@ -1,11 +1,8 @@
 from aocd import get_data
-# set session token first - https://github.com/wimglenn/advent-of-code-wim/issues/1
 import numpy as np
 import heapq 
 
 from myutils import gridify, neighbor_locs
-
-# Problem statement: https://adventofcode.com/2022/day/12
 
 
 peak = gridify(get_data(day=12, year=2022))

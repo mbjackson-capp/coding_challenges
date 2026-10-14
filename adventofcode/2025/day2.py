@@ -2,9 +2,7 @@ from aocd import get_data
 from itertools import batched
 from typing import List, Tuple
 
-# set session token first - https://github.com/wimglenn/advent-of-code-wim/issues/1
 
-# Problem statement: https://adventofcode.com/2025/day/2
 
 
 def get_ranges(input: str) -> List[Tuple[int, int]]:

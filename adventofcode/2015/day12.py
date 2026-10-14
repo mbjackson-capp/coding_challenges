@@ -3,7 +3,6 @@ import re
 import json
 from typing import List
 
-# set session token first - https://github.com/wimglenn/advent-of-code-wim/issues/1
 
 input = get_data(day=12, year=2015)
 

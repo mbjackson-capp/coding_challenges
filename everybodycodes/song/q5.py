@@ -3,7 +3,6 @@ from input_data import q5_p1, q5_p2, q5_p3
 from dataclasses import dataclass
 
 
-# Problem statement: https://everybody.codes/event/2025/quests/5
 
 
 @dataclass

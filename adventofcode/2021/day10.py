@@ -1,9 +1,7 @@
 from aocd import get_data
-#set session token first - https://github.com/wimglenn/advent-of-code-wim/issues/1
 import re
 from statistics import median
 
-#Problem statement: https://adventofcode.com/2021/day/10
 
 input = get_data(day=10, year=2021).split('\n')
 

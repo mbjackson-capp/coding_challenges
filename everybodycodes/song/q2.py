@@ -2,7 +2,6 @@ from dataclasses import dataclass
 from math import trunc
 from tqdm import tqdm
 
-# Problem statement: https://everybody.codes/event/2025/quests/2
 
 
 @dataclass

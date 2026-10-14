@@ -2,7 +2,6 @@ from input_data import q1_p1, q1_p2, q1_p3
 import re
 from typing import List, Tuple
 
-# Problem statement: https://everybody.codes/event/2025/quests/1
 
 
 def parse_data(data: str) -> Tuple[List[str], List[str]]:

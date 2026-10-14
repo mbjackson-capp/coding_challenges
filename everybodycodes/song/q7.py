@@ -3,7 +3,6 @@ from input_data import q7_p1, q7_p2, q7_p3
 from functools import reduce
 from typing import Tuple, List, Set
 
-# Problem statement: https://everybody.codes/event/2025/quests/7
 
 
 def parse_grammar(data: str) -> Tuple[List[str], dict]:

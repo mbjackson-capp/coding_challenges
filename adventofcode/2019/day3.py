@@ -2,7 +2,6 @@ from aocd import get_data
 
 from myutils import manhattan_dist
 
-# Problem statement: https://adventofcode.com/2019/day/3
 
 input = get_data(day=3, year=2019).split("\n")
 

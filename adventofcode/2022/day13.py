@@ -1,9 +1,7 @@
 from aocd import get_data
-# set session token first - https://github.com/wimglenn/advent-of-code-wim/issues/1
 from ast import literal_eval
 from functools import cmp_to_key
 
-# Problem statement: https://adventofcode.com/2022/day/13
 
 input = get_data(day=13, year=2022).split('\n')
 

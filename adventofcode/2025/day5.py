@@ -1,9 +1,7 @@
 from aocd import get_data
 from typing import Tuple, List, Set
 
-# set session token first - https://github.com/wimglenn/advent-of-code-wim/issues/1
 
-# Problem statement: https://adventofcode.com/2025/day/5
 
 input = get_data(day=5, year=2025)
 

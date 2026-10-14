@@ -3,7 +3,6 @@ from dataclasses import dataclass
 from typing import List
 import re
 
-# set session token first - https://github.com/wimglenn/advent-of-code-wim/issues/1
 
 
 class Reindeer:

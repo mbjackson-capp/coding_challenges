@@ -1,6 +1,5 @@
 from aocd import get_data
 
-# set session token first - https://github.com/wimglenn/advent-of-code-wim/issues/1
 
 input = [i.split("x") for i in get_data(day=2, year=2015).split("\n")]
 input = [[int(i) for i in box] for box in input]

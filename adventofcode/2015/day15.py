@@ -5,7 +5,6 @@ from collections import OrderedDict
 from typing import Tuple
 from functools import reduce
 
-# set session token first - https://github.com/wimglenn/advent-of-code-wim/issues/1
 
 input = get_data(day=15, year=2015)
 

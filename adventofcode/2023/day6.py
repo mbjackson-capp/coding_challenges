@@ -1,9 +1,7 @@
 from aocd import get_data
-#set session token first - https://github.com/wimglenn/advent-of-code-wim/issues/1
 import re
 from functools import reduce
 
-#Problem statement: https://adventofcode.com/2023/day/6a
 input = get_data(day=6, year=2023).split('\n')
 
 def split_and_intify(str):

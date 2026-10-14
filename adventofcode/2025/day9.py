@@ -2,9 +2,7 @@ from aocd import get_data
 from typing import List, Tuple
 from shapely import Polygon
 
-# set session token first - https://github.com/wimglenn/advent-of-code-wim/issues/1
 
-# Problem statement: https://adventofcode.com/2025/day/9
 
 
 def get_red_tiles(data: str) -> List[Tuple[int, int]]:

@@ -3,9 +3,7 @@ from typing import List
 
 from myutils import gridify
 
-# set session token first - https://github.com/wimglenn/advent-of-code-wim/issues/1
 
-# Problem statement: https://adventofcode.com/2025/day/3
 
 
 def max_joltage(bank: List[int], size: int = 12) -> str:

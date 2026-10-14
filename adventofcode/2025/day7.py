@@ -5,9 +5,7 @@ from collections import Counter
 
 import numpy as np
 
-# set session token first - https://github.com/wimglenn/advent-of-code-wim/issues/1
 
-# Problem statement: https://adventofcode.com/2025/day/6
 
 input = get_data(day=7, year=2025)
 

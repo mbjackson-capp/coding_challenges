@@ -6,9 +6,7 @@ import pulp
 from tqdm import tqdm
 
 
-# set session token first - https://github.com/wimglenn/advent-of-code-wim/issues/1
 
-# Problem statement: https://adventofcode.com/2025/day/10
 
 input = get_data(day=10, year=2025)
 

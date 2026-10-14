@@ -6,7 +6,6 @@ from typing import List, Tuple
 from input_data import q20_p1, q20_p2, q20_p3
 from myutils import gridify
 
-# Problem statement: https://everybody.codes/event/2025/quests/20
 
 TRAMPOLINES = ["T", "S", "E"]
 START = "S"

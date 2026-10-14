@@ -5,9 +5,7 @@ from typing import List, Tuple
 from myutils import gridify, neighbors
 
 
-# set session token first - https://github.com/wimglenn/advent-of-code-wim/issues/1
 
-# Problem statement: https://adventofcode.com/2025/day/4
 
 input = gridify(get_data(day=4, year=2025))
 

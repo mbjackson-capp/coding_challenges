@@ -2,7 +2,6 @@ from aocd import get_data
 from operator import add, mul
 from copy import deepcopy
 
-# set session token first - https://github.com/wimglenn/advent-of-code-wim/issues/1
 
 input = get_data(day=7, year=2024).split("\n")
 

@@ -4,9 +4,7 @@ import matplotlib.pyplot as plt
 from functools import cache
 
 
-# set session token first - https://github.com/wimglenn/advent-of-code-wim/issues/1
 
-# Problem statement: https://adventofcode.com/2025/day/11
 
 DAC = "dac"
 FFT = "fft"

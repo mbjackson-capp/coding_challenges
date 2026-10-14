@@ -4,7 +4,6 @@ import heapq
 
 from myutils import gridify, neighbor_locs
 
-# Problem statement: https://adventofcode.com/2021/day/15
 
 cavern = gridify(get_data(day=15, year=2021), intify=True)
 

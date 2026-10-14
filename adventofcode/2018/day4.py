@@ -3,9 +3,7 @@ import re
 import pandas as pd
 from itertools import batched
 
-# set session token first - https://github.com/wimglenn/advent-of-code-wim/issues/1
 
-# Problem statement: https://adventofcode.com/2018/day/4
 
 
 def parse_record(record: str):

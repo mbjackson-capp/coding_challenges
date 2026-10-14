@@ -1,5 +1,4 @@
 from aocd import get_data
-# set session token first - https://github.com/wimglenn/advent-of-code-wim/issues/1
 import numpy as np
 import time
 

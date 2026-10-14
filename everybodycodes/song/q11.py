@@ -4,7 +4,6 @@ from copy import deepcopy
 from math import ceil
 import numpy as np
 
-# Problem statement: https://everybody.codes/event/2025/quests/11
 
 
 def flockify(str) -> List[int]:

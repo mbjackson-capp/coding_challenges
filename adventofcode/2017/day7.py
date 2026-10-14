@@ -3,7 +3,6 @@ from typing import Optional, List
 import re
 from collections import Counter
 
-# set session token first - https://github.com/wimglenn/advent-of-code-wim/issues/1
 
 input = get_data(day=7, year=2017).split("\n")
 

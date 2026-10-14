@@ -1,8 +1,6 @@
 from aocd import get_data
-#set session token first - https://github.com/wimglenn/advent-of-code-wim/issues/1
 import re
 
-#Problem statement: https://adventofcode.com/2022/day/4
 
 input = [re.split(r'-|,', i) for i in get_data(day=4, year=2022).split('\n')]
 input = [[int(i) for i in j] for j in input]

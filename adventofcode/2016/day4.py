@@ -2,9 +2,7 @@ from aocd import get_data
 import re
 from collections import Counter
 
-# set session token first - https://github.com/wimglenn/advent-of-code-wim/issues/1
 
-# Problem statement: https://adventofcode.com/2016/day/4
 
 input = get_data(day=4, year=2016).split("\n")
 SUBCOMPONENTS_RE = r"[a-z\-]+(?=\d)|\d+|(?<=\[)[a-z]{5}(?=\])"

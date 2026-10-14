@@ -2,7 +2,6 @@ from aocd import get_data
 from itertools import permutations
 from tqdm import tqdm
 
-# set session token first - https://github.com/wimglenn/advent-of-code-wim/issues/1
 
 input = get_data(day=13, year=2015)
 

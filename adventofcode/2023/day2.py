@@ -1,9 +1,7 @@
 from aocd import get_data
-#set session token first - https://github.com/wimglenn/advent-of-code-wim/issues/1
 import re
 from functools import reduce
 
-#Problem statement: https://adventofcode.com/2023/day/2
  
 input = get_data(day=2, year=2023).split('\n')
 

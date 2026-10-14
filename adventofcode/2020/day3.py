@@ -3,7 +3,6 @@ from functools import reduce
 
 from myutils import gridify
 
-# set session token first - https://github.com/wimglenn/advent-of-code-wim/issues/1
 
 input = gridify(get_data(day=3, year=2020))
 
