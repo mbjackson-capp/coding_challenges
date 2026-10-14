@@ -1,11 +1,8 @@
 from aocd import get_data
-from typing import List, Tuple
 from shapely import Polygon
 
 
-
-
-def get_red_tiles(data: str) -> List[Tuple[int, int]]:
+def get_red_tiles(data: str) -> list[tuple[int, int]]:
     data = [row for row in data.split("\n")]
     data = [tuple(int(j) for j in entry.split(",")) for entry in data]
     return data
@@ -25,8 +22,7 @@ def part1(data: str) -> int:
             # Note that tiles along same horizontal or vertical line
             # produce a rectangle of width 1, per problem statement
             area = (abs(x2 - x1) + 1) * (abs(y2 - y1) + 1)
-            if area > max_area:
-                max_area = area
+            max_area = max(max_area, area)
     return max_area
 
 
@@ -53,8 +49,7 @@ def part2(data: str) -> int:
             rect = Polygon(coords)
             if green_perimeter.contains(rect):
                 area = (abs(x2 - x1) + 1) * (abs(y2 - y1) + 1)
-                if area > max_area:
-                    max_area = area
+                max_area = max(max_area, area)
     return max_area
 
 
@@ -62,6 +57,6 @@ if __name__ == "__main__":
     input_data = get_data(day=9, year=2025)
     ans1 = part1(input_data)
     print(f"Part 1 answer: {ans1}")
-    print(f"Now calculating Part 2...This could take a few seconds...")
+    print("Now calculating Part 2...This could take a few seconds...")
     ans2 = part2(input_data)
     print(f"Part 2 answer: {ans2}")

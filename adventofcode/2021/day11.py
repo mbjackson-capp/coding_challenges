@@ -1,14 +1,14 @@
-from aocd import get_data
 import numpy as np
+from aocd import get_data
 
 from myutils import gridify, neighbor_locs
 
-
 FLASH = -1
 
+
 def step0_octopi():
-    '''Since step modifies an ndarray in-place, call part1 and part2 with this
-    as its argument to start from step 0 / input state'''
+    """Since step modifies an ndarray in-place, call part1 and part2 with this
+    as its argument to start from step 0 / input state"""
     input = gridify(get_data(day=11, year=2021), intify=True)
     return input
 
@@ -31,11 +31,13 @@ def step(octopi):
     octopi[octopi == -1] = 0
     return flashes_this_step
 
+
 def part1(input):
     total_flashes = 0
     for i in range(100):
         total_flashes += step(input)
     return total_flashes
+
 
 def part2(input):
     step_count = 0
@@ -44,6 +46,7 @@ def part2(input):
         if step(input) == 100:
             return step_count
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     print(f"Part 1 answer: {part1(step0_octopi())}")
     print(f"Part 2 answer: {part2(step0_octopi())}")

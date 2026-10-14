@@ -1,10 +1,10 @@
-from aocd import get_data
-from typing import Tuple
 import re
 from functools import cache
 
+from aocd import get_data
 
-def parse_input(data: str, reverse=False) -> Tuple[dict, str]:
+
+def parse_input(data: str, reverse=False) -> tuple[dict, str]:
     rules, molecule = data.split("\n\n")
     rule_dict = {}
     for rule in rules.split("\n"):

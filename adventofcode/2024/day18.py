@@ -1,7 +1,9 @@
-from aocd import get_data
-import numpy as np
-from math import inf
 import heapq
+from math import inf
+
+import numpy as np
+from aocd import get_data
+
 from myutils import neighbor_locs
 
 

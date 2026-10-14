@@ -1,9 +1,9 @@
-from aocd import get_data
-from typing import List
 import re
 
+from aocd import get_data
 
-def parse_input(data: str) -> List[List[int]]:
+
+def parse_input(data: str) -> list[list[int]]:
     lines = data.split("\n")
     sheet = []
     for line in lines:
@@ -11,15 +11,15 @@ def parse_input(data: str) -> List[List[int]]:
     return sheet
 
 
-def largest_smallest_difference(row: List[int]) -> int:
+def largest_smallest_difference(row: list[int]) -> int:
     return max(row) - min(row)
 
 
-def sheet_sum(sheet: List[List[int]], func):
+def sheet_sum(sheet: list[list[int]], func):
     return int(sum([func(row) for row in sheet]))
 
 
-def find_even_dividers(row: List[int]) -> int:
+def find_even_dividers(row: list[int]) -> int:
     """Find the two numbers that, when one divides the other, result in
     an integer, then return the result of dividing the larger by the smaller."""
     for i in range(len(row)):

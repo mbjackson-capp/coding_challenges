@@ -1,8 +1,6 @@
-from aocd import get_data
-from typing import List
 import re
 
-
+from aocd import get_data
 
 
 def parse_claim(claim):
@@ -18,7 +16,7 @@ def parse_claim(claim):
     return claim_id, point_set
 
 
-def plot_claims(data: List[str]) -> dict:
+def plot_claims(data: list[str]) -> dict:
     all_points = {}
     for claim in data:
         id, point_set = parse_claim(claim)
@@ -30,12 +28,12 @@ def plot_claims(data: List[str]) -> dict:
     return all_points
 
 
-def part1(data: List[str]) -> int:
+def part1(data: list[str]) -> int:
     plot = plot_claims(data)
     return len([k for k, v in plot.items() if v == "X"])
 
 
-def part2(data: List[str]) -> int:
+def part2(data: list[str]) -> int:
     plot = plot_claims(data)
     for claim in data:
         id, point_set = parse_claim(claim)

@@ -1,12 +1,10 @@
+import heapq
+from collections import Counter
+
 from input_data import q3_p1, q3_p2, q3_p3
 
-from collections import Counter
-import heapq
-from typing import List
 
-
-
-def parse_crates(crate_str: str) -> List[int]:
+def parse_crates(crate_str: str) -> list[int]:
     return [int(i) for i in crate_str.split(",")]
 
 
@@ -15,13 +13,13 @@ p2_data = parse_crates(q3_p2)
 p3_data = parse_crates(q3_p3)
 
 
-def part1(data: List[int]):
+def part1(data: list[int]):
     """If a crate must have a strictly smaller number to fit inside a larger one,
     the largest possible packing is just the sum of all distinct integer sizes."""
     return sum(set(data))
 
 
-def part2(data: List[int], n_crates=20):
+def part2(data: list[int], n_crates=20):
     """For the same reason, the solution to part 2 must be the twenty smallest unique integers.
     Implemented using a priority queue for quick repeated extraction of smallest remaining create size.
     """
@@ -34,7 +32,7 @@ def part2(data: List[int], n_crates=20):
     return total_wt
 
 
-def part3(data: List[int]):
+def part3(data: list[int]):
     """Naively, since crates of equal size cannot be part of the same set, the
     smallest number of sets must be the maximum frequency of any particular size."""
     ctr = Counter(data)

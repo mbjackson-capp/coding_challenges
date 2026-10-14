@@ -1,15 +1,13 @@
-from aocd import get_data
-from typing import List
 from functools import reduce
 
-
+from aocd import get_data
 
 input = get_data(day=6, year=2025)
 
 NOT_FOUND = -1
 
 
-def prepare_input(data: str) -> List[List[int | str]]:
+def prepare_input(data: str) -> list[list[int | str]]:
     """Read in cephalopod equations from data, as a list of lists of: space-padded
     numeric strings followed by a space-padded operator string."""
     rows = data.split("\n")
@@ -29,7 +27,7 @@ def prepare_input(data: str) -> List[List[int | str]]:
     return right_way
 
 
-def cephalopodify(problem: List[int | str]) -> List[int]:
+def cephalopodify(problem: list[int | str]) -> list[int]:
     problem = list(problem)
     op = problem.pop(-1).strip()
     cephalo_numbers = []
@@ -45,9 +43,7 @@ def solve(data: str, part=1) -> int:
     problems = prepare_input(data)
     for problem in problems:
         if part == 1:
-            numbers = [
-                int(i.strip()) if i.strip().isnumeric() else i.strip() for i in problem
-            ]
+            numbers = [int(i.strip()) if i.strip().isnumeric() else i.strip() for i in problem]
             op = numbers.pop(-1)
         else:
             numbers, op = cephalopodify(problem)

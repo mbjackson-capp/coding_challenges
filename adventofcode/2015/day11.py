@@ -1,7 +1,7 @@
-from aocd import get_data
 from collections import Counter
 from itertools import pairwise
 
+from aocd import get_data
 
 input = get_data(day=11, year=2015)
 

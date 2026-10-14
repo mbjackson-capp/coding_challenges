@@ -1,10 +1,10 @@
-from aocd import get_data
-import numpy as np
 import re
 from itertools import combinations
 
-from myutils import gridify
+import numpy as np
+from aocd import get_data
 
+from myutils import gridify
 
 input = get_data(day=8, year=2024)
 

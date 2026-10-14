@@ -1,18 +1,14 @@
-from myutils import gridify
-from aocd import get_data
-from typing import List, Tuple, Set
 from collections import Counter
 
 import numpy as np
+from aocd import get_data
 
-
+from myutils import gridify
 
 input = get_data(day=7, year=2025)
 
 
-def tuplify(
-    arr: np.array, as_set=False
-) -> List[Tuple[int, int]] | Set[Tuple[int, int]]:
+def tuplify(arr: np.array, as_set=False) -> list[tuple[int, int]] | set[tuple[int, int]]:
     """Convert a weird numpy array thing into a list of clean 2-tuples of ints"""
     tuplist = []
     for row in arr:
@@ -28,7 +24,7 @@ def prepare(data: str) -> int:
     return start, splitters, max_vert
 
 
-def descend_p1(beams, splitters) -> Tuple[List[Tuple[int, int]], int]:
+def descend_p1(beams, splitters) -> tuple[list[tuple[int, int]], int]:
     """Helper function for Part 1.
     Simulate the beams going down one unit, splitting anywhere they split.
     Return the new beam locations and the number of times the beam was split"""
@@ -45,7 +41,7 @@ def descend_p1(beams, splitters) -> Tuple[List[Tuple[int, int]], int]:
     return list(new_beams), times_split
 
 
-def descend_p2(histories: Counter, splitters: Set) -> List[List[Tuple[int, int]]]:
+def descend_p2(histories: Counter, splitters: set) -> list[list[tuple[int, int]]]:
     """Helper function for Part 2.
     Inputs:
         - histories (Counter): key is a tuple, value represents how many worlds

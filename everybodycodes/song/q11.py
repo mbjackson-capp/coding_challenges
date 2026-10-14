@@ -1,16 +1,15 @@
-from input_data import q_11_p1, q_11_p2, q_11_p3
-from typing import List, Tuple
 from copy import deepcopy
 from math import ceil
+
 import numpy as np
+from input_data import q_11_p1, q_11_p2, q_11_p3
 
 
-
-def flockify(str) -> List[int]:
+def flockify(str) -> list[int]:
     return [int(i) for i in str.split("\n")]
 
 
-def find_donors_and_recipients(flock: List[int]) -> Tuple[List[int], List[int]]:
+def find_donors_and_recipients(flock: list[int]) -> tuple[list[int], list[int]]:
     """Assuming that serial bird transfer steps within a round continue to push
     the same bird from one column to the next until that bird reaches a column
     of smaller size than the one to its right (or failing that, the last column),
@@ -33,7 +32,7 @@ def find_donors_and_recipients(flock: List[int]) -> Tuple[List[int], List[int]]:
     return donor_ixs, recipient_ixs
 
 
-def run_round(flock: List[int]) -> np.array:
+def run_round(flock: list[int]) -> np.array:
     """Do one round of bird flock rearrangement, assuming left-to-right
     order as in Phase 1."""
     flock = deepcopy(flock)  # to prevent list reference shenanigans
@@ -45,7 +44,7 @@ def run_round(flock: List[int]) -> np.array:
     return flock
 
 
-def checksum(flock: List[int], phase=1) -> int:
+def checksum(flock: list[int], phase=1) -> int:
     checksum = 0
     if phase == 2:
         flock = list(reversed(flock))
@@ -54,7 +53,7 @@ def checksum(flock: List[int], phase=1) -> int:
     return checksum
 
 
-def run_full_simulation(flock: List[int], debug=False, is_part1: bool = False) -> int:
+def run_full_simulation(flock: list[int], debug=False, is_part1: bool = False) -> int:
     """Run a full simuation of flock rebalancing, one round at a time.
     Appropriate for when a specific round needs to be checked irrespective of input.
 
@@ -87,11 +86,11 @@ def run_full_simulation(flock: List[int], debug=False, is_part1: bool = False) -
             printv(f"After round {round}: {flock}")
             if round == 10 and is_part1:
                 return checksum(flock, phase=phase)
-    printv(f"No more moves possible! Simulation over")
+    printv("No more moves possible! Simulation over")
     return round
 
 
-def num_rounds_to_skip(flock: List[int]) -> int:
+def num_rounds_to_skip(flock: list[int]) -> int:
     gaps = []
     donors, recipients = find_donors_and_recipients(flock)
     # you have to do the logic both ways
@@ -114,9 +113,7 @@ def num_rounds_to_skip(flock: List[int]) -> int:
     return 0 if not gaps else min(gaps)
 
 
-def advance_fast_simulation(
-    old_round_num: int, flock: List[int]
-) -> Tuple[int, List[int]]:
+def advance_fast_simulation(old_round_num: int, flock: list[int]) -> tuple[int, list[int]]:
     """Helper method used in place of run_round() to run a faster simulation.
     If consecutive rounds would result in transfers from the same donor columns
     to the same recipient columns, simulate all those rounds in one step"""
@@ -134,14 +131,14 @@ def advance_fast_simulation(
     return new_round_num, flock
 
 
-def is_nondecreasing(lst: List[int]) -> bool:
+def is_nondecreasing(lst: list[int]) -> bool:
     for i in range(1, len(lst)):
         if lst[i] < lst[i - 1]:
             return False
     return True
 
 
-def phase_2_num_rounds(sorted_list: List[int]) -> int:
+def phase_2_num_rounds(sorted_list: list[int]) -> int:
     """When list is non-decreasing, at most one bird transfer goes from the
     leftmost column tied for largest, to the leftmost column tied for smallest.
     Exactly 1 donor, exactly 1 recipient. The recipients will fill up until every
@@ -159,7 +156,7 @@ def phase_2_num_rounds(sorted_list: List[int]) -> int:
     return int(phase_2_rounds)
 
 
-def run_fast_simulation(flock: List[int], debug=False) -> int:
+def run_fast_simulation(flock: list[int], debug=False) -> int:
     """Run a simulation of flock rebalancing. In Phase 1, it does this without
     checking each individual round when successive rounds would transfer from
     the same donor columns to the same recipient columns. In Phase 2, it skips
@@ -184,11 +181,11 @@ def run_fast_simulation(flock: List[int], debug=False) -> int:
             round = new_round
             flock = new_flock
             printv(f"After round {round}: {flock}")
-    printv(f"Now quick-calculating number of rounds in Phase 2...")
+    printv("Now quick-calculating number of rounds in Phase 2...")
     p2_rounds = phase_2_num_rounds(flock)
     round += p2_rounds
 
-    printv(f"No more moves possible! Simulation over")
+    printv("No more moves possible! Simulation over")
     return round
 
 
@@ -200,7 +197,7 @@ if __name__ == "__main__":
     sim1 = run_full_simulation(q_11_p1, is_part1=True)
     print(f"Part 1 answer: {sim1}")
 
-    print(f"Now running Part 2..This will take several minutes...")
+    print("Now running Part 2..This will take several minutes...")
     sim2 = run_fast_simulation(q_11_p2)
     print(f"Part 2 answer: {sim2}")
 

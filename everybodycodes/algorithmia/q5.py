@@ -42,7 +42,7 @@ def clap_dance(arr, num_rounds=10, print_every_nth=1, v=False, save_state=False)
         on_left_side = True
         going_down = True
         printv(f"ROUND {rd}", v)
-        printv(f"Current clapper from head of column {cur_col+1}: {cur_clapper}", v)
+        printv(f"Current clapper from head of column {cur_col + 1}: {cur_clapper}", v)
         target_col = (cur_col + 1) % NUM_COLS
         # printv(f"Target column is {target_col}", v)
         side_spot = -1
@@ -50,9 +50,7 @@ def clap_dance(arr, num_rounds=10, print_every_nth=1, v=False, save_state=False)
         # TODO: replace this entire for loop by skipping straight to clapper's closed-form final location
         for clap in range(1, cur_clapper + 1):
             printv(f"The dancers shout: '{clap}!'", v)
-            if (
-                side_spot == len(arr[target_col]) - 1 and going_down
-            ):  # reached end of column
+            if side_spot == len(arr[target_col]) - 1 and going_down:  # reached end of column
                 # printv(f"Reached back of column {target_col+1} -- flipping to right side and going up", v)
                 on_left_side = False
                 going_down = False
@@ -69,7 +67,7 @@ def clap_dance(arr, num_rounds=10, print_every_nth=1, v=False, save_state=False)
             else:
                 side_spot -= 1
             printv(
-                f"Clapper is {'left' if on_left_side else 'right'} of value {arr[target_col][side_spot]} at index {side_spot} in column {target_col+1}",
+                f"Clapper is {'left' if on_left_side else 'right'} of value {arr[target_col][side_spot]} at index {side_spot} in column {target_col + 1}",
                 v,
             )
             if clap == cur_clapper:
@@ -85,8 +83,7 @@ def clap_dance(arr, num_rounds=10, print_every_nth=1, v=False, save_state=False)
         if shout not in shout_counter:
             shout_counter[shout] = 0
         shout_counter[shout] += 1
-        if shout > max_shout:
-            max_shout = shout
+        max_shout = max(max_shout, shout)
         if print_every_nth is not None and rd % print_every_nth == 0:
             print(f"{rd} {shout} {shout_counter[shout]}")
         printv("\n", v)
@@ -112,9 +109,7 @@ if __name__ == "__main__":
     print(f"Part 1 solution: {last_shout}")
 
     print("Now working on Part 2. This could take several minutes...")
-    rd, last_shout = clap_dance(
-        input2, num_rounds=VERY_LARGE_NUM, print_every_nth=None, v=False
-    )
+    rd, last_shout = clap_dance(input2, num_rounds=VERY_LARGE_NUM, print_every_nth=None, v=False)
     print(f"Part 2 solution: {rd * last_shout}")
 
     print("Now working on Part 3. This could take several minutes...")

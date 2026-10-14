@@ -1,9 +1,8 @@
 from input_data import q13_p1, q13_p2, q13_p3
-from typing import List
 from tqdm import tqdm
 
 
-def wheelify(data: str) -> List[int]:
+def wheelify(data: str) -> list[int]:
     if "-" in data:
         # Get the full range of integers represented by each line
         ranges = data.split("\n")
@@ -41,5 +40,5 @@ def turn_dial(data: str, turns: int = 2025):
 if __name__ == "__main__":
     print(f"Part 1 answer: {turn_dial(q13_p1)}")
     print(f"Part 2 answer: {turn_dial(q13_p2, turns=20252025)}")
-    print(f"Now working on Part 3... This could take several minutes...")
+    print("Now working on Part 3... This could take several minutes...")
     print(f"Part 3 answer: {turn_dial(q13_p3, turns=202520252025)}")

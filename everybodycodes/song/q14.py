@@ -1,10 +1,10 @@
-import numpy as np
 from copy import deepcopy
-from tqdm import tqdm
-from myutils import gridify, neighbors
 
+import numpy as np
 from input_data import q14_p1, q14_p2, q14_p3
+from tqdm import tqdm
 
+from myutils import gridify, neighbors
 
 ON = "#"
 OFF = "."
@@ -22,9 +22,7 @@ def tile_next_round(arr, x, y) -> str:
     elif cur_state == OFF:
         return ON if num_active_diag_neighbors(arr, x, y) % 2 == 0 else OFF
     else:
-        raise ValueError(
-            f"Current state of array[x][y] must be active {ON} or inactive {OFF}"
-        )
+        raise ValueError(f"Current state of array[x][y] must be active {ON} or inactive {OFF}")
 
 
 def next_round(arr: np.array) -> np.array:
@@ -144,8 +142,7 @@ def part3(rounds: int = P3_ROUNDS, pattern: str = q14_p3):
                 # Cycle detection stage 2: check that many rounds ahead
                 # and make sure the intervals all exactly match
                 first_cycle_candidate = intervals[
-                    potential_cycle_start_ix : potential_cycle_start_ix
-                    + potential_cycle_len
+                    potential_cycle_start_ix : potential_cycle_start_ix + potential_cycle_len
                 ]
                 second_cycle_candidate = intervals[
                     potential_cycle_start_ix + potential_cycle_len : -1
@@ -154,12 +151,10 @@ def part3(rounds: int = P3_ROUNDS, pattern: str = q14_p3):
                     # Cycle detection stage 3: Check that the actual patterns
                     # at each stage of both sequences are the same
                     first_cycle_indices = list(center_pattern_states.keys())[
-                        potential_cycle_start_ix : potential_cycle_start_ix
-                        + potential_cycle_len
+                        potential_cycle_start_ix : potential_cycle_start_ix + potential_cycle_len
                     ]
                     second_cycle_indices = list(center_pattern_states.keys())[
-                        potential_cycle_start_ix
-                        + potential_cycle_len : potential_cycle_start_ix
+                        potential_cycle_start_ix + potential_cycle_len : potential_cycle_start_ix
                         + (2 * potential_cycle_len)
                     ]
                     for i in range(len(first_cycle_indices)):
@@ -181,9 +176,7 @@ def part3(rounds: int = P3_ROUNDS, pattern: str = q14_p3):
                         center_pattern_states.keys()
                     )
                     num_cycle_occurrences = rounds // cycle_round_length
-                    patterns_in_cycle = [
-                        center_pattern_states[rd] for rd in first_cycle_indices
-                    ]
+                    patterns_in_cycle = [center_pattern_states[rd] for rd in first_cycle_indices]
                     active_tiles_per_cycle = sum(
                         [len(np.argwhere(arr == ON)) for arr in patterns_in_cycle]
                     )
@@ -210,7 +203,7 @@ if __name__ == "__main__":
     print(f"Part 1 answer: {total_tiles_across_rounds(q14_p1)}")
     print(f"Part 2 answer: {total_tiles_across_rounds(q14_p2, rounds=2025)}")
     print(
-        f"Now doing Part 3... This could take a minute..."
+        "Now doing Part 3... This could take a minute..."
         "(don't worry, it stops way before the last round)"
     )
     p3_ans = part3(rounds=P3_ROUNDS)

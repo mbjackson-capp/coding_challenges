@@ -1,7 +1,7 @@
-from aocd import get_data
-from operator import add, mul
 from copy import deepcopy
+from operator import add, mul
 
+from aocd import get_data
 
 input = get_data(day=7, year=2024).split("\n")
 
@@ -71,5 +71,5 @@ def run_all(lines, part=1):
 
 if __name__ == "__main__":
     print(f"Part 1 solution: {run_all(input)}")
-    print(f"Now running Part 2. This could take a minute...")
+    print("Now running Part 2. This could take a minute...")
     print(f"Part 2 solution: {run_all(input, part=2)}")

@@ -1,20 +1,20 @@
-from aocd import get_data
-from typing import List
 from collections import Counter
+
+from aocd import get_data
 
 input = get_data(day=4, year=2017)
 
 
-def parse_input(data: str) -> List[List[str]]:
+def parse_input(data: str) -> list[list[str]]:
     rows = data.split("\n")
     return [row.split(" ") for row in rows]
 
 
-def is_all_unique(row: List[str]) -> bool:
+def is_all_unique(row: list[str]) -> bool:
     return len(row) == len(set(row))
 
 
-def has_no_anagrams(row: List[str]) -> bool:
+def has_no_anagrams(row: list[str]) -> bool:
     ctrs_seen = []
     for word in row:
         ctr = Counter(word)
@@ -24,12 +24,8 @@ def has_no_anagrams(row: List[str]) -> bool:
     return True
 
 
-def is_valid(row: List[str], part: int = 1) -> bool:
-    return (
-        (is_all_unique(row) and has_no_anagrams(row))
-        if part == 2
-        else is_all_unique(row)
-    )
+def is_valid(row: list[str], part: int = 1) -> bool:
+    return (is_all_unique(row) and has_no_anagrams(row)) if part == 2 else is_all_unique(row)
 
 
 def part1(data: str, part: int = 1) -> int:

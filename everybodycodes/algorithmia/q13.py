@@ -1,10 +1,11 @@
+import time
 from itertools import pairwise
 from math import inf
-import numpy as np
-import networkx as nx
-import time
 
+import networkx as nx
+import numpy as np
 from input_data import q13_input1, q13_input2, q13_input3
+
 from myutils import gridify, neighbor_locs
 
 q13_input1 = gridify(q13_input1)
@@ -49,9 +50,7 @@ def networkify(arr: np.array) -> nx.Graph:
         if cur_spot not in G.nodes:
             G.add_node(cur_spot, ht=cur_lvl)
 
-        neighbors = [
-            spot for spot in neighbor_locs(arr, x, y) if arr[spot] not in IMPASSABLE
-        ]
+        neighbors = [spot for spot in neighbor_locs(arr, x, y) if arr[spot] not in IMPASSABLE]
 
         for nbr in neighbors:
             x_nbr, y_nbr = nbr
@@ -102,7 +101,7 @@ if __name__ == "__main__":
     p2_solution = run(q13_input2)
     print(f"Part 2 solution: {p2_solution}")
 
-    print(f"Now running Part 3... This may take a few minutes...")
+    print("Now running Part 3... This may take a few minutes...")
     time.sleep(3)
     p3_solution = run(q13_input3)
     print(f"Part 3 solution: {p3_solution}")

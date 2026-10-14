@@ -1,6 +1,7 @@
-from aocd import get_data
-import numpy as np
 import re
+
+import numpy as np
+from aocd import get_data
 from numpy.linalg import solve
 
 BIG_NUMBER = 10000000000000

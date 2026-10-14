@@ -1,8 +1,7 @@
-from aocd import get_data
-import re
 import json
-from typing import List
+import re
 
+from aocd import get_data
 
 input = get_data(day=12, year=2015)
 
@@ -16,7 +15,7 @@ def part1(data: str) -> int:
     return sum([int(i) for i in numerics])
 
 
-def part2(obj: dict | int | List | str) -> int:
+def part2(obj: dict | int | list | str) -> int:
     if isinstance(obj, str):
         return 0
     elif isinstance(obj, int):

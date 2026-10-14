@@ -1,8 +1,8 @@
-from aocd import get_data
 from collections import Counter
 
-from myutils import gridify, neighbor_locs
+from aocd import get_data
 
+from myutils import gridify, neighbor_locs
 
 input = gridify(get_data(day=4, year=2024))
 
@@ -12,9 +12,7 @@ def diags(arr, x, y):
     a starting location within an array, provided that such indices don't exceed array bounds.
     """
     return [
-        loc for loc in neighbor_locs(arr, x, y, include_diag=True) 
-        if loc[0] != x 
-        and loc[1] != y
+        loc for loc in neighbor_locs(arr, x, y, include_diag=True) if loc[0] != x and loc[1] != y
     ]
 
 
@@ -29,8 +27,7 @@ def count_xmases(arr, spot: tuple[int, int]) -> int:
         return 0
 
     m_spots = [
-        loc for loc in neighbor_locs(arr, x, y, include_diag=True) 
-        if arr[loc[0]][loc[1]] == "M"
+        loc for loc in neighbor_locs(arr, x, y, include_diag=True) if arr[loc[0]][loc[1]] == "M"
     ]
     dirs = [(loc[0] - x, loc[1] - y) for loc in m_spots]
 
@@ -72,7 +69,7 @@ def part2(arr):
     count = 0
     for i, row in enumerate(arr):
         for j, _ in enumerate(row):
-            if arr[i][j] != "A":
+            if row[j] != "A":
                 continue
             diag_spots = diags(arr, i, j)
             diag_vals = [str(arr[spot[0]][spot[1]]) for spot in diag_spots]

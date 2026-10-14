@@ -1,9 +1,8 @@
-from aocd import get_data
 import re
-from typing import Tuple
-from math import sqrt, floor, ceil
+from math import ceil, floor, sqrt
+
+from aocd import get_data
 from tqdm import tqdm
-import time
 
 START_CODE = 20151125
 MULTIPLICAND = 252533
@@ -35,7 +34,7 @@ def nth_triangular(n: int) -> int:
     return (n * (n + 1)) // 2
 
 
-def linearize(paper_loc: Tuple[int, int]) -> int:
+def linearize(paper_loc: tuple[int, int]) -> int:
     """The 2-dimensional coordinates on the paper exist in 1-to-1 correspondence
     with the natural numbers. Given the provided pattern in which the coordinates
     on the paper are filled, return the ordinal number n representing that this
@@ -46,7 +45,7 @@ def linearize(paper_loc: Tuple[int, int]) -> int:
     return nth_triangular(triangle_row - 1) + col
 
 
-def coordinatize(n: int) -> Tuple[int, int]:
+def coordinatize(n: int) -> tuple[int, int]:
     """Convert an integer representing the nth coordinate to be filled into the
     actual coordinate to fill on the paper. Undoes linearize()."""
     # Inverse obtained by quadratic formula (considering only the + case since

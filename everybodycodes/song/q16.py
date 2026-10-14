@@ -1,7 +1,6 @@
-from input_data import q16_p1, q16_p2, q16_p3
-from typing import List
 from functools import reduce
 
+from input_data import q16_p1, q16_p2, q16_p3
 
 
 def wall_block_count(spell: str, width: int = 90) -> int:
@@ -14,7 +13,7 @@ def wall_block_count(spell: str, width: int = 90) -> int:
     return total_blocks
 
 
-def reverse_engineer_spell(fragment: str) -> List[int]:
+def reverse_engineer_spell(fragment: str) -> list[int]:
     """Determine what spell must have been used to create a wall whose leftmost
     columns have numbers of blocks as depicted in the inputted fragment."""
     # pad with a 0 to keep 1-based indexing for simplicity

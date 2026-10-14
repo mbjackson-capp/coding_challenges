@@ -1,15 +1,13 @@
 import numpy as np
-from typing import List, Tuple
-
 from input_data import q_12_p1, q_12_p2, q_12_p3
-from myutils import gridify, neighbor_locs
 
+from myutils import gridify, neighbor_locs
 
 EMPTY = -1
 
 
 def chain_reaction(
-    arr: np.array, start: List[Tuple[int, int]] = [(0, 0)], actually_do_it: bool = False
+    arr: np.array, start: list[tuple[int, int]] = [(0, 0)], actually_do_it: bool = False
 ) -> int:
     """Iterative breadth first search with a more explodey flavor to it.
     Returns the number of barrels that are within the chain reaction that begins
@@ -63,7 +61,7 @@ def best_fireball_spot(arr: np.array):
 def part3(arr: np.array) -> int:
     total_kaboomed = 0
     for round in range(3):
-        print(f"\nRound {round+1} of 3... This may take a few minutes...")
+        print(f"\nRound {round + 1} of 3... This may take a few minutes...")
         greedy_spot = best_fireball_spot(arr)
         this_kaboom = chain_reaction(arr, start=[greedy_spot], actually_do_it=True)
         total_kaboomed += this_kaboom
@@ -78,7 +76,7 @@ if __name__ == "__main__":
     print(f"Part 1 answer: {chain_reaction(q_12_p1)}")
 
     p2_bottom_right = tuple(i - 1 for i in q_12_p2.shape)
-    print(f"Part 2 answer: {chain_reaction(q_12_p2, start=[(0,0), p2_bottom_right])}")
+    print(f"Part 2 answer: {chain_reaction(q_12_p2, start=[(0, 0), p2_bottom_right])}")
 
     print("Now doing Part 3...This could take a few minutes...")
     p3_ans = part3(q_12_p3)

@@ -1,11 +1,9 @@
-from aocd import get_data
 from itertools import batched
-from typing import List, Tuple
+
+from aocd import get_data
 
 
-
-
-def get_ranges(input: str) -> List[Tuple[int, int]]:
+def get_ranges(input: str) -> list[tuple[int, int]]:
     input = input.split(",")
     input = [i.split("-") for i in input]
     input = [(int(i[0]), int(i[1])) for i in input]
@@ -25,13 +23,13 @@ def is_valid(int, part=1) -> bool:
     return True
 
 
-def get_all_invalids(id_range: Tuple[int, int], part=1) -> List[int]:
+def get_all_invalids(id_range: tuple[int, int], part=1) -> list[int]:
     rmin = min(id_range)
     rmax = max(id_range)
     return [id for id in range(rmin, rmax + 1) if not is_valid(id, part=part)]
 
 
-def sum_invalid_ids(input: List[Tuple[int, int]], part=1) -> int:
+def sum_invalid_ids(input: list[tuple[int, int]], part=1) -> int:
     total_sum = 0
     for id_range in input:
         invalid_id_sum = sum(get_all_invalids(id_range, part=part))

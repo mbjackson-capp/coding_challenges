@@ -33,9 +33,7 @@ print(f"Part 1 solution: {part1_solution}")
 PART2_SUPPLY = 20240000
 PART2_PRIESTS = 375
 PART2_ACOLYTES = 1111
-part2_solution = part2(
-    PART2_SUPPLY, num_priests=PART2_PRIESTS, num_acolytes=PART2_ACOLYTES
-)
+part2_solution = part2(PART2_SUPPLY, num_priests=PART2_PRIESTS, num_acolytes=PART2_ACOLYTES)
 print(f"Part 2 solution: {part2_solution}")
 
 # TODO: Part 3

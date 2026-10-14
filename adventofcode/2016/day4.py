@@ -1,8 +1,7 @@
-from aocd import get_data
 import re
 from collections import Counter
 
-
+from aocd import get_data
 
 input = get_data(day=4, year=2016).split("\n")
 SUBCOMPONENTS_RE = r"[a-z\-]+(?=\d)|\d+|(?<=\[)[a-z]{5}(?=\])"
@@ -43,9 +42,7 @@ def decrypt_room_name(room):
     decrypted_name = []
     for word in encrypted_name.split("-"):
         alphabet_indices = [ord(ltr) - ORD_OFFSET for ltr in word]
-        indices_shifted = [
-            (ix + sector_id) % ALPHABET_LENGTH for ix in alphabet_indices
-        ]
+        indices_shifted = [(ix + sector_id) % ALPHABET_LENGTH for ix in alphabet_indices]
         decrypted_word = "".join([chr(ltr + ORD_OFFSET) for ltr in indices_shifted])
         decrypted_name.append(decrypted_word)
     return " ".join(decrypted_name).strip(), sector_id

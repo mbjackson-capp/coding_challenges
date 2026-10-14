@@ -1,17 +1,16 @@
-from aocd import get_data
-from typing import Tuple, Set
-from copy import deepcopy
 from functools import cache
+
+from aocd import get_data
 
 input = get_data(day=17, year=2015)
 
 
-def parse_input(data: str) -> Tuple[Tuple]:
+def parse_input(data: str) -> tuple[tuple]:
     return tuple([int(i) for i in data.split("\n")])
 
 
 @cache
-def ways_to_fill(liters: int, containers: Tuple[int | None]) -> Set[Tuple]:
+def ways_to_fill(liters: int, containers: tuple[int | None]) -> set[tuple]:
     """Return all unique ways that a tuple of containers of known sizes can
     be filled with n liters of eggnog."""
     if liters < 0:
@@ -42,9 +41,7 @@ def solve(liters: int, data: str) -> int:
     n = 1
     while True:
         # Try to find answers with n containers filled
-        n_container_ways = {
-            way for way in ways if len([c for c in way if c is None]) == n
-        }
+        n_container_ways = {way for way in ways if len([c for c in way if c is None]) == n}
         if n_container_ways:
             p2_ans = len(n_container_ways)
             break

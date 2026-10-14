@@ -2,10 +2,11 @@ import numpy as np
 
 np.set_printoptions(linewidth=10000)
 from itertools import permutations
-from math import lcm
 
 from input_data import q7_input1, q7_input2, q7_input3, q7_track2, q7_track3
+
 from myutils import neighbor_locs
+
 
 class Chariot:
     def __init__(self, name, plan, initial_power=10):
@@ -53,9 +54,7 @@ def squire_race(chariots: list[Chariot], segments=10):
 def parse_track(track: str) -> str:
     track = track.split("\n")
     width = len(track[0])
-    track = [
-        row.ljust(width) for row in track
-    ]  # some rows of input don't have enough spaces
+    track = [row.ljust(width) for row in track]  # some rows of input don't have enough spaces
     # TODO: consider if myutils.gridify will work here
     arr = np.array([[char for char in row] for row in track])
     track_str = ""
@@ -117,9 +116,7 @@ def part3(track):
     line up after 11 laps, since the plan is 11 items long and (len(track) * 11) % 11 == 0 for any length
     of track. And 2024 / 11 = 184, an integer. This trick reduces runtime from ~75 minutes to ~1 minute.
     """
-    actions_to_plan = (
-        ["+" for _ in range(5)] + ["-" for _ in range(3)] + ["=" for _ in range(3)]
-    )
+    actions_to_plan = ["+" for _ in range(5)] + ["-" for _ in range(3)] + ["=" for _ in range(3)]
     all_action_plans = set(permutations(actions_to_plan))
     wins = 0
     # Chariot A does the same thing every time, so just run it once and compare your score to it.

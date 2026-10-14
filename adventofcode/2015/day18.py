@@ -1,9 +1,10 @@
-from aocd import get_data
-import numpy as np
 from copy import deepcopy
-from myutils import gridify, neighbors
+
+import numpy as np
+from aocd import get_data
 from tqdm import tqdm
-from typing import List, Tuple
+
+from myutils import gridify, neighbors
 
 input = get_data(day=18, year=2015)
 
@@ -24,9 +25,7 @@ def tile_next_round(arr, x, y) -> str:
     elif cur_state == OFF:
         return ON if num_active_neighbors(arr, x, y) == 3 else OFF
     else:
-        raise ValueError(
-            f"Current state of array[x][y] must be active {ON} or inactive {OFF}"
-        )
+        raise ValueError(f"Current state of array[x][y] must be active {ON} or inactive {OFF}")
 
 
 def next_round(arr: np.array) -> np.array:
@@ -39,7 +38,7 @@ def next_round(arr: np.array) -> np.array:
     return next_arr
 
 
-def four_corners(arr: np.array) -> List[Tuple]:
+def four_corners(arr: np.array) -> list[tuple]:
     max_x, max_y = arr.shape
     return [(0, 0), (max_x - 1, 0), (0, max_y - 1), (max_x - 1, max_y - 1)]
 

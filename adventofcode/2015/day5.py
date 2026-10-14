@@ -1,6 +1,6 @@
-from aocd import get_data
 import re
 
+from aocd import get_data
 
 input = get_data(day=5, year=2015).split("\n")
 

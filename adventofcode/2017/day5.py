@@ -1,14 +1,13 @@
 from aocd import get_data
-from typing import List
 
 input = get_data(day=5, year=2017)
 
 
-def parse_data(data: str) -> List[int]:
+def parse_data(data: str) -> list[int]:
     return [int(i) for i in data.split("\n")]
 
 
-def steps_to_exit(jumps: List[int], part=1) -> int:
+def steps_to_exit(jumps: list[int], part=1) -> int:
     spot = 0
     n_steps = 0
     while 0 <= spot <= len(jumps):

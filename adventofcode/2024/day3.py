@@ -1,7 +1,6 @@
-from aocd import get_data
 import re
 
-
+from aocd import get_data
 
 input = get_data(day=3, year=2024)
 

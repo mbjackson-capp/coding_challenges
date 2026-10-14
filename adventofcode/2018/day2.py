@@ -1,7 +1,6 @@
-from aocd import get_data
-from typing import List
 from collections import Counter
 
+from aocd import get_data
 
 input = [i for i in get_data(day=2, year=2018).split("\n")]
 
@@ -23,7 +22,7 @@ def letters_in_common(id1: str, id2: str) -> str:
     return (diff_count == 1), result
 
 
-def part1(data: List[str]) -> int:
+def part1(data: list[str]) -> int:
     count2 = 0
     count3 = 0
     for box_id in data:
@@ -34,7 +33,7 @@ def part1(data: List[str]) -> int:
     return count2 * count3
 
 
-def part2(data: List[str]) -> str:
+def part2(data: list[str]) -> str:
     # TODO: is it possible to beat O(n^2)?
     for i, id1 in enumerate(data):
         for j, id2 in enumerate(data[i + 1 :]):

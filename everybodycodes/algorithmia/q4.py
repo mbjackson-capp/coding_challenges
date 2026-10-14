@@ -1,4 +1,5 @@
 from statistics import median
+
 from input_data import q4_input1, q4_input2, q4_input3
 
 # Note: in input_data file, each multi-line string has been converted into a list of integers

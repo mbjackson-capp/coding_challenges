@@ -1,11 +1,9 @@
 from copy import deepcopy
+
 import networkx as nx
-
-from typing import List, Tuple
-
 from input_data import q20_p1, q20_p2, q20_p3
-from myutils import gridify
 
+from myutils import gridify
 
 TRAMPOLINES = ["T", "S", "E"]
 START = "S"
@@ -34,11 +32,7 @@ def parse_input(data: str) -> nx.Graph:
                 if (i, j - 1) in G.nodes:
                     G.add_edge((i, j - 1), (i, j))
                 # down-pointing triangle adjoins triangle directly above it, if any
-                if (
-                    (i - 1, j) in G.nodes
-                    and dir == DOWN
-                    and G.nodes[(i - 1, j)]["dir"] == UP
-                ):
+                if (i - 1, j) in G.nodes and dir == DOWN and G.nodes[(i - 1, j)]["dir"] == UP:
                     G.add_edge((i - 1, j), (i, j))
             dir = (dir + 1) % 2
     return G
@@ -79,9 +73,7 @@ def rotated(floor_str: str) -> str:
     return new_floorstr
 
 
-def rotated_helper(
-    old_start: Tuple[int, int], num_points_to_get: int
-) -> List[Tuple[int, int]]:
+def rotated_helper(old_start: tuple[int, int], num_points_to_get: int) -> list[tuple[int, int]]:
     """Helper function to get the list of points to update in the new triangle,
     given a starting cell of the old triangle and the number of points in the new row.
     Those points in the old array head in step-stair pattern up and to the left.
@@ -171,9 +163,7 @@ def parse_rotating_input(data0: str) -> nx.DiGraph:
 def part3(data: str) -> int:
     G = parse_rotating_input(data)
     start = [
-        n
-        for n, n_data in G.nodes(data=True)
-        if n_data["type"] == START and n_data["layer"] == 0
+        n for n, n_data in G.nodes(data=True) if n_data["type"] == START and n_data["layer"] == 0
     ][0]
     ends = [n for n, n_data in G.nodes(data=True) if n_data["type"] == END]
     short_paths = []

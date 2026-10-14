@@ -2,6 +2,7 @@ example = "1"
 # Replace with your input
 input = "1321131112"
 
+
 def look_say(intstr: str) -> str:
     """Perform a single instance of the look-and-say game. See problem statement."""
     new_intstr = ""
@@ -27,7 +28,7 @@ def run(input, steps=40):
     of one step in as the input of the next step.
     NOTE: This 'naive' approach works fine for the necessary 50 steps, but begins
     to struggle around step 45 and is not suitable for numbers of steps much higher
-    than that. 
+    than that.
     TODO: Find a 'closed form' solution with more efficient runtime complexity."""
     for step in range(steps):
         print(f"Now calculating step {step}...")
@@ -35,7 +36,8 @@ def run(input, steps=40):
         print(f"Length at this step: {len(input)}")
     return len(input), input
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     part1_solution, input_after_40 = run(input)
     print(f"Part 1 solution: {part1_solution}")
     part2_solution, _ = run(input_after_40, steps=10)

@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 from math import trunc
-from tqdm import tqdm
 
+from tqdm import tqdm
 
 
 @dataclass
@@ -58,9 +58,7 @@ def test_regression_complex_numbers():
     assert ComplexNumber(-11, -12) / ComplexNumber(3, 5) == ComplexNumber(-3, -2)
 
 
-def part1(
-    sample_number: ComplexNumber, divisor: int = 10, cycles: int = 3
-) -> ComplexNumber:
+def part1(sample_number: ComplexNumber, divisor: int = 10, cycles: int = 3) -> ComplexNumber:
     result = ComplexNumber(0, 0)
     for cycle in range(cycles):
         result *= result
@@ -99,5 +97,5 @@ if __name__ == "__main__":
     print(f"Part 1 answer: {part1(A_p1)}")
     print("Now calculating part 2 answer...")
     print(f"Part 2 answer: {count_engraved_points(A_p2)}")
-    print(f"Now calculating part 3 answer...this could take a few minutes...")
+    print("Now calculating part 3 answer...this could take a few minutes...")
     print(f"Part 3 answer: {count_engraved_points(A_p2, is_part3=True)}")

@@ -1,6 +1,7 @@
+from itertools import permutations
+
 from aocd import get_data
 from computer import Computer
-from itertools import permutations
 
 input = [int(i) for i in get_data(day=7, year=2019).split(",")]
 
@@ -53,19 +54,13 @@ def part2_core(amps: list[Computer], seq: list[int]) -> int:
     while not all([comp.status == "halted" for comp in amps]):
         for i, setting in enumerate(seq):
             if amps[i].status == "new":
-                print(
-                    f"Now running phase setting {setting} on amplifier {AMP_NAMES[i]}..."
-                )
+                print(f"Now running phase setting {setting} on amplifier {AMP_NAMES[i]}...")
                 output_signal = amps[i].process(
                     initial_inputs=[setting, new_signal], pause_at_output=True
                 )
             else:
-                print(
-                    f"Now giving amplifier {AMP_NAMES[i]} input signal {new_signal}..."
-                )
-                output_signal = amps[i].process(
-                    initial_inputs=[new_signal], pause_at_output=True
-                )
+                print(f"Now giving amplifier {AMP_NAMES[i]} input signal {new_signal}...")
+                output_signal = amps[i].process(initial_inputs=[new_signal], pause_at_output=True)
             print(f"Output of amplifier {AMP_NAMES[i]}: {output_signal}")
             new_signal = output_signal
     print(f"All amps halted. Final result output: {output_signal}")

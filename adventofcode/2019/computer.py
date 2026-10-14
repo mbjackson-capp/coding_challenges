@@ -18,9 +18,7 @@ class Computer:
         self.opcode = 0
         self.relative_base = 0
         self.day = day  # allow for day-specific modifications to procedure
-        self.provided_inputs = (
-            []
-        )  # TODO: method to add future inputs directly to this w/o beginning processing
+        self.provided_inputs = []  # TODO: method to add future inputs directly to this w/o beginning processing
         self.status = "new"  # other values: "running", "paused", "halted"
         self.latest_output = None
         self.instruction_types = {
@@ -87,9 +85,7 @@ class Computer:
         while self.status != "halted":
             printv(f"\nCurrently at position {self.ptr}", verbose)
             printv(f"Value at position {self.ptr}: {self.memory[self.ptr]}", verbose)
-            opcode, param1_mode, param2_mode, param3_mode = parse_number(
-                self.memory[self.ptr]
-            )
+            opcode, param1_mode, param2_mode, param3_mode = parse_number(self.memory[self.ptr])
             printv(
                 f"Outputs of parse_number: {opcode, param1_mode, param2_mode, param3_mode}",
                 verbose,
@@ -146,9 +142,7 @@ class Computer:
                     if param1_mode == 2
                     else self.memory[self.ptr + 1]
                 )  # TODO: fix this to use value()
-                printv(
-                    f"Storing input value ({intake}) at position {store_pos}", verbose
-                )
+                printv(f"Storing input value ({intake}) at position {store_pos}", verbose)
                 self.memory[store_pos] = intake
 
             elif self.opcode == 4:  # OUTPUT

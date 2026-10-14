@@ -1,17 +1,16 @@
-from input_data import q1_p1, q1_p2, q1_p3
 import re
-from typing import List, Tuple
+
+from input_data import q1_p1, q1_p2, q1_p3
 
 
-
-def parse_data(data: str) -> Tuple[List[str], List[str]]:
+def parse_data(data: str) -> tuple[list[str], list[str]]:
     names, instructions = re.split(r"\n+", data)
     names = names.split(",")
     instructions = instructions.split(",")
     return names, instructions
 
 
-def parse_instruction(instruction: str) -> Tuple[str, int]:
+def parse_instruction(instruction: str) -> tuple[str, int]:
     assert len(instruction) >= 2 and instruction[0] in (
         "L",
         "R",

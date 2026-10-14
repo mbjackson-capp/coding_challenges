@@ -1,5 +1,5 @@
-from aocd import get_data
 import networkx as nx
+from aocd import get_data
 
 input = [i for i in get_data(day=6, year=2019).split("\n")]
 

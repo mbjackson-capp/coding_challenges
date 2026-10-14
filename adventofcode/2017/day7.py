@@ -1,8 +1,7 @@
-from aocd import get_data
-from typing import Optional, List
 import re
 from collections import Counter
 
+from aocd import get_data
 
 input = get_data(day=7, year=2017).split("\n")
 
@@ -13,9 +12,9 @@ class Disc:
     def __init__(
         self,
         name: str,
-        weight: Optional[int] = None,
-        parent: Optional[str] = None,
-        children: List = [],
+        weight: int | None = None,
+        parent: str | None = None,
+        children: list = [],
     ):
         self.name = name
         self.weight = weight
@@ -37,7 +36,7 @@ class Disc:
             return self.weight + sum([c.weight_above for c in self.children])
 
 
-def make_tower_nodes(input: List[str]):
+def make_tower_nodes(input: list[str]):
     nodes = {}
     for line in input:
         name = re.search(r"^\w+(?=\s)", line).group(0)

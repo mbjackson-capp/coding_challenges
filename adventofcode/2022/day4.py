@@ -1,9 +1,10 @@
-from aocd import get_data
 import re
 
+from aocd import get_data
 
-input = [re.split(r'-|,', i) for i in get_data(day=4, year=2022).split('\n')]
+input = [re.split(r"-|,", i) for i in get_data(day=4, year=2022).split("\n")]
 input = [[int(i) for i in j] for j in input]
+
 
 def part1():
     total = 0
@@ -13,6 +14,7 @@ def part1():
             total += 1
     return total
 
+
 def part2():
     total = 0
     for assignment in input:
@@ -20,6 +22,7 @@ def part2():
         if (ub1 >= lb2) and (ub2 >= lb1):
             total += 1
     return total
+
 
 print(f"Part 1 answer: {part1()}")
 print(f"Part 2 answer: {part2()}")

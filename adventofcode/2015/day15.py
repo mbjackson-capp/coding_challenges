@@ -1,10 +1,9 @@
-from aocd import get_data
 import re
-from itertools import combinations, pairwise
 from collections import OrderedDict
-from typing import Tuple
 from functools import reduce
+from itertools import combinations, pairwise
 
+from aocd import get_data
 
 input = get_data(day=15, year=2015)
 
@@ -49,7 +48,7 @@ def number_of_each_ingredient(n_cookie: int, k_ingredients: int):
     partitions = []
     for tupl in bar_indices:
         this_partition = []
-        left_of_tupl = len(range(0, tupl[0]))
+        left_of_tupl = len(range(tupl[0]))
         this_partition.append(left_of_tupl)
         between_sum = 0
         for pair in pairwise(tupl):
@@ -63,7 +62,7 @@ def number_of_each_ingredient(n_cookie: int, k_ingredients: int):
     return partitions
 
 
-def bake_cookie(ingredients: dict, partition: Tuple[int]) -> dict:
+def bake_cookie(ingredients: dict, partition: tuple[int]) -> dict:
     """Return a dictionary representation of a cookie and its numeric properties."""
     zippy = zip(ingredients.items(), partition)
     cookie = {}
@@ -75,8 +74,7 @@ def bake_cookie(ingredients: dict, partition: Tuple[int]) -> dict:
                 cookie[prop] = 0
             cookie[prop] += amt * qty
     for prop in cookie:
-        if cookie[prop] < 0:
-            cookie[prop] = 0
+        cookie[prop] = max(cookie[prop], 0)
     return cookie
 
 
@@ -103,5 +101,5 @@ def solve(data: str, part=1):
 
 if __name__ == "__main__":
     ings = parse_input(input)
-    print(f"Part 1 answer: {solve(input,part=1)}")
-    print(f"Part 2 answer: {solve(input,part=2)}")
+    print(f"Part 1 answer: {solve(input, part=1)}")
+    print(f"Part 2 answer: {solve(input, part=2)}")

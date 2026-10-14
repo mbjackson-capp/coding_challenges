@@ -1,5 +1,6 @@
+from math import atan2, gcd
+
 from aocd import get_data
-from math import gcd, atan2
 
 from myutils import gridify
 
@@ -34,9 +35,7 @@ def get_sweep_slopes(mp, start: tuple[int, int]):
     return slopes_swept
 
 
-def detect_along_slope(
-    mp, start: tuple[int, int], slope: tuple[int, int]
-) -> tuple[int, int]:
+def detect_along_slope(mp, start: tuple[int, int], slope: tuple[int, int]) -> tuple[int, int]:
     """Travel as far as necessary to find an asteroid in one specified direction,
     without going off the edge of the map."""
     start_x, start_y = start

@@ -1,8 +1,7 @@
-from aocd import get_data
 import re
 from collections import Counter
 
-
+from aocd import get_data
 
 input = get_data(day=1, year=2024).split("\n")
 list_left = []

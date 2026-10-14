@@ -1,6 +1,4 @@
 from aocd import get_data
-from typing import Tuple
-
 
 input = get_data(day=9, year=2017)
 
@@ -32,7 +30,7 @@ def clean_post_exclams(stream: str) -> str:
     return new_stream
 
 
-def remove_garbage(stream: str) -> Tuple[str, int]:
+def remove_garbage(stream: str) -> tuple[str, int]:
     """Remove all garbage from the stream and count how many non-trivial garbage
     characters are between brackets without being canceled or doing canceling."""
     new_stream = ""

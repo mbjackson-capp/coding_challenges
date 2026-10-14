@@ -1,7 +1,8 @@
 import numpy as np
-
 from input_data import q3_input1, q3_input2, q3_input3
+
 from myutils import gridify
+
 
 def neighbors(
     gridmap: np.array,
@@ -32,9 +33,7 @@ def all_neighbors_at_height(
     diag: bool = False,
     offgrid: bool = False,
 ) -> bool:
-    neighbor_vals = neighbors(
-        gridmap, index, include_diags=diag, include_offgrid=offgrid
-    )
+    neighbor_vals = neighbors(gridmap, index, include_diags=diag, include_offgrid=offgrid)
     return (len(neighbor_vals) == 1) and (hgt in neighbor_vals)
 
 

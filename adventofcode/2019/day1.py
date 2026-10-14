@@ -17,5 +17,5 @@ def part2_helper(mass: int) -> int:
     else:
         return fuel_req + part2_helper(fuel_req)
 
-print(f"Part 1 answer: {part1()})
-print(f"Part 2 answer: {part2()})
+print(f"Part 1 answer: {part1()}")
+print(f"Part 2 answer: {part2()}")

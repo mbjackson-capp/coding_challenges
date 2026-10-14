@@ -1,7 +1,7 @@
-from aocd import get_data
-from typing import List
-from math import prod
 from itertools import chain, combinations
+from math import prod
+
+from aocd import get_data
 from tqdm import tqdm
 
 
@@ -17,7 +17,7 @@ def powerset(iterable):
     return chain.from_iterable(combinations(s, r) for r in range(len(s) + 1))
 
 
-def valid_containers(packages: List[int]):
+def valid_containers(packages: list[int]):
     # takes about 2 minutes to get through input of provided size
     target_p1 = sum(packages) // 3
     target_p2 = sum(packages) // 4
@@ -46,8 +46,7 @@ def min_quantum_entanglement(valids: dict, part=1) -> int:
         if len(vc) not in min_qes_by_len:
             min_qes_by_len[len(vc)] = float("inf")
         vc_prod = prod(vc)
-        if vc_prod < min_qes_by_len[len(vc)]:
-            min_qes_by_len[len(vc)] = vc_prod
+        min_qes_by_len[len(vc)] = min(min_qes_by_len[len(vc)], vc_prod)
     min_len = min(min_qes_by_len.keys())
     return min_qes_by_len[min_len]
 
@@ -55,9 +54,7 @@ def min_quantum_entanglement(valids: dict, part=1) -> int:
 if __name__ == "__main__":
     input = get_data(day=24, year=2015)
     packages = packageize(input)
-    print(
-        f"Getting all valid container contents for both parts...May take a minute or two..."
-    )
+    print("Getting all valid container contents for both parts...May take a minute or two...")
     valids = valid_containers(packages)
     print(f"Part 1 answer: {min_quantum_entanglement(valids, part=1)}")
     print(f"Part 2 answer: {min_quantum_entanglement(valids, part=2)}")

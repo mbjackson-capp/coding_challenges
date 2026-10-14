@@ -34,3 +34,9 @@ module-root = ""
 dev = [
     "ruff>=0.17.0",
 ]
+
+[tool.ruff]
+line-length = 99
+
+[tool.ruff.lint]
+extend-select = ["E501"]

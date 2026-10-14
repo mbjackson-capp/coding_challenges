@@ -1,12 +1,9 @@
+from math import ceil, floor
+
 from input_data import q4_p1, q4_p2, q4_p3
 
-from typing import List
-from math import floor, ceil
 
-
-
-
-def parse_gears(gear_str: str) -> List[int]:
+def parse_gears(gear_str: str) -> list[int]:
     gear_str_lst = gear_str.split("\n")
     gear_lst = []
     for item in gear_str_lst:
@@ -22,15 +19,15 @@ data_p2 = parse_gears(q4_p2)
 data_p3 = parse_gears(q4_p3)
 
 
-def part1(gears: List[int], start_rotations: int = 2025) -> int:
+def part1(gears: list[int], start_rotations: int = 2025) -> int:
     return floor((gears[0] * start_rotations) / gears[-1])
 
 
-def part2(gears: List[int], end_rotations: int = 10_000_000_000_000) -> int:
+def part2(gears: list[int], end_rotations: int = 10_000_000_000_000) -> int:
     return ceil((gears[-1] * end_rotations) / gears[0])
 
 
-def part3(gears: List[int | List], start_rotations: int = 100) -> int:
+def part3(gears: list[int | list], start_rotations: int = 100) -> int:
     cur_rotations = start_rotations
     for i in range(1, len(gears)):
         # rightmost number in previous entry interfaces with leftmost number in this one

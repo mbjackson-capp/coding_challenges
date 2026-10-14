@@ -1,15 +1,15 @@
-from aocd import get_data
 import re
-from typing import List
+
+from aocd import get_data
 
 input = [int(i) for i in re.split(r"\s+", get_data(day=6, year=2017))]
 
 
-def index_to_redistribute_from(banks: List[int]) -> int:
+def index_to_redistribute_from(banks: list[int]) -> int:
     return min([i for i, blocks in enumerate(banks) if blocks == max(banks)])
 
 
-def do_redistribution(banks: List[int]) -> List[int]:
+def do_redistribution(banks: list[int]) -> list[int]:
     bank_ix = index_to_redistribute_from(banks)
     blocks_to_distribute = banks[bank_ix]
     banks[bank_ix] = 0
@@ -19,7 +19,7 @@ def do_redistribution(banks: List[int]) -> List[int]:
     return banks
 
 
-def solve(banks: List[int]) -> int:
+def solve(banks: list[int]) -> int:
     cycles = 0
     seen = {}
     while True:

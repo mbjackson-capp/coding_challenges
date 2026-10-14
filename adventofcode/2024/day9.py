@@ -1,6 +1,5 @@
 from aocd import get_data
 
-
 input = get_data(day=9, year=2024)
 
 
@@ -17,7 +16,7 @@ def layoutize(diskmap: str) -> list:
         ids[ix] = int(file)
     gap_sizes = [int(i) for i in diskmap[1::2]]
     blocks = []
-    for id in ids.keys():
+    for id in ids:
         for _ in range(ids[id]):
             blocks.append(id)
         try:
@@ -104,9 +103,9 @@ def run(input, part=1):
 
 
 if __name__ == "__main__":
-    print(f"Now running Part 1. This may take a few seconds...")
+    print("Now running Part 1. This may take a few seconds...")
     part1_solution = run(input)
     print(f"Part 1 solution: {part1_solution}")
-    print(f"Now running Part 2. This may take a few seconds...")
+    print("Now running Part 2. This may take a few seconds...")
     part2_solution = run(input, part=2)
     print(f"Part 2 solution: {part2_solution}")

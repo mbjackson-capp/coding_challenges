@@ -1,7 +1,7 @@
-from dataclasses import dataclass
-from typing import Optional, Tuple
 import re
+from dataclasses import dataclass
 from itertools import combinations
+
 from aocd import get_data
 
 """INVENTORY"""
@@ -99,11 +99,11 @@ class Fighter:
     hit_points: int = 100
     base_damage: int = 0
     base_armor: int = 0
-    name: Optional[str] = "Player"
+    name: str | None = "Player"
 
-    weapon: Optional[Weapon] = None
-    armor: Optional[Armor] = None
-    rings: Tuple[Ring] = ()  # errors out if you try to make this a list
+    weapon: Weapon | None = None
+    armor: Armor | None = None
+    rings: tuple[Ring] = ()  # errors out if you try to make this a list
 
     def __str__(self):
         return f"Fighter {self.name}"

@@ -1,6 +1,6 @@
-from aocd import get_data
 import re
 
+from aocd import get_data
 
 input = get_data(day=4, year=2020)
 # separate out each passport regardless of line breaks
@@ -39,14 +39,8 @@ def is_valid_part2(passport: dict) -> bool:
             valid_sum += (len(str(val)) == 4) and (2020 <= int(val) <= 2030)
         elif key == "hgt":
             valid_sum += (
-                (len(str(val)) == 5)
-                and (val[-2:] == "cm")
-                and (150 <= int(val[:3]) <= 193)
-            ) or (
-                (len(str(val)) == 4)
-                and (val[-2:] == "in")
-                and (59 <= int(val[:2]) < 76)
-            )
+                (len(str(val)) == 5) and (val[-2:] == "cm") and (150 <= int(val[:3]) <= 193)
+            ) or ((len(str(val)) == 4) and (val[-2:] == "in") and (59 <= int(val[:2]) < 76))
         elif key == "hcl":
             valid_sum += (len(str(val)) == 7) and val[0] == "#"
         elif key == "ecl":

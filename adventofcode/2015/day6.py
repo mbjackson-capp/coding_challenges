@@ -1,5 +1,6 @@
-from aocd import get_data
 import re
+
+from aocd import get_data
 
 input = get_data(day=6, year=2015).split("\n")
 
@@ -50,8 +51,8 @@ def part2_core(action, x, y, grid):
         grid[(x, y)] += 2
 
 
-print(f"Running Part 1. This could take a few seconds...")
+print("Running Part 1. This could take a few seconds...")
 print(f"Part 1 solution: {run_instructions(input, part=1)}")
 
-print(f"Running Part 2. This could take a few seconds...")
+print("Running Part 2. This could take a few seconds...")
 print(f"Part 2 solution: {run_instructions(input, part=2)}")

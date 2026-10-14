@@ -1,10 +1,8 @@
-from aocd import get_data
-import networkx as nx
-import matplotlib.pyplot as plt
 from functools import cache
 
-
-
+import matplotlib.pyplot as plt
+import networkx as nx
+from aocd import get_data
 
 DAC = "dac"
 FFT = "fft"
@@ -55,9 +53,7 @@ def num_paths_between(G: nx.DiGraph, source, target) -> int:
     # in-edges and thereby returns 0)
     else:
         precursors = [e[0] for e in G.in_edges(target)]
-        return sum(
-            [num_paths_between(G, source, precursor) for precursor in precursors]
-        )
+        return sum([num_paths_between(G, source, precursor) for precursor in precursors])
 
 
 def part2(G: nx.DiGraph, source: str = "svr", target: str = "out"):
@@ -76,5 +72,5 @@ def part2(G: nx.DiGraph, source: str = "svr", target: str = "out"):
 if __name__ == "__main__":
     input = get_data(day=11, year=2025)
     G = parse_input(input)
-    print(f"Part 1 answer: {num_paths_between(G, "you", "out")}")
+    print(f"Part 1 answer: {num_paths_between(G, 'you', 'out')}")
     print(f"Part 2 answer: {part2(G)}")

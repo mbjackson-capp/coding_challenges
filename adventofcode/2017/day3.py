@@ -1,12 +1,13 @@
+from math import ceil, floor, sqrt
+
 from aocd import get_data
-from typing import Tuple, List
-from math import sqrt, ceil, floor
+
 from myutils import manhattan_dist
 
 input = int(get_data(day=3, year=2017))
 
 
-def layer_bounds(n: int) -> Tuple[int, int]:
+def layer_bounds(n: int) -> tuple[int, int]:
     """Given an integer n, obtain the numeric range of the spiral layer of its
     corresponding space in the infinite grid. (Note that each spiral layer has
     an odd square number in its bottom-right position, so the lower bound will
@@ -19,7 +20,7 @@ def layer_bounds(n: int) -> Tuple[int, int]:
 
 # there will always be an even number of integers within a layer bound,
 # 8, then 16, then 32, then 40, etc.
-def quarters(bounds: Tuple[int, int]):
+def quarters(bounds: tuple[int, int]):
     lb, ub = bounds
     bounds_width = ub - lb
     bin_width = bounds_width // 4
@@ -36,7 +37,7 @@ def quarters(bounds: Tuple[int, int]):
     )
 
 
-def layer_corners(layer: int) -> Tuple[Tuple[int, int]]:
+def layer_corners(layer: int) -> tuple[tuple[int, int]]:
     ur = (-layer, layer)
     ul = (-layer, -layer)
     dl = (layer, -layer)
@@ -44,7 +45,7 @@ def layer_corners(layer: int) -> Tuple[Tuple[int, int]]:
     return ur, ul, dl, dr
 
 
-def grid_coordinates(n: int) -> Tuple[int, int]:
+def grid_coordinates(n: int) -> tuple[int, int]:
     """Left coordinate represents vertical row above/below 1,
     right coordinate represents horizontal column right/left of 1"""
     spiral_level = ceil(sqrt(n)) // 2
@@ -76,7 +77,7 @@ def part1(n: int) -> int:
     return manhattan_dist(grid_coordinates(n), (0, 0))
 
 
-def neighbor_locs(loc: Tuple[int, int]) -> List[Tuple[int, int]]:
+def neighbor_locs(loc: tuple[int, int]) -> list[tuple[int, int]]:
     """Returns the indices of neighbors of a location in an infinite 2-dimensional
     grid centered on (0,0), including diagonals. Simplifies a function from utils."""
     x, y = loc

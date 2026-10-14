@@ -1,7 +1,6 @@
-from aocd import get_data
 import re
 
-
+from aocd import get_data
 
 input = [
     [int(num) for num in re.findall(r"\d+", line)]

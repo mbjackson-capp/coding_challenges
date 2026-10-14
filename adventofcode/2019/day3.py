@@ -2,7 +2,6 @@ from aocd import get_data
 
 from myutils import manhattan_dist
 
-
 input = get_data(day=3, year=2019).split("\n")
 
 

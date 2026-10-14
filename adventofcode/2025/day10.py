@@ -1,12 +1,9 @@
-from aocd import get_data
-from copy import deepcopy
-from typing import List, Tuple
 import re
+from copy import deepcopy
+
 import pulp
+from aocd import get_data
 from tqdm import tqdm
-
-
-
 
 input = get_data(day=10, year=2025)
 
@@ -15,9 +12,7 @@ OFF = "."
 
 
 class Machine:
-    def __init__(
-        self, start_state: List[str], buttons: List[Tuple], joltage_reqs: List[int]
-    ):
+    def __init__(self, start_state: list[str], buttons: list[tuple], joltage_reqs: list[int]):
         self.start_state = start_state
         self.buttons = buttons
         self.joltages = [0] * len(joltage_reqs)
@@ -46,7 +41,7 @@ def parse_machine(row: str) -> Machine:
     return m
 
 
-def parse_input(data: str) -> List[Machine]:
+def parse_input(data: str) -> list[Machine]:
     return [parse_machine(row) for row in data.split("\n")]
 
 
@@ -57,9 +52,7 @@ def toggle(light: str):
     elif light == OFF:
         return ON
     else:
-        raise ValueError(
-            f"use toggle() only on 1-character string equal to {ON} or {OFF}"
-        )
+        raise ValueError(f"use toggle() only on 1-character string equal to {ON} or {OFF}")
 
 
 def min_presses_to_activate(m: Machine) -> int:
@@ -91,7 +84,7 @@ def min_presses_to_activate(m: Machine) -> int:
         n += 1
 
 
-def button_matrix(m: Machine, transpose=False) -> List[List[int]]:
+def button_matrix(m: Machine, transpose=False) -> list[list[int]]:
     """Helper function for Part 2. Re-express the set of buttons as a matrix
     of column vectors, to better work with PuLP linear programming solver."""
     matrix_width = len(m.joltage_reqs)
@@ -160,9 +153,7 @@ def min_joltage_button_presses(m: Machine) -> int:
     joltages = m.joltage_reqs
 
     for i, constraint in enumerate(constraints):
-        model += (
-            pulp.lpSum([constraint[j] * X[j] for j in variable_names]) == joltages[i]
-        )
+        model += pulp.lpSum([constraint[j] * X[j] for j in variable_names]) == joltages[i]
     # If desired, replace PULP_CBC_CMD with another solver of your choice
     model.solve(pulp.PULP_CBC_CMD(msg=False))
     min_presses = int(sum([v.value() for v in model.variables()]))

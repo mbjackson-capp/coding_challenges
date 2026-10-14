@@ -1,11 +1,9 @@
-from aocd import get_data
 from collections import Counter
+
 import numpy as np
-from typing import List, Tuple
+from aocd import get_data
+
 from myutils import gridify, neighbors
-
-
-
 
 input = gridify(get_data(day=4, year=2025))
 
@@ -25,7 +23,7 @@ def gettable_rolls(arr: np.array) -> int:
     return spots
 
 
-def remove_rolls(arr: np.array, spots: List[Tuple[int, int]]) -> np.array:
+def remove_rolls(arr: np.array, spots: list[tuple[int, int]]) -> np.array:
     for spot in spots:
         x, y = spot
         arr[x][y] = BLANK

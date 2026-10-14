@@ -1,10 +1,12 @@
-from aocd import get_data
 from copy import deepcopy
+
 import numpy as np
+from aocd import get_data
 
 from myutils import gridify
 
 input = gridify(get_data(day=6, year=2024))
+
 
 def find_guard(arr: np.ndarray):
     # without type conversion you get, e.g. (array([6]), array([4]))
@@ -98,16 +100,16 @@ def count_obstacle_spots(arr: np.array, verbose=True) -> int:
             new_arr[x][y] = "O"
             _, this_arr_cycled = patrol(new_arr)
             if this_arr_cycled and verbose:
-                print(f"Cycle detected with obstacle at {x,y}!")
+                print(f"Cycle detected with obstacle at {x, y}!")
             count += this_arr_cycled
     return count
 
 
 if __name__ == "__main__":
-    print(f"Now running Part 1. This may take a second...")
+    print("Now running Part 1. This may take a second...")
     part1_solution, _ = patrol(deepcopy(input))
 
-    print(f"Now running Part 2. This will take several minutes...")
+    print("Now running Part 2. This will take several minutes...")
     part2_solution = count_obstacle_spots(deepcopy(input), verbose=True)
 
     print(f"\nPart 1 solution: {part1_solution}")

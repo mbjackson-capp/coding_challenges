@@ -1,7 +1,8 @@
-from aocd import get_data
 import networkx as nx
 import numpy as np
-from myutils import gridify, neighbor_locs, manhattan_dist
+from aocd import get_data
+
+from myutils import gridify, manhattan_dist, neighbor_locs
 
 
 def pathfind(arr: np.array) -> nx.DiGraph:
@@ -20,9 +21,7 @@ def pathfind(arr: np.array) -> nx.DiGraph:
             for pt in neighbor_locs(arr, curr_x, curr_y)
             if (arr[pt] == ".") and (pt not in path)
         ]
-        assert (
-            len(next) == 1
-        ), f"Somehow there are {len(next)} paths ahead instead of one"
+        assert len(next) == 1, f"Somehow there are {len(next)} paths ahead instead of one"
         path.append(next[0])
     G_track.add_nodes_from(path)
     for ix, pt in enumerate(path):
@@ -69,9 +68,9 @@ def run(G_track, cheat_len=2):
 
 if __name__ == "__main__":
     input = get_data(day=20, year=2024)
-    print(f"Gridifying input...")
+    print("Gridifying input...")
     input = gridify(input)
-    print(f"Pathfinding original path. This could take a few seconds...")
+    print("Pathfinding original path. This could take a few seconds...")
     G_track, start, end = pathfind(input)
 
     part1_solution = run(G_track)

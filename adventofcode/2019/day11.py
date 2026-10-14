@@ -29,9 +29,7 @@ class Robot:
         elif paint_output == 1:
             self.hull_map[(self.x, self.y)] = WHITE
         else:
-            raise ValueError(
-                f"Paint instruction should be 0 or 1, but got: {paint_output}"
-            )
+            raise ValueError(f"Paint instruction should be 0 or 1, but got: {paint_output}")
         self.ever_painted.add((self.x, self.y))
 
     def turn(self, dir_output: int):
@@ -43,9 +41,7 @@ class Robot:
         elif dir_output == 1:  # turn right
             self.heading = DIRS[(DIRS.index(self.heading) + 1) % 4]
         else:
-            raise ValueError(
-                f"Turn instruction should be 0 or 1, but got: {dir_output}"
-            )
+            raise ValueError(f"Turn instruction should be 0 or 1, but got: {dir_output}")
 
     def move(self):
         """Move robot one step ahead in direction of heading"""
@@ -80,13 +76,13 @@ def solve(part=1):
 
 
 def draw_map(hull_map: dict) -> list[list[int]]:
-    min_x = min([i[0] for i in hull_map.keys()])
-    min_y = min([i[1] for i in hull_map.keys()])
+    min_x = min([i[0] for i in hull_map])
+    min_y = min([i[1] for i in hull_map])
     # rescale so all indices are nonnegative and start at 0
     map_fixed = {(k[0] - min_x, k[1] - min_y): v for k, v in hull_map.items()}
     # create array of proper dimensions
-    len_x = max(i[0] for i in map_fixed.keys()) + 1
-    len_y = max(i[1] for i in map_fixed.keys()) + 1
+    len_x = max(i[0] for i in map_fixed) + 1
+    len_y = max(i[1] for i in map_fixed) + 1
     arr = [[0 for i in range(len_x)] for j in range(len_y)]
     for k, v in map_fixed.items():
         x, y = k
@@ -99,6 +95,6 @@ if __name__ == "__main__":
     part1 = solve(part=1)
     part2 = solve(part=2)
     print(f"Part 1 solution: {part1}")
-    print(f"Part 2 solution (highlight '1' to see letters more clearly:)")
+    print("Part 2 solution (highlight '1' to see letters more clearly:)")
     for row in part2[::-1]:  # fix upside-down transcription
         print(row)

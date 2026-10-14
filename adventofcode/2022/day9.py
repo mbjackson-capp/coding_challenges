@@ -1,22 +1,22 @@
 from aocd import get_data
 
-
-input = get_data(day=9, year=2022).split('\n')
+input = get_data(day=9, year=2022).split("\n")
 input = [[line[0], int(line[2:])] for line in input]
 
+
 def touching(front, back):
-    '''Determines if two Knots are overlapping, adjacent, or at most one
-    diagonal away from each other.'''
-    return abs(front.x - back.x) <= 1 and abs(front.y -  back.y) <= 1
+    """Determines if two Knots are overlapping, adjacent, or at most one
+    diagonal away from each other."""
+    return abs(front.x - back.x) <= 1 and abs(front.y - back.y) <= 1
 
 
-class Knot():
+class Knot:
     def __init__(self):
         self.x = 0
         self.y = 0
 
     def catch_up_to(self, other):
-        '''self is behind, other is a different Knot in front'''
+        """self is behind, other is a different Knot in front"""
         if not touching(self, other):
             if self.x < other.x:
                 self.x += 1
@@ -27,9 +27,9 @@ class Knot():
                 self.y += 1
             elif self.y > other.y:
                 self.y -= 1
-    
 
-class Rope():
+
+class Rope:
     def __init__(self, length):
         self.knots = [Knot() for _ in range(length)]
         self.head = self[0]
@@ -49,26 +49,26 @@ class Rope():
         return str(len(self.visited))
 
     def move(self, dir, num_steps):
-        '''Move head of rope in specified direction for a certain number of steps.
+        """Move head of rope in specified direction for a certain number of steps.
         With each step, update each knot later in the rope such that all knots
-        continue to be touching.'''
+        continue to be touching."""
 
         for _ in range(num_steps):
-            if dir == 'R':
+            if dir == "R":
                 self.head.x += 1
-            elif dir == 'L':
+            elif dir == "L":
                 self.head.x -= 1
-            elif dir == 'U':
+            elif dir == "U":
                 self.head.y += 1
-            elif dir == 'D':
+            elif dir == "D":
                 self.head.y -= 1
 
             for i in range(1, len(self)):
-                self[i].catch_up_to(self[i-1])
+                self[i].catch_up_to(self[i - 1])
                 self.visited.add((self.tail.x, self.tail.y))
-        
+
     def move_all(self, instructions):
-        '''Move rope through a list of instructions.'''
+        """Move rope through a list of instructions."""
         for item in instructions:
             dir, num_steps = item
             self.move(dir, num_steps)

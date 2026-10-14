@@ -1,5 +1,6 @@
-from aocd import get_data
 import numpy as np
+from aocd import get_data
+
 from myutils import gridify
 
 input = get_data(day=25, year=2024)
@@ -45,7 +46,7 @@ def part1(input):
     locks, keys = parse_input(input)
     for lock in locks:
         for key in keys:
-            result = [lock[i] + key[i] for i, v in enumerate(key)]
+            result = [lock[i] + v for i, v in enumerate(key)]
             total += fit(result)
     return total
 

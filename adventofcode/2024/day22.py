@@ -1,6 +1,6 @@
-from aocd import get_data
 from math import floor
 
+from aocd import get_data
 
 PRUNE_MODULUS = 16777216
 
@@ -106,7 +106,7 @@ def part2(input: list[int]) -> int:
     Takes about one second per ten sequences generated, i.e. about 4100 seconds or
     1.2 hours.
     TODO: Find a much faster method with less naive iteration."""
-    print(f"Generating all sequences of changes...")
+    print("Generating all sequences of changes...")
     seqs, all_prices, _ = get_all_change_seqs(input)
     print(f"There are {len(seqs)} total sequences to check")
     max_possible_bananas = 0
@@ -125,6 +125,6 @@ if __name__ == "__main__":
     part1_solution = part1(input)
     print(f"Part 1 solution: {part1_solution}")
 
-    print(f"Now running Part 2. This could take over an hour...")
+    print("Now running Part 2. This could take over an hour...")
     part2_solution = part2(input)
     print(f"Part 2 solution: {part2_solution}")

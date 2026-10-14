@@ -1,37 +1,34 @@
-from aocd import get_data
 import re
 from functools import reduce
 
- 
-input = get_data(day=2, year=2023).split('\n')
+from aocd import get_data
+
+input = get_data(day=2, year=2023).split("\n")
 
 # Clean input
 gamed_out = [re.split(r"Game [\d]{1,3}\: ", i)[1:] for i in input]
 # for some reason, without the [0] it produces a list of [[]] instead of a list of []
-gamed_out2 = [[re.split('; ', j) for j in game][0] for game in gamed_out]
-gamed_out3 = [[re.split(', ', draw) for draw in game] for game in gamed_out2]
+gamed_out2 = [[re.split("; ", j) for j in game][0] for game in gamed_out]
+gamed_out3 = [[re.split(", ", draw) for draw in game] for game in gamed_out2]
+
 
 def numericize(num_color_str):
     """
     Turn a string like "8 green" into a tuple like (8, "green")
     """
-    num, color = re.split(' ', num_color_str)
+    num, color = re.split(" ", num_color_str)
     num = int(num)
     return (num, color)
 
-gamed_out4 = [[[numericize(result) for result in draw] 
-                for draw in game] for game in gamed_out3]
+
+gamed_out4 = [[[numericize(result) for result in draw] for draw in game] for game in gamed_out3]
 
 MAX_RED = 12
 MAX_GREEN = 13
 MAX_BLUE = 14
 
-def is_game_possible(
-    game,
-    max_red = MAX_RED,
-    max_green = MAX_GREEN,
-    max_blue = MAX_BLUE
-    ):
+
+def is_game_possible(game, max_red=MAX_RED, max_green=MAX_GREEN, max_blue=MAX_BLUE):
     """
     Determine if a game is possible, per criteria for part 1.
     Inputs:
@@ -50,11 +47,12 @@ def is_game_possible(
                 return False
     return True
 
+
 def part1():
     possible_games_id_sum = 0
     for i, game in enumerate(gamed_out4):
         if is_game_possible(game):
-            possible_games_id_sum += (i+1) #game IDs are indexed from 1
+            possible_games_id_sum += i + 1  # game IDs are indexed from 1
     return possible_games_id_sum
 
 
@@ -68,7 +66,7 @@ def min_viable_cubeset(game):
         Each item in a draw list is a tuple of form (int, "color"),
         representing the number of cubes of that color in that draw.
     Returns:
-        -min_red, min_green, min_blue (tuple of ints): 
+        -min_red, min_green, min_blue (tuple of ints):
         correct number for each color
     """
     color_maxes = {"red": 0, "green": 0, "blue": 0}
@@ -76,10 +74,10 @@ def min_viable_cubeset(game):
     for draw in game:
         for this_tuple in draw:
             num, color = this_tuple
-            if num > color_maxes[color]:
-                color_maxes[color] = num
+            color_maxes[color] = max(color_maxes[color], num)
 
     return color_maxes["red"], color_maxes["green"], color_maxes["blue"]
+
 
 def part2():
     """Find the 'power' of each set of cubes for each game and add them"""
@@ -88,6 +86,7 @@ def part2():
         power = reduce(lambda a, b: a * b, min_viable_cubeset(game))
         power_sum += power
     return power_sum
+
 
 if __name__ == "__main__":
     print(f"Part 1 answer: {part1()}")

@@ -1,9 +1,8 @@
+from math import sqrt
+
 import networkx as nx
 from aocd import get_data
-from math import sqrt
 from tqdm import tqdm
-
-
 
 input = get_data(day=8, year=2025)
 
@@ -72,9 +71,7 @@ def connect_circuits(G: nx.Graph, stop_after: int | None = None):
 def part1(data: str, stop_after=10):
     G = make_junction_boxes(data)
     G, _, _ = connect_circuits(G, stop_after=stop_after)
-    circuit_sizes = sorted(
-        [len(c) for c in list(nx.connected_components(G))], reverse=True
-    )
+    circuit_sizes = sorted([len(c) for c in list(nx.connected_components(G))], reverse=True)
     return circuit_sizes[0] * circuit_sizes[1] * circuit_sizes[2]
 
 

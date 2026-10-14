@@ -1,4 +1,4 @@
-from song.q10 import to_alphanum, to_loc, part3, DragonChessGame
+from song.q10 import DragonChessGame, part3, to_alphanum, to_loc
 
 
 def test_to_alphanum():
@@ -7,8 +7,8 @@ def test_to_alphanum():
 
 
 def test_to_loc():
-    assert to_loc("A1") == (0, 0), f"Expected (0,0), got {to_loc("A1")}"
-    assert to_loc("G5") == (4, 6), f"Expected (4,6), got {to_loc("G5")}"
+    assert to_loc("A1") == (0, 0), f"Expected (0,0), got {to_loc('A1')}"
+    assert to_loc("G5") == (4, 6), f"Expected (4,6), got {to_loc('G5')}"
 
 
 b3a = """SSS

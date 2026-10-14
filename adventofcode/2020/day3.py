@@ -1,8 +1,8 @@
-from aocd import get_data
 from functools import reduce
 
-from myutils import gridify
+from aocd import get_data
 
+from myutils import gridify
 
 input = gridify(get_data(day=3, year=2020))
 

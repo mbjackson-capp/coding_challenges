@@ -1,6 +1,4 @@
 from aocd import get_data
-from typing import List, Tuple
-
 
 input = get_data(day=8, year=2017).split("\n")
 
@@ -25,7 +23,7 @@ def satisfies_comparison(amt_1, operator, amt_2) -> bool:
         return amt_1 < amt_2
 
 
-def run_instructions(data: List[str]) -> Tuple[int, int]:
+def run_instructions(data: list[str]) -> tuple[int, int]:
     registers = {}
     highest_ever_held = 0
     for line in data:
@@ -42,8 +40,7 @@ def run_instructions(data: List[str]) -> Tuple[int, int]:
                 registers[op_reg] += op_amt
             elif op == DECREASE:
                 registers[op_reg] -= op_amt
-        if max(registers.values()) > highest_ever_held:
-            highest_ever_held = max(registers.values())
+        highest_ever_held = max(highest_ever_held, max(registers.values()))
     return max(registers.values()), highest_ever_held
 
 

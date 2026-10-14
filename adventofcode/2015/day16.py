@@ -1,5 +1,6 @@
-from aocd import get_data
 import re
+
+from aocd import get_data
 
 # Does this differ between users?
 mscam_text = """children: 3
@@ -68,13 +69,11 @@ def solve(data: str, part=1):
                 break
         if promising:
             return sue
-    raise Exception(
-        "Somehow, none of the Sues match the MSCAM results. Debug your code!"
-    )
+    raise Exception("Somehow, none of the Sues match the MSCAM results. Debug your code!")
 
 
 input = get_data(day=16, year=2015)
 
 if __name__ == "__main__":
-    print(f"Part 1 answer: {solve(input,part=1)}")
-    print(f"Part 2 answer: {solve(input,part=2)}")
+    print(f"Part 1 answer: {solve(input, part=1)}")
+    print(f"Part 2 answer: {solve(input, part=2)}")

@@ -1,12 +1,9 @@
 from aocd import get_data
-from typing import List
-
-
 
 input = get_data(day=1, year=2025).split("\n")
 
 
-def get_password(input: List[str], dial: int = 50) -> int:
+def get_password(input: list[str], dial: int = 50) -> int:
     p1_ans = 0
     p2_ans = 0
     DIAL_SIZE = 100

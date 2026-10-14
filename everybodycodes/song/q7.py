@@ -1,11 +1,9 @@
+from functools import reduce
+
 from input_data import q7_p1, q7_p2, q7_p3
 
-from functools import reduce
-from typing import Tuple, List, Set
 
-
-
-def parse_grammar(data: str) -> Tuple[List[str], dict]:
+def parse_grammar(data: str) -> tuple[list[str], dict]:
     names, rules = data.split("\n\n")
     names = names.split(",")
     names = [(i + 1, name) for i, name in enumerate(names)]
@@ -20,7 +18,7 @@ def parse_grammar(data: str) -> Tuple[List[str], dict]:
 
 def can_be_created(name: str, rules: dict) -> bool:
     """Determine whether this name can be created using this set of rules."""
-    if name[0] not in rules.keys():
+    if name[0] not in rules:
         return False
     for i, char in enumerate(name):
         if i == len(name) - 1:  # you reached the last letter
@@ -60,9 +58,7 @@ def part3(data: str) -> int:
     return len(all_creatable_names)
 
 
-def part3_helper(
-    name: str, rules: dict, lower_bound: int = 7, upper_bound: int = 11
-) -> Set[str]:
+def part3_helper(name: str, rules: dict, lower_bound: int = 7, upper_bound: int = 11) -> set[str]:
     # Base case: this name is not valid
     if not can_be_created(name, rules):
         return set()
@@ -88,7 +84,5 @@ def part3_helper(
 if __name__ == "__main__":
     print(f"Part 1 answer: {part1(q7_p1)}")
     print(f"Part 2 answer: {part2(q7_p2)}")
-    print(
-        f"Now doing part 3...This will take a few seconds because it doesn't cache..."
-    )
+    print("Now doing part 3...This will take a few seconds because it doesn't cache...")
     print(f"Part 3 answer: {part3(q7_p3)}")

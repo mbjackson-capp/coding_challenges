@@ -1,6 +1,6 @@
-from aocd import get_data
 from collections import Counter
-from datetime import datetime
+
+from aocd import get_data
 
 input = [int(i) for i in get_data(day=11, year=2024).split(" ")]
 
@@ -78,7 +78,7 @@ def run_faster(stones: list[int], num_blinks=25):
                 new_stones.append(old_stone * 2024)
 
             for new_stone in new_stones:
-                if new_stone not in new_ctr.keys():
+                if new_stone not in new_ctr:
                     new_ctr[new_stone] = 0
                 new_ctr[new_stone] += old_count
         ctr = new_ctr

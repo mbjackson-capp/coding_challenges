@@ -1,11 +1,11 @@
-import numpy as np
 from math import inf
+
+import numpy as np
 from input_data import q12_input1, q12_input2, q12_input3
 
 np.set_printoptions(linewidth=10000)
 
 from myutils import gridify
-
 
 ### PARTS 1 AND 2 #############################################################
 
@@ -44,21 +44,17 @@ def fire_at_ground(start: str, segments: dict, target: tuple[int, int]):
         - ranking (int or None): the ranking (shooting power * segment value)
         of a successful shot at target, if any
     TODO: change to closed-form calculation to reduce loops and speed up runtime"""
-    if start not in segments.keys():
+    if start not in segments:
         raise ValueError("Did not choose a valid segment name!")
     start_pt = segments[start]
     shooting_power = 1
     while True:
         traj = set(shoot(start_pt, shooting_power))
-        if (
-            target in traj
-        ):  # set lookup is faster than iterating trajectory point by point
+        if target in traj:  # set lookup is faster than iterating trajectory point by point
             ranking = shooting_power * segment_number[start]
             return target, ranking
         else:  # check if the cannonball ever went over the target
-            overshoots = len(
-                {pt for pt in traj if pt[1] > target[1] and pt[0] > target[0]}
-            )
+            overshoots = len({pt for pt in traj if pt[1] > target[1] and pt[0] > target[0]})
             if overshoots:
                 return None, inf
             else:
@@ -72,7 +68,7 @@ def starting_scene(map: np.array) -> dict:
     hard_targets = set()
     for i, row in enumerate(map):
         for j, _ in enumerate(row):
-            val = str(map[i][j])
+            val = str(row[j])
             if val in ["A", "B", "C"]:
                 segments[val] = (i, j)
             elif val == "T":
@@ -108,9 +104,7 @@ def run(map_obj: np.array):
             else:
                 results_of_shots[segment] = result
         if any_of_them_hit:
-            solution += min(
-                results_of_shots.values()
-            )  # lowest finite ranking among three shots
+            solution += min(results_of_shots.values())  # lowest finite ranking among three shots
             any_of_them_hit = False
         else:
             raise Exception(
@@ -157,9 +151,7 @@ def check_for_hit_at_time(segment: str, meteor_origin: tuple[int, int], shot_tim
     # and just stop there
     BIG_NUMBER = 10000
     for pwr in range(1, BIG_NUMBER):
-        alt, rank, break_flag = check_for_hit_at_power(
-            segment, delayed_meteor_origin, pwr
-        )
+        alt, rank, break_flag = check_for_hit_at_power(segment, delayed_meteor_origin, pwr)
         if (alt != -1 and rank != inf) or break_flag:
             return alt, rank, break_flag
     # no hits
@@ -173,15 +165,13 @@ def get_x_at_time(t, shooting_power, cannon_height):
     if t <= shooting_power:  # Cannonball on upward path
         return cannon_height + t
     elif t <= (2 * shooting_power):  # Cannonball in flat path
-        return cannon_height + shooting_power  #
+        return cannon_height + shooting_power
     else:  # Cannonball on downward path; goes negative if trajectory has ended
         return cannon_height + (3 * shooting_power) - t
 
 
 # The order of these helper functions may have to change
-def check_for_hit_at_power(
-    segment: str, meteor_origin: tuple[int, int], shooting_power: int
-):
+def check_for_hit_at_power(segment: str, meteor_origin: tuple[int, int], shooting_power: int):
     """Helper function to be called each time shooting power or time delay is incremented.
     Runs calculations for one shot of the cannon and one meteor, at an assumed/normalized
     start time of t=0.
@@ -265,20 +255,15 @@ def check_for_hit_at_power(
     # Case 4a: intersection does not occur on discrete time interval
     if y_intersection != int(y_intersection):
         return -1, inf, False
-    elif (
-        x_intersection >= shooting_power + cannon_height
-    ):  # projectile never gets that high
+    elif x_intersection >= shooting_power + cannon_height:  # projectile never gets that high
         return -1, inf, False
     # Case 4b: intersection hits downward path
     elif (flat_end[1] <= y_intersection <= end[1]) and (x_intersection >= 0):
-        x_cannonball = get_x_at_time(
-            fall_dist_to_intersection, shooting_power, cannon_height
-        )
+        x_cannonball = get_x_at_time(fall_dist_to_intersection, shooting_power, cannon_height)
         if (x_cannonball, fall_dist_to_intersection) == (
             x_intersection,
             y_intersection,
         ):
-
             ranking = shooting_power * segment_number[segment]
             return x_intersection, ranking, True
 
@@ -370,7 +355,7 @@ def part3(shower: list[tuple[int, int]]) -> int:
 
 if __name__ == "__main__":
     map1 = gridify(q12_input1)[::-1]
-    print(f"Now running Part 1 and Part 2. This could take several seconds...")
+    print("Now running Part 1 and Part 2. This could take several seconds...")
     part1_solution = run(map1)
     print(f"Part 1 solution: {part1_solution}")
 
@@ -384,7 +369,7 @@ if __name__ == "__main__":
     # 1989, 3976
     # 3601, 7200
     # TODO: find efficiency issue and fix it
-    print(f"Now running Part 3. This could take several minutes...")
+    print("Now running Part 3. This could take several minutes...")
     meteors = generate_meteor_shower(q12_input3)
     part3_solution = part3(meteors)
     print(f"Part 3 solution: {part3_solution}")

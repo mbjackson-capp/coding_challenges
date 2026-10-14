@@ -1,5 +1,5 @@
-from collections import Counter
 from textwrap import wrap
+
 from input_data import q1_input1, q1_input2, q1_input3
 
 potions_needed = {"A": 0, "B": 1, "C": 3, "D": 5}

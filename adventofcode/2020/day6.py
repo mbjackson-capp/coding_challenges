@@ -1,7 +1,7 @@
-from aocd import get_data
 import re
 from functools import reduce
 
+from aocd import get_data
 
 input = get_data(day=6, year=2020)
 # separate out each respondent group

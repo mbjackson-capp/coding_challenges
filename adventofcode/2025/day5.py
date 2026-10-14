@@ -1,21 +1,16 @@
 from aocd import get_data
-from typing import Tuple, List, Set
-
-
 
 input = get_data(day=5, year=2025)
 
 
-def prepare_data(data: str) -> Tuple[List[Tuple[int, int]], List[int]]:
+def prepare_data(data: str) -> tuple[list[tuple[int, int]], list[int]]:
     ranges, ids = data.split("\n\n")
     ranges = [tuple(int(i) for i in i.split("-")) for i in ranges.split("\n")]
     ids = [int(i) for i in ids.split("\n")]
     return ranges, ids
 
 
-def get_fresh_ids(
-    ranges: List[Tuple[int, int]], ids: List[int]
-) -> Tuple[Set[int], Set[int]]:
+def get_fresh_ids(ranges: list[tuple[int, int]], ids: list[int]) -> tuple[set[int], set[int]]:
     fresh_ids = set()
     for id in ids:
         added = False
@@ -34,7 +29,7 @@ def part1(data: str) -> int:
     return len(get_fresh_ids(ranges, ids))
 
 
-def have_overlap(rang1: Tuple[int, int], rang2: Tuple[int, int]) -> bool:
+def have_overlap(rang1: tuple[int, int], rang2: tuple[int, int]) -> bool:
     """Check if two numeric ranges have overlap, inclusive of endpoints."""
     lb1, ub1 = rang1
     lb2, ub2 = rang2
@@ -43,7 +38,7 @@ def have_overlap(rang1: Tuple[int, int], rang2: Tuple[int, int]) -> bool:
     return lb2 <= ub1
 
 
-def condense_ranges(rngs: List[Tuple[int, int]]) -> Set[Tuple[int, int]]:
+def condense_ranges(rngs: list[tuple[int, int]]) -> set[tuple[int, int]]:
     """Condense a collection of potentially overlapping integer ranges, each
     represented by a tuple of the start and end (inclusive) of that range,
     such that all overlapping ranges are merged.

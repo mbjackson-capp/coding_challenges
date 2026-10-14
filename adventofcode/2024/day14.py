@@ -1,8 +1,9 @@
-from aocd import get_data
+import re
 from dataclasses import dataclass
 from math import prod
+
 import numpy as np
-import re
+from aocd import get_data
 
 np.set_printoptions(linewidth=10000)
 
@@ -80,7 +81,7 @@ if __name__ == "__main__":
     part1_solution = part1()
     print(f"Part 1 solution: {part1_solution}")
     print(
-        f"Now running Part 2...This will take a few seconds of real time per 1,000 seconds of simulation..."
+        "Now running Part 2...This will take a few seconds of real time per 1,000 seconds of simulation..."
     )
     part2_solution = part2()
     print(f"Part 2 solution: {part2_solution}")

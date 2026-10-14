@@ -1,9 +1,9 @@
-import networkx as nx
 from itertools import combinations
 
+import networkx as nx
 from input_data import q17_input1, q17_input2, q17_input3
-from myutils import gridify, manhattan_dist
 
+from myutils import gridify, manhattan_dist
 
 STAR = "*"
 
@@ -25,7 +25,7 @@ BRIGHT_LIMIT = 6
 
 def make_star_graph(star_dict: dict, is_part3: bool = False):
     G = nx.Graph()
-    for k in star_dict.keys():
+    for k in star_dict:
         G.add_node(k, spot=star_dict[k])
     for comb in combinations(star_dict.keys(), 2):
         star1, star2 = comb

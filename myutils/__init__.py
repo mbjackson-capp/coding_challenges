@@ -36,12 +36,7 @@ def neighbor_locs(arr, x, y, include_diag=False):
             else:
                 this_x = x + dx
                 this_y = y + dy
-                if (
-                    this_x >= 0
-                    and this_y >= 0
-                    and this_x < len(arr)
-                    and this_y < len(arr[0])
-                ):
+                if this_x >= 0 and this_y >= 0 and this_x < len(arr) and this_y < len(arr[0]):
                     neighbor_locs.append((this_x, this_y))
     return neighbor_locs
 

@@ -1,6 +1,6 @@
-from aocd import get_data
 import re
 
+from aocd import get_data
 
 input = get_data(day=7, year=2020).split("\n")
 
@@ -48,16 +48,11 @@ def part2(starting_color: str, rules: dict) -> int:
         return 1  # this bag isn't holding anything
     else:
         return (
-            sum(
-                [
-                    (part2(color, rules) * qty)
-                    for color, qty in rules[starting_color].items()
-                ]
-            )
+            sum([(part2(color, rules) * qty) for color, qty in rules[starting_color].items()])
             + 1  # count this bag!
         )
 
 
-print(f"Part 1 solution: {len(part1("shiny gold", rules))}")
+print(f"Part 1 solution: {len(part1('shiny gold', rules))}")
 # subtract 1 because recursive count for part 2 includes the outermost bag
-print(f"Part 2 solution: {part2("shiny gold", rules) - 1}")
+print(f"Part 2 solution: {part2('shiny gold', rules) - 1}")

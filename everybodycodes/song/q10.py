@@ -1,15 +1,11 @@
-from input_data import qten_p1, qten_p2, qten_p3
-
-
 from copy import deepcopy
 from functools import cache, reduce
+
 import numpy as np
+from input_data import qten_p1, qten_p2, qten_p3
 from tqdm import tqdm
-from typing import List, Tuple, Set
 
 from myutils import gridify
-
-
 
 DRAGON = "D"
 SHEEP = "S"
@@ -19,23 +15,21 @@ PLAIN = "."
 #### PART 1 & 2 ###############################################################
 
 
-def find_dragon(board: np.array) -> Tuple[int, int]:
+def find_dragon(board: np.array) -> tuple[int, int]:
     dragon_locs = np.argwhere(board == DRAGON)
     assert len(dragon_locs) == 1, f"Should only be 1 dragon, found {len(dragon_locs)}"
     # for readability, turn list of lists of np.int into tuple of base-Python ints
     return tuple([int(i) for i in dragon_locs[0]])
 
 
-def find_symbol(board: np.array, symbol: str) -> Tuple[np.array, Tuple[int, int]]:
+def find_symbol(board: np.array, symbol: str) -> tuple[np.array, tuple[int, int]]:
     assert symbol in (SHEEP, HIDEOUT), f"Symbol {symbol} isn't meaningful"
     sym_locs = np.argwhere(board == symbol)
     return set([(int(i[0]), int(i[1])) for i in sym_locs])
 
 
 @cache
-def knight_moves(
-    start_space: Tuple[int, int], x_max: int, y_max=int
-) -> Set[Tuple[int, int]]:
+def knight_moves(start_space: tuple[int, int], x_max: int, y_max=int) -> set[tuple[int, int]]:
     """Obtain all the squares to which it is possible to make a legal 'knight move'
     (2 squares forward, one square sideways, where 'forward' can be any direction)
     on a board of this size."""
@@ -61,12 +55,12 @@ def knight_moves(
 
 @cache
 def dragon_move_range(
-    this_space: Tuple[int, int],
+    this_space: tuple[int, int],
     x_max: int,
     y_max: int,
     moves_left: int,
     strict: bool = False,
-) -> List[Tuple[int, int]]:
+) -> list[tuple[int, int]]:
     """Get the set of all spaces on a board of size (x_max, y_max) that a
     dragon piece starting on this_space can reach in up to n moves.
     (With strict flag, restrict to all pieces it can reach in exactly n moves.)"""
@@ -92,10 +86,10 @@ def dragon_move_range(
 
 
 def get_edible_sheep_locs(
-    dragon_spaces: Set[Tuple[int, int]],
-    sheep_spaces: Set[Tuple[int, int]],
-    hideout_spaces: Set[Tuple[int, int]],
-) -> Set[Tuple[int, int]]:
+    dragon_spaces: set[tuple[int, int]],
+    sheep_spaces: set[tuple[int, int]],
+    hideout_spaces: set[tuple[int, int]],
+) -> set[tuple[int, int]]:
     return dragon_spaces.intersection(sheep_spaces) - hideout_spaces
 
 
@@ -109,9 +103,7 @@ def part1(data: str, moves_allowed=4) -> int:
     return len(sheep_in_danger)
 
 
-def move_all_sheep(
-    sheep_locs: List[Tuple[int, int]], b: np.array
-) -> Set[Tuple[int, int]]:
+def move_all_sheep(sheep_locs: list[tuple[int, int]], b: np.array) -> set[tuple[int, int]]:
     """Move every surviving sheep in accordance with the rules for their turn."""
     x_max = b.shape[0]
     new_sheep_locs = set()
@@ -133,9 +125,7 @@ def part2(data: str, n_turns=20) -> int:
 
     for turn in tqdm(range(1, n_turns + 1)):
         # Dragon takes its move
-        this_turn_dragon_range = dragon_move_range(
-            dragon_space, x_max, y_max, turn, strict=True
-        )
+        this_turn_dragon_range = dragon_move_range(dragon_space, x_max, y_max, turn, strict=True)
         # Check which sheep are edible after dragon has moved
         edible_check_a = get_edible_sheep_locs(
             this_turn_dragon_range, sheep_spaces, hideout_spaces
@@ -158,15 +148,15 @@ def part2(data: str, n_turns=20) -> int:
 #### PART 3 HELPER FUNCTIONS ##################################################
 
 
-def to_alphanum(loc: Tuple[int, int]) -> str:
+def to_alphanum(loc: tuple[int, int]) -> str:
     """Convert a zero-based numpy-compatible (x,y) index into the alphanumeric
     syntax used in problem statement."""
     x, y = loc
     ASCII_A_VALUE = 65
-    return f"{chr(ASCII_A_VALUE+y)}{x+1}"
+    return f"{chr(ASCII_A_VALUE + y)}{x + 1}"
 
 
-def to_loc(alphanum: str) -> Tuple[int, int]:
+def to_loc(alphanum: str) -> tuple[int, int]:
     """Convert an alphanumeric representation such as L8 into a numpy-compatible
     location tuple.
     Assumes that column indicator will be a single letter, and that column
@@ -179,9 +169,7 @@ def to_loc(alphanum: str) -> Tuple[int, int]:
     return (x, y)
 
 
-def is_saved(
-    sheep: Tuple[int, int], hideouts: Set[Tuple[int, int]], max_x: int
-) -> bool:
+def is_saved(sheep: tuple[int, int], hideouts: set[tuple[int, int]], max_x: int) -> bool:
     """Check if all spaces from this sheep to the bottom of the board, inclusive,
     are hideouts. If this is true of any sheep, the game is over and the sheep
     have won.
@@ -208,9 +196,7 @@ class DragonChessGame:
         del board
 
         if len(set([i[1] for i in self.sheeps])) < len([i[1] for i in self.sheeps]):
-            raise ValueError(
-                "Invalid board state: each column can contain at max one sheep"
-            )
+            raise ValueError("Invalid board state: each column can contain at max one sheep")
 
     @property
     def winner(self):
@@ -261,12 +247,10 @@ class DragonChessGame:
             raise Exception(f"Game over: {self.winner} won, no further moves allowed")
 
         if move_spec not in self.legal_moves:
-            raise ValueError(
-                f"Illegal move: {move_spec} not in valid set {self.legal_moves}"
-            )
+            raise ValueError(f"Illegal move: {move_spec} not in valid set {self.legal_moves}")
         if move_spec == "PASS":
             self.next_mover = "dragon"
-            return None
+            return
 
         mover = move_spec[0]
         to_space = to_loc(move_spec[2:])

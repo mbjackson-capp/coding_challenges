@@ -1,7 +1,7 @@
-from input_data import q6_p1, q6_p2, q6_p3
-
 from collections import Counter
 from functools import cache
+
+from input_data import q6_p1, q6_p2, q6_p3
 from tqdm import tqdm
 
 
@@ -11,20 +11,14 @@ def mentor_helper(subsection: str, mentee: str) -> int:
     for the mentee (lower case letter) within this subsection of the input.
     Uses cache decorator for memoization to reduce runtime of part 3 from
     ~5 minutes to ~5 seconds."""
-    assert (
-        len(mentee) == 1 and mentee.islower()
-    ), "Mentee should be a lower-case letter!"
+    assert len(mentee) == 1 and mentee.islower(), "Mentee should be a lower-case letter!"
     return Counter(subsection)[mentee.upper()]
 
 
 def earlier_mentors(tents: str, mentee_category: str | None = None) -> int:
     if mentee_category:
         tents = "".join(
-            [
-                char
-                for char in tents
-                if char in (mentee_category.upper(), mentee_category.lower())
-            ]
+            [char for char in tents if char in (mentee_category.upper(), mentee_category.lower())]
         )
     total_mentors = 0
     for i, char in enumerate(tents):
@@ -39,10 +33,7 @@ def earlier_mentors(tents: str, mentee_category: str | None = None) -> int:
 def surrounding_mentors(tent_data: str, dist_limit: int = 10, repeats: int = 1):
     tents = tent_data * repeats
     total_mentors = 0
-    print(
-        f"Calculating mentor count for {len(tents)} tents..."
-        "This could take a few seconds..."
-    )
+    print(f"Calculating mentor count for {len(tents)} tents...This could take a few seconds...")
     for i, char in tqdm(enumerate(tents)):
         if char.isupper():
             continue

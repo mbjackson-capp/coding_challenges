@@ -1,9 +1,8 @@
-from aocd import get_data
 import re
-import pandas as pd
 from itertools import batched
 
-
+import pandas as pd
+from aocd import get_data
 
 
 def parse_record(record: str):
@@ -27,7 +26,7 @@ def assemble_table(data: str):
             if date not in record_dict:
                 record_dict[date] = {"guard": guard, "ranges": []}
             record_dict[date]["ranges"].append(minute)
-    for date in record_dict.keys():
+    for date in record_dict:
         # get ranges of time asleep
         range_batch = batched(record_dict[date]["ranges"], 2)
         actual_ranges = [range(r[0], r[1]) for r in range_batch]
@@ -35,13 +34,13 @@ def assemble_table(data: str):
 
     # initialize table as shown in problem statement
     df = pd.DataFrame()
-    df["month"] = [k[0] for k in record_dict.keys()]
-    df["day"] = [k[1] for k in record_dict.keys()]
+    df["month"] = [k[0] for k in record_dict]
+    df["day"] = [k[1] for k in record_dict]
     df = df.set_index(["month", "day"])
     df["guard"] = [record_dict[k]["guard"] for k in record_dict]
     for minute in range(60):
         df[f"{minute}"] = 0
-    for date in record_dict.keys():
+    for date in record_dict:
         month, day = date
         ranges = record_dict[date]["ranges"]
         for r in ranges:
@@ -62,9 +61,7 @@ def part1(df: pd.DataFrame) -> int:
     )
     sleepiest_minute = int(
         pd.Series(
-            df[df["guard"] == sleepiest_guard]
-            .drop(columns=["guard", "total_asleep"])
-            .sum(axis=0)
+            df[df["guard"] == sleepiest_guard].drop(columns=["guard", "total_asleep"]).sum(axis=0)
         ).idxmax()
     )
     return sleepiest_guard * sleepiest_minute

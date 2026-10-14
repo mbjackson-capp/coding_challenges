@@ -1,8 +1,7 @@
-from input_data import q8_p1, q8_p2, q8_p3
-
 from itertools import combinations, pairwise
+
+from input_data import q8_p1, q8_p2, q8_p3
 from tqdm import tqdm
-from typing import Tuple
 
 test1 = "1,5,2,6,8,4,1,7,3"
 
@@ -19,9 +18,7 @@ def part1(seq: str, num_nails=32):
     return center_crosses
 
 
-def have_overlap(
-    r1: Tuple[int, int], r2: Tuple[int, int], include_endpoints=True
-) -> bool:
+def have_overlap(r1: tuple[int, int], r2: tuple[int, int], include_endpoints=True) -> bool:
     """
     Determine if two ranges along the same axis/number line have overlap,
     without one range being entirely a subrange of the other.
@@ -73,9 +70,7 @@ def test_have_overlap():
     assert have_overlap((1, 4), (2, 3)) == False
 
 
-def intersect_within_circle(
-    old_thread: Tuple[int, int], new_thread: Tuple[int, int]
-) -> bool:
+def intersect_within_circle(old_thread: tuple[int, int], new_thread: tuple[int, int]) -> bool:
     """Check whether threads strung between two pairs of start/end points of a
     circular artwork intersect in the circle.
     Note that if they share an endpoint, they can't intersect within circle proper."""
@@ -108,12 +103,9 @@ def part3(seq, num_nails=256):
         # between same two nails by using list comprehension instead of set
         cuts = [t for t in threads if intersect_within_circle(strike, t)]
         if strike in threads or backward_strike in threads:
-            threads_along_strike = [
-                t for t in threads if t in (strike, backward_strike)
-            ]
+            threads_along_strike = [t for t in threads if t in (strike, backward_strike)]
             cuts.append(threads_along_strike)
-        if len(cuts) > max_cuts:
-            max_cuts = len(cuts)
+        max_cuts = max(max_cuts, len(cuts))
     return max_cuts
 
 
@@ -121,5 +113,5 @@ if __name__ == "__main__":
     test_have_overlap()
     print(f"Part 1 answer: {part1(q8_p1)}")
     print(f"Part 2 answer: {part2(q8_p2)}")
-    print(f"Now computing Part 3 answer... This may take a few minutes...")
+    print("Now computing Part 3 answer... This may take a few minutes...")
     print(f"Part 3 answer: {part3(q8_p3)}")

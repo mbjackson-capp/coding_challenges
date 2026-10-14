@@ -1,6 +1,6 @@
-from aocd import get_data
 import re
 
+from aocd import get_data
 
 input = get_data(day=2, year=2020).split("\n")
 input = [re.split(r"-|:?\s", row) for row in input]
@@ -16,9 +16,7 @@ def validate_all(part: int = 1) -> int:
                 valids += 1
         elif part == 2:
             # use bitwise xor on output of two boolean statements
-            if (passwd[int(first_num) - 1] == letter) ^ (
-                passwd[int(second_num) - 1] == letter
-            ):
+            if (passwd[int(first_num) - 1] == letter) ^ (passwd[int(second_num) - 1] == letter):
                 valids += 1
     return valids
 

@@ -1,7 +1,7 @@
-from aocd import get_data
-from typing import Optional, List, Tuple
-from dataclasses import dataclass
 import re
+from dataclasses import dataclass
+
+from aocd import get_data
 
 input = get_data(day=23, year=2015)
 
@@ -9,8 +9,8 @@ input = get_data(day=23, year=2015)
 @dataclass
 class Instruction:
     command: str
-    register: Optional[str] = None
-    offset: Optional[int] = None
+    register: str | None = None
+    offset: int | None = None
 
     def __repr__(self):
         return (
@@ -32,7 +32,7 @@ def parse_instructions(data: str):
     return instructions
 
 
-def execute_all(instructions: List[Instruction], part=1) -> int:
+def execute_all(instructions: list[Instruction], part=1) -> int:
     registers = {"a": 0, "b": 0}
     if part == 2:
         registers["a"] = 1
@@ -44,7 +44,7 @@ def execute_all(instructions: List[Instruction], part=1) -> int:
 
 def execute(
     registers: dict, pointer: int, i: Instruction, debug: bool = False
-) -> Tuple[dict, int]:
+) -> tuple[dict, int]:
     if debug:
         print(f"Now executing instruction {i} at index {pointer} on {registers}")
     if i.command == "hlf":  # HALVE
@@ -56,11 +56,13 @@ def execute(
     elif i.command == "inc":  # INCREMENT
         registers[i.register] += 1
         pointer += 1
-    elif i.command == "jmp":  # JUMP
-        pointer += i.offset
-    elif i.command == "jie" and (registers[i.register] % 2 == 0):  # JUMP IF EVEN
-        pointer += i.offset
-    elif i.command == "jio" and (registers[i.register] == 1):  # JUMP IF ONE
+    elif (
+        i.command == "jmp"  # JUMP
+        or i.command == "jie"
+        and (registers[i.register] % 2 == 0)  # JUMP IF EVEN
+        or i.command == "jio"
+        and (registers[i.register] == 1)  # JUMP IF ODD
+    ):
         pointer += i.offset
     else:
         pointer += 1

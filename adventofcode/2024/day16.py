@@ -1,8 +1,10 @@
-from aocd import get_data
-from enum import Enum
 import heapq
+from enum import Enum
 from math import inf
+
 import numpy as np
+from aocd import get_data
+
 from myutils import gridify, neighbor_locs
 
 
@@ -70,9 +72,7 @@ def are_90deg_apart(old_dir: Direction, new_dir: Direction) -> bool:
     return abs(old_dir - new_dir) in [1, 3]
 
 
-def reindeer_dijkstra(
-    arr: np.array, start: tuple[int, int], end: tuple[int, int]
-) -> int:
+def reindeer_dijkstra(arr: np.array, start: tuple[int, int], end: tuple[int, int]) -> int:
     """
     Run Dijkstra's algorithm to find the length of the shortest path
     from a starting square to an ending square, with the added proviso
@@ -147,19 +147,14 @@ def count_spots_in_shortest_paths(end, distances):
     while len(stack) > 0:
         cur_pt, cur_dist = stack.pop(-1)
         all_paths.add(cur_pt)
-        if (
-            min(distances[cur_pt].values()) == 0
-            and max(distances[cur_pt].values()) == 0
-        ):
+        if min(distances[cur_pt].values()) == 0 and max(distances[cur_pt].values()) == 0:
             # you've reached the beginning, no more backtracking from here --
             # but keep stack going in case other paths haven't finished evaluating
             continue
         for dir in distances[cur_pt]:
             if distances[cur_pt][dir] == cur_dist - 1:  # path continues straight back
                 stack.append((backtrack_pt(cur_pt, dir), cur_dist - 1))
-            elif (
-                distances[cur_pt][dir] == cur_dist - TURN_SCORE - 1
-            ):  # path continues at a turn
+            elif distances[cur_pt][dir] == cur_dist - TURN_SCORE - 1:  # path continues at a turn
                 stack.append((backtrack_pt(cur_pt, dir), cur_dist - TURN_SCORE - 1))
     return len(all_paths)
 

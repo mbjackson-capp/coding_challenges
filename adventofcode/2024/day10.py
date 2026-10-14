@@ -1,5 +1,6 @@
-from aocd import get_data
 import numpy as np
+from aocd import get_data
+
 from myutils import gridify, neighbor_locs
 
 
@@ -13,9 +14,9 @@ def get_trails_starting_at(arr: np.ndarray, x, y, prior_step_val=-1):
     start at 0, and increment by 1 at each step until they terminate
     at 9."""
     if prior_step_val < 0 and arr[x][y] != 0:
-        raise Exception("Trail should not start here!") 
-    elif arr[x][y] == 9 and prior_step_val == 8: #Base case: Trail over
-        return [[(x,y)]]
+        raise Exception("Trail should not start here!")
+    elif arr[x][y] == 9 and prior_step_val == 8:  # Base case: Trail over
+        return [[(x, y)]]
     elif arr[x][y] == prior_step_val + 1:
         neighbors = neighbor_locs(arr, x, y)
         results = []
@@ -24,7 +25,7 @@ def get_trails_starting_at(arr: np.ndarray, x, y, prior_step_val=-1):
             if arr[x_n][y_n] == arr[x][y] + 1:
                 trails = get_trails_starting_at(arr, x_n, y_n, prior_step_val=arr[x][y])
                 for trail in trails:
-                    trail.insert(0, (x,y))
+                    trail.insert(0, (x, y))
                     results.append(trail)
         return results
 
@@ -47,7 +48,7 @@ def run(arr):
     return sum(p1_scores), sum(p2_scores), all_trails
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     input = gridify(get_data(day=10, year=2024), intify=True)
     total_p1_score, total_p2_score, trails = run(input)
     print(f"Part 1 solution: {total_p1_score}")

@@ -1,5 +1,4 @@
-import re
-from input_data import q2_words1, q2_helmet1, q2_words2, q2_shield2
+from input_data import q2_helmet1, q2_shield2, q2_words1, q2_words2
 
 ### PART 1
 

@@ -1,8 +1,6 @@
-from input_data import q5_p1, q5_p2, q5_p3
-
 from dataclasses import dataclass
 
-
+from input_data import q5_p1, q5_p2, q5_p3
 
 
 @dataclass
@@ -33,9 +31,7 @@ class FishboneSegment:
 
     @property
     def level_number(self):
-        level_strs = [
-            "" if s is None else str(s) for s in (self.left, self.spine, self.right)
-        ]
+        level_strs = ["" if s is None else str(s) for s in (self.left, self.spine, self.right)]
         return int("".join(level_strs))
 
     def place(self, num: int):
@@ -137,7 +133,7 @@ def part3(swords_data: str, debug=False) -> int:
     for i, sword in enumerate(swords):
         check_value = sword.id * (i + 1)  # problem specifies 1-based indexing
         if debug:
-            print(f"{i+1} * {sword.id} + ")
+            print(f"{i + 1} * {sword.id} + ")
         checksum += check_value
     return checksum
 

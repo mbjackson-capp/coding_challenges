@@ -1,7 +1,7 @@
-from aocd import get_data
 import re
 from itertools import combinations
-import sys
+
+from aocd import get_data
 
 
 class Moon:
@@ -93,30 +93,18 @@ def state_string(moon_list: list[Moon]):
 
 example_1 = [
     parse_new_moon(i)
-    for i in """<x=-1, y=0, z=2>
-<x=2, y=-10, z=-7>
-<x=4, y=-8, z=8>
-<x=3, y=5, z=-1>""".split(
-        "\n"
-    )
+    for i in ["<x=-1, y=0, z=2>", "<x=2, y=-10, z=-7>", "<x=4, y=-8, z=8>", "<x=3, y=5, z=-1>"]
 ]
 
 example_2 = [
     parse_new_moon(i)
-    for i in """<x=-8, y=-10, z=0>
-<x=5, y=5, z=10>
-<x=2, y=-7, z=3>
-<x=9, y=-8, z=-3>""".split(
-        "\n"
-    )
+    for i in ["<x=-8, y=-10, z=0>", "<x=5, y=5, z=10>", "<x=2, y=-7, z=3>", "<x=9, y=-8, z=-3>"]
 ]
 
 
 def part1():
     input = [parse_new_moon(i) for i in get_data(day=12, year=2019).split("\n")]
-    part1 = simulate_moon_system(
-        input, last_step=1000, print_after_every=None, print_energy=False
-    )
+    part1 = simulate_moon_system(input, last_step=1000, print_after_every=None, print_energy=False)
     print(f"Part 1 solution: {part1}")
 
 

@@ -1,5 +1,6 @@
-from aocd import get_data
 import re
+
+from aocd import get_data
 
 
 def parse_input(data):
@@ -62,7 +63,7 @@ def count_ways_to_make(design, towels):
 if __name__ == "__main__":
     part1_count = 0
     part2_count = 0
-    print(f"Now running... This could take several seconds...")
+    print("Now running... This could take several seconds...")
     for design in designs:
         if is_possible(design, towels):
             part1_count += 1

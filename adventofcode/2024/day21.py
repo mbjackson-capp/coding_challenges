@@ -1,7 +1,8 @@
-from aocd import get_data
 from functools import cache
 from itertools import pairwise  # must be on Python 3.10 or greater
+
 import numpy as np
+from aocd import get_data
 
 NUM_KEYPAD = np.array([[7, 8, 9], [4, 5, 6], [1, 2, 3], ["_", 0, "A"]])
 

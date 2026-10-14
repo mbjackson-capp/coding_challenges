@@ -1,6 +1,6 @@
-from aocd import get_data
 from copy import deepcopy
 
+from aocd import get_data
 
 input = get_data(day=8, year=2020).split("\n")
 

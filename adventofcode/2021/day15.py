@@ -1,31 +1,32 @@
-from aocd import get_data
+import heapq
+
 import numpy as np
-import heapq 
+from aocd import get_data
 
 from myutils import gridify, neighbor_locs
 
-
 cavern = gridify(get_data(day=15, year=2021), intify=True)
 
+
 def expand(cavern):
-    '''Create the expanded-size map for Part 2'''
+    """Create the expanded-size map for Part 2"""
     expanded = np.concatenate([cavern + i for i in range(5)], axis=1)
     expanded = np.concatenate([expanded + i for i in range(5)], axis=0)
     expanded[expanded > 9] -= 9
     return expanded
-    
 
-def dijkstra_pq(cavern, start_node=(0,0), end_node='default', part=1):
-    '''
+
+def dijkstra_pq(cavern, start_node=(0, 0), end_node="default", part=1):
+    """
     Priority queue implementation inspired by
     https://bradfieldcs.com/algos/graphs/dijkstras-algorithm/.
     Comments on steps adapted from Wikipedia, "Dijkstra's algorithm"
-    '''
+    """
     if part == 2:
         cavern = expand(cavern)
     max_y, max_x = cavern.shape
-    if end_node == 'default':
-        end_node = (max_x-1, max_y-1)
+    if end_node == "default":
+        end_node = (max_x - 1, max_y - 1)
     # unattainably high value, since np.inf isn't usable in int-dtype array
     INF = np.sum(cavern) + 1
 
@@ -43,7 +44,7 @@ def dijkstra_pq(cavern, start_node=(0,0), end_node='default', part=1):
         # distance; set it as the new current node to "visit" it
         curr_dist, curr_node = heapq.heappop(priority_queue)
 
-        # Calculate tentative distances to each unvisited neighbor through 
+        # Calculate tentative distances to each unvisited neighbor through
         # current node
         curr_x, curr_y = curr_node
         neighbors = [pt for pt in neighbor_locs(cavern, curr_x, curr_y)]
@@ -60,7 +61,6 @@ def dijkstra_pq(cavern, start_node=(0,0), end_node='default', part=1):
     return distances[end_node]
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     print(f"Part 1 answer: {dijkstra_pq(cavern)}")
-    print(f"Part 2 answer: {dijkstra_pq(cavern, part=2)}")   
-
+    print(f"Part 2 answer: {dijkstra_pq(cavern, part=2)}")

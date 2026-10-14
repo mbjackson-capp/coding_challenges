@@ -1,7 +1,5 @@
-from aocd import get_data
 import numpy as np
-
-
+from aocd import get_data
 
 input = get_data(day=2, year=2016).split("\n")
 

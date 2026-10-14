@@ -1,16 +1,17 @@
-from aocd import get_data
 from ast import literal_eval
 from functools import cmp_to_key
 
+from aocd import get_data
 
-input = get_data(day=13, year=2022).split('\n')
+input = get_data(day=13, year=2022).split("\n")
+
 
 def in_correct_order(left, right):
-    '''Determine if two inputs are in correct order.
+    """Determine if two inputs are in correct order.
     Returns: -1 if the left input is properly "less than" the right input, 0 if
-    the inputs cannot be directly ordered, and 1 if the inputs need to be 
+    the inputs cannot be directly ordered, and 1 if the inputs need to be
     swapped to be put in correct order (for use with with cmp_to_key method)
-    '''
+    """
     if type(left) == int and type(right) == int:
         if left == right:
             return 0
@@ -18,9 +19,9 @@ def in_correct_order(left, right):
             return -1
         elif right < left:
             return 1
-    
+
     if type(left) == list and type(right) == list:
-        #If left side runs out of items first, items are in correct order
+        # If left side runs out of items first, items are in correct order
         if len(left) == len(right) == 0:
             return 0
         if len(left) == 0 and len(right) != 0:
@@ -38,7 +39,7 @@ def in_correct_order(left, right):
         return in_correct_order([left], right)
     if type(left) == list and type(right) == int:
         return in_correct_order(left, [right])
-    
+
 
 def part1_prep():
     input_pairs = []
@@ -50,29 +51,30 @@ def part1_prep():
             input_pairs.append((left, right))
     return input_pairs
 
+
 def part1():
     total = 0
     input_pairs = part1_prep()
     for i, pair in enumerate(input_pairs):
-        idx = i+1
+        idx = i + 1
         left, right = pair
         if in_correct_order(left, right) == -1:
             total += idx
     return total
 
 
-def part2(input): 
-    input = [literal_eval(i) for i in [j for j in input if j != '']]
-    #add the divider packets
+def part2(input):
+    input = [literal_eval(i) for i in [j for j in input if j != ""]]
+    # add the divider packets
     input.append([[2]])
     input.append([[6]])
     ans = sorted(input, key=cmp_to_key(in_correct_order))
 
-    #+1s to adjust for 1-based indexing in original problem
+    # +1s to adjust for 1-based indexing in original problem
     decoder_key = (ans.index([[2]]) + 1) * (ans.index([[6]]) + 1)
     return decoder_key
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     print(f"Part 1 answer: {part1()}")
     print(f"Part 2 answer: {part2(input)}")

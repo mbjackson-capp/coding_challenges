@@ -1,8 +1,7 @@
-from aocd import get_data
-from dataclasses import dataclass
-from typing import List
 import re
+from dataclasses import dataclass
 
+from aocd import get_data
 
 
 class Reindeer:
@@ -41,21 +40,21 @@ class Reindeer:
 
 
 def parse_reindeer(r_str: str) -> Reindeer:
-    assert (
-        "can fly" in r_str and "but then must rest for" in r_str
-    ), f"{r_str} not a valid reindeer string"
+    assert "can fly" in r_str and "but then must rest for" in r_str, (
+        f"{r_str} not a valid reindeer string"
+    )
     name = r_str.split(" ")[0]
     speed, max_fly_time, max_rest_time = [int(i) for i in re.findall(r"\d+", r_str)]
     return Reindeer(name, speed, max_fly_time, max_rest_time)
 
 
-def parse_input(data: str) -> List[Reindeer]:
+def parse_input(data: str) -> list[Reindeer]:
     return [parse_reindeer(line) for line in data.split("\n")]
 
 
 @dataclass
 class Race:
-    racers: List[Reindeer]
+    racers: list[Reindeer]
     clock: int = 0
 
     @property

@@ -1,7 +1,7 @@
-from aocd import get_data
 from itertools import permutations
-from tqdm import tqdm
 
+from aocd import get_data
+from tqdm import tqdm
 
 input = get_data(day=13, year=2015)
 
@@ -39,8 +39,7 @@ def optimal_happiness_change(data: str, part=1) -> int:
         for i, guest in enumerate(p):
             this_change += happinesses[guest][p[(i + 1) % len(p)]]
             this_change += happinesses[guest][p[(i - 1) % len(p)]]
-        if this_change > max_change:
-            max_change = this_change
+        max_change = max(max_change, this_change)
     return max_change
 
 

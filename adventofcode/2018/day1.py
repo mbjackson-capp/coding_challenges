@@ -1,11 +1,12 @@
 from aocd import get_data
 
+# type conversion strips the pluses
+input = [int(i) for i in get_data(day=1, year=2018).split("\n")]
 
-#type conversion strips the pluses
-input = [int(i) for i in get_data(day=1, year=2018).split('\n')]
 
 def part1():
     return sum(input)
+
 
 def part2():
     curr_freq = 0
@@ -17,6 +18,7 @@ def part2():
                 return curr_freq
             freqs_seen.add(curr_freq)
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     print(f"Part 1 answer: {part1()}")
     print(f"Part 2 answer: {part2()}")

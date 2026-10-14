@@ -1,12 +1,9 @@
 from aocd import get_data
-from typing import List
 
 from myutils import gridify
 
 
-
-
-def max_joltage(bank: List[int], size: int = 12) -> str:
+def max_joltage(bank: list[int], size: int = 12) -> str:
     """Obtain the digits of the maximum possible joltage as a string. Recursive."""
     # Base case: all batteries have been evaluated. Return empty string
     if size == 0:

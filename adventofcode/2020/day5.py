@@ -1,7 +1,6 @@
-from aocd import get_data
-import re
-from math import floor, ceil
+from math import floor
 
+from aocd import get_data
 
 input = get_data(day=5, year=2020).split("\n")
 
@@ -33,8 +32,7 @@ def main():
         decoded = decode(bpass)
         decoded_bpasses.append(decoded)
         this_id = decoded[2]
-        if this_id > max_id:
-            max_id = this_id
+        max_id = max(max_id, this_id)
     print(f"Part 1 solution: {max_id}")
 
     # sort all passes by ID number ascending

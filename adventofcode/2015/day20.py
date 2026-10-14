@@ -1,7 +1,7 @@
-from aocd import get_data
-from typing import Set
-from math import sqrt, ceil
 from functools import cache
+from math import ceil, sqrt
+
+from aocd import get_data
 
 # NOTE: Unfortunately for us, there is no efficient way to get all of a number's
 # integer divisors, and the sum of all an integer's divisors (the 'aliquot sum'
@@ -11,7 +11,7 @@ from functools import cache
 
 
 @cache
-def all_divisors(n: int, up_to_multiple: int | None = None) -> Set[int]:
+def all_divisors(n: int, up_to_multiple: int | None = None) -> set[int]:
     """Relatively slow and non-recursive naive trial division method for finding
     all divisors of an integer. If up_to_multiple keyword is defined, keep
     the divsior only if the integer is less than or equal to that multiple
@@ -53,5 +53,5 @@ if __name__ == "__main__":
     target = int(get_data(day=20, year=2015))
     print("Now solving Part 1...this may take a minute...")
     print(f"Part 1 answer: {solve(target, part=1)}")
-    print(f"Now solving Part 2...This could take a minute...")
+    print("Now solving Part 2...This could take a minute...")
     print(f"Part 2 answer: {solve(target, part=2)}")

@@ -1,13 +1,13 @@
 from aocd import get_data
 
+input = [int(i) for i in get_data(day=6, year=2021).split(",")]
 
-input = [int(i) for i in get_data(day=6, year=2021).split(',')]
 
 def lanternfish_pop(input, n):
-    '''Calculate how many lanternfish there will be in n (int) days, where today 
-    is day 0.'''
+    """Calculate how many lanternfish there will be in n (int) days, where today
+    is day 0."""
     NEW_FISH_DAY = 8
-    #bin the fish by their timer values
+    # bin the fish by their timer values
     fish = [input.count(i) for i in range(NEW_FISH_DAY + 1)]
 
     RESET_DAY = 6
@@ -17,6 +17,7 @@ def lanternfish_pop(input, n):
         fish.append(current_zeros)
     return sum(fish)
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     print(f"Part 1 solution: {lanternfish_pop(input, 80)}")
     print(f"Part 2 solution: {lanternfish_pop(input, 256)}")

@@ -1,7 +1,7 @@
-from input_data import q9_p1, q9_p2, q9_p3
-from typing import Tuple, Optional
 from itertools import combinations
+
 import networkx as nx
+from input_data import q9_p1, q9_p2, q9_p3
 from tqdm import tqdm
 
 
@@ -14,13 +14,11 @@ def parse_dnas(dna_data: str) -> dict:
     return dna
 
 
-def find_parents(dnas: dict, child_sn: int) -> Optional[Tuple[int, int]]:
+def find_parents(dnas: dict, child_sn: int) -> tuple[int, int] | None:
     """Assuming that a dragon with scale number child_sn is a child with two parents,
     find the id numbers of those two parents. Return None if two valid parents
     cannot be found."""
-    possible_parent_pairs = list(
-        combinations([k for k in dnas.keys() if k != child_sn], 2)
-    )
+    possible_parent_pairs = list(combinations([k for k in dnas if k != child_sn], 2))
     for pair in possible_parent_pairs:
         for i, char in enumerate(dnas[child_sn]):
             inheritables = {dnas[parent][i] for parent in pair}
@@ -39,7 +37,7 @@ def match_score(dna1: str, dna2: str) -> int:
     return score
 
 
-def solve(data: str) -> Tuple[int, int]:
+def solve(data: str) -> tuple[int, int]:
     """Find the parents of any child dragon with parents, then obtain
      the degree of similarity for each of those children (Part 1 and Part 2).
 

@@ -1,8 +1,9 @@
-from aocd import get_data
-import numpy as np
 from itertools import groupby
-from myutils import gridify, neighbor_locs
 
+import numpy as np
+from aocd import get_data
+
+from myutils import gridify, neighbor_locs
 
 seen = set()
 
@@ -44,11 +45,7 @@ def get_perimeter(arr, region):
     perimeter = 0
     for pt in region["points"]:
         perimeter += len(
-            [
-                nbr
-                for nbr in neighbor_locs(arr, pt[0], pt[1])
-                if arr[nbr] != region["label"]
-            ]
+            [nbr for nbr in neighbor_locs(arr, pt[0], pt[1]) if arr[nbr] != region["label"]]
         )
     return perimeter
 
