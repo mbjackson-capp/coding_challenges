@@ -1,7 +1,7 @@
 from aocd import get_data
 import numpy as np
 from itertools import groupby
-from utils import neighbor_locs
+from myutils import neighbor_locs
 
 
 def gridify(mapstr: str, intify=False, pad_char=None) -> np.array:

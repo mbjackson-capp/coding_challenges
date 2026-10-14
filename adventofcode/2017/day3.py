@@ -1,7 +1,7 @@
 from aocd import get_data
 from typing import Tuple, List
 from math import sqrt, ceil, floor
-from utils import manhattan_dist
+from myutils import manhattan_dist
 
 input = int(get_data(day=3, year=2017))
 

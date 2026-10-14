@@ -1,4 +1,4 @@
-from utils import gridify
+from myutils import gridify
 from aocd import get_data
 from typing import List, Tuple, Set
 from collections import Counter

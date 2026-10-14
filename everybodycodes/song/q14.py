@@ -1,7 +1,7 @@
 import numpy as np
 from copy import deepcopy
 from tqdm import tqdm
-from utils import gridify, neighbors
+from myutils import gridify, neighbors
 
 from input_data import q14_p1, q14_p2, q14_p3
 

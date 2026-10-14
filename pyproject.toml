@@ -19,3 +19,13 @@ dependencies = [
     "tqdm",
     "urllib3",
 ]
+
+# make the repo an installable package, so solution files can import from top-level myutils
+# when run with `uv run`
+[build-system]
+requires = ["uv_build>=0.13.1,<0.14"]
+build-backend = "uv_build"
+
+[tool.uv.build-backend]
+module-name = "myutils"
+module-root = ""

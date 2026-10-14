@@ -1,5 +1,4 @@
-# Utility functions reused in multiple Advent of Code coding challenges.
-# By Matt Jackson (GitHub: mbjackson-capp)
+"""Utility functions reused in multiple coding challenge problems."""
 
 import numpy as np
 

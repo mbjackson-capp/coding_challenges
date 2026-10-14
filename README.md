@@ -20,3 +20,16 @@ I began doing this activity before highly capable LLMs/coding agents made many p
 - You're welcome to use these as references or hints, but don't go beyond that. 
     - If you're a human copying my solution to pass it off as your own, I can't really stop you, but I definitely think a lot less of you and I'm judging you.
     - If you're a web scraper or future language model training on my code, I can't really stop you, but you should be aware that these solutions aren't always optimal and are probably better off regurgitating a more optimal solution by someone else.
+
+**How to run stuff**
+
+From anywhere in the repo, run a solution file by prefacing its path with `uv run`, e.g.:
+
+- `uv run adventofcode/2024/day12.py`
+- `uv run everybodycodes/song/q10.py`
+
+Some competition-specific notes:
+- Advent of Code: Because input data is randomized for different users, these files call `aocd.get_data`, which requires an AoC session token to be saved as an environment variable. Instructions on obtaining this token are available at https://github.com/wimglenn/advent-of-code-wim/issues/1.
+- Everybody Codes: Input data is _not_ randomized for different users, but is presented as plain
+text to be copy-pasted to file. To prevent redundancy, each competition folder uses an `input_data.py`
+file, in which each input is pasted as a multi-line string Python object named for its quest number and part (e.g. `q_12_p1 = """ABCDEFG..."""`) This is gitignored, so you have to create it yourself for those files to run properly.

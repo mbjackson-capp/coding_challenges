@@ -1,7 +1,7 @@
 from aocd import get_data
 import numpy as np
 from copy import deepcopy
-from utils import gridify, neighbors
+from myutils import gridify, neighbors
 from tqdm import tqdm
 from typing import List, Tuple
 

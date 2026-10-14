@@ -3,7 +3,7 @@ from enum import Enum
 import heapq
 from math import inf
 import numpy as np
-from utils import gridify, neighbor_locs
+from myutils import gridify, neighbor_locs
 
 
 class Direction(int, Enum):

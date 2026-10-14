@@ -1,6 +1,6 @@
 from aocd import get_data
 import numpy as np
-from utils import gridify
+from myutils import gridify
 
 input = get_data(day=25, year=2024)
 

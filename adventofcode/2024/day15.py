@@ -1,7 +1,7 @@
 from aocd import get_data
 import numpy as np
 import re
-from utils import gridify
+from myutils import gridify
 
 np.set_printoptions(linewidth=1000)
 

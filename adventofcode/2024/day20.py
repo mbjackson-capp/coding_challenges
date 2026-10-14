@@ -1,7 +1,7 @@
 from aocd import get_data
 import networkx as nx
 import numpy as np
-from utils import gridify, neighbor_locs, manhattan_dist
+from myutils import gridify, neighbor_locs, manhattan_dist
 
 
 def pathfind(arr: np.array) -> nx.DiGraph:

@@ -2,7 +2,7 @@ from aocd import get_data
 from collections import Counter
 import numpy as np
 from typing import List, Tuple
-from utils import gridify, neighbors
+from myutils import gridify, neighbors
 
 
 # set session token first - https://github.com/wimglenn/advent-of-code-wim/issues/1

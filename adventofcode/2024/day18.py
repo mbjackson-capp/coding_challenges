@@ -2,7 +2,7 @@ from aocd import get_data
 import numpy as np
 from math import inf
 import heapq
-from utils import neighbor_locs
+from myutils import neighbor_locs
 
 
 def listify_bytes(bytes):
