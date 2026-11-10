@@ -1,6 +1,20 @@
+import numpy as np
+
 """Utility functions reused in multiple coding challenge problems."""
 
-import numpy as np
+def apply_then_combine(inputs: list, apply_func, combine_func=sum):
+    """Starting with a list of inputs, apply a transform function
+    elementwise to each input, then use a combining function (default /
+    most common: sum all integers in transformed list) to return a 
+    single answer.
+
+    For now, assumes that input text is already parsed into component entities.
+    
+    Reminiscent of the accumulator design pattern in the sum case. 
+    More generally resembles stages 2 and 3 of the split-apply-combine 
+    paradigm from Wickham (2011), https://doi.org/10.18637/jss.v040.i01"""
+    results = [apply_func(item) for item in inputs]
+    return combine_func(results)
 
 
 def gridify(mapstr: str, intify=False, pad_char=None) -> np.array:
