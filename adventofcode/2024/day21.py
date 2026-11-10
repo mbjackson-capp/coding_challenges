@@ -4,6 +4,8 @@ from itertools import pairwise  # must be on Python 3.10 or greater
 import numpy as np
 from aocd import get_data
 
+from myutils import apply_then_combine
+
 NUM_KEYPAD = np.array([[7, 8, 9], [4, 5, 6], [1, 2, 3], ["_", 0, "A"]])
 
 DIR_KEYPAD = np.array([["_", "^", "A"], ["<", "v", ">"]])
@@ -103,16 +105,9 @@ def complexity(code: str, depth=3):
     return numeric_part * expand_button_pushes(code, depth=depth)
 
 
-def run(input, depth=3):
-    total = 0
-    for code in input:
-        total += complexity(code, depth=depth)
-    return total
-
-
 if __name__ == "__main__":
     input = get_data(day=21, year=2024).split("\n")
-    part1_solution = run(input)
-    print(f"Part 1 solution: {part1_solution}")
-    part2_solution = run(input, depth=26)  # 25 robots AND you
-    print(f"Part 2 solution: {part2_solution}")
+    print(f"Part 1 solution: {apply_then_combine(input, lambda x: complexity(x, depth=3))}")
+    print(
+        f"Part 2 solution: {apply_then_combine(input, lambda x: complexity(x, depth=26))}"
+    )  # 25 robots AND you

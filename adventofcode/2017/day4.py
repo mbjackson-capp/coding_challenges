@@ -2,7 +2,7 @@ from collections import Counter
 
 from aocd import get_data
 
-input = get_data(day=4, year=2017)
+from myutils import apply_then_combine
 
 
 def parse_input(data: str) -> list[list[str]]:
@@ -28,15 +28,7 @@ def is_valid(row: list[str], part: int = 1) -> bool:
     return (is_all_unique(row) and has_no_anagrams(row)) if part == 2 else is_all_unique(row)
 
 
-def part1(data: str, part: int = 1) -> int:
-    rows = parse_input(data)
-    valid_count = 0
-    for row in rows:
-        if is_valid(row, part=part):
-            valid_count += 1
-    return valid_count
-
-
 if __name__ == "__main__":
-    print(f"Part 1 answer: {part1(input)}")
-    print(f"Part 2 answer: {part1(input, part=2)}")
+    input = parse_input(get_data(day=4, year=2017))
+    print(f"Part 1 answer: {apply_then_combine(input, is_valid)}")
+    print(f"Part 2 answer: {apply_then_combine(input, lambda x: is_valid(x, part=2))}")

@@ -2,6 +2,8 @@ from math import floor
 
 from aocd import get_data
 
+from myutils import apply_then_combine
+
 PRUNE_MODULUS = 16777216
 
 
@@ -29,14 +31,6 @@ def secret_numbers(secret_num: int, n=2000, part=1) -> int | list[int]:
     if part == 1:
         return results[-1]
     return results
-
-
-def part1(nums: list[int], n=2000) -> int:
-    total = 0
-    for num in nums:
-        secret_num_2000 = secret_numbers(num)
-        total += secret_num_2000
-    return total
 
 
 def prices_from(secret_nums: list[int]):
@@ -122,8 +116,7 @@ def part2(input: list[int]) -> int:
 
 if __name__ == "__main__":
     input = [int(i) for i in get_data(day=22, year=2024).split("\n")]
-    part1_solution = part1(input)
-    print(f"Part 1 solution: {part1_solution}")
+    print(f"Part 1 solution: {apply_then_combine(input, secret_numbers)}")
 
     print("Now running Part 2. This could take over an hour...")
     part2_solution = part2(input)

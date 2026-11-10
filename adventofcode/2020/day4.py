@@ -2,6 +2,8 @@ import re
 
 from aocd import get_data
 
+from myutils import apply_then_combine
+
 input = get_data(day=4, year=2020)
 # separate out each passport regardless of line breaks
 input = re.sub("\n\n", "|", input)
@@ -51,17 +53,6 @@ def is_valid_part2(passport: dict) -> bool:
     return valid_sum == 7
 
 
-def validate_all():
-    valid_part1 = 0
-    valid_part2 = 0
-    for passport in input:
-        # use boolean trick again: int + True == int + 1
-        valid_part1 += is_valid_part1(passport)
-        valid_part2 += is_valid_part2(passport)
-    return valid_part1, valid_part2
-
-
 if __name__ == "__main__":
-    ans1, ans2 = validate_all()
-    print(f"Solution to part 1: {ans1}")
-    print(f"Solution to part 2: {ans2}")
+    print(f"Part 1 answer: {apply_then_combine(input, is_valid_part1)}")
+    print(f"Part 2 answer: {apply_then_combine(input, is_valid_part2)}")

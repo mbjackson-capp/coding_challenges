@@ -2,6 +2,8 @@ import re
 
 from aocd import get_data
 
+from myutils import apply_then_combine
+
 input = get_data(year=2016, day=7).split("\n")
 
 ALPHABET = "abcdefghijklmnopqrstuvwxyz"
@@ -67,13 +69,6 @@ def supports_ssl(ip: str) -> bool:
     return False
 
 
-def run(input: list[str], condition_func):
-    count = 0
-    for ip in input:
-        count += condition_func(ip)  # abuse python truthiness
-    return count
-
-
 if __name__ == "__main__":
-    print(f"Part 1 answer: {run(input, supports_tls)}")
-    print(f"Part 2 answer: {run(input, supports_ssl)}")
+    print(f"Part 1 answer: {apply_then_combine(input, supports_tls)}")
+    print(f"Part 2 answer: {apply_then_combine(input, supports_ssl)}")

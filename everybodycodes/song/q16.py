@@ -1,16 +1,14 @@
 from functools import reduce
 
 from input_data import q16_p1, q16_p2, q16_p3
+from myutils import apply_then_combine
 
 
 def wall_block_count(spell: str, width: int = 90) -> int:
     """Compute how many blocks must be in a wall of a particular width,
     given the spell used to build the wall as described in problem statement."""
     spell = [int(i) for i in spell.split(",")]
-    total_blocks = 0
-    for interval in spell:
-        total_blocks += width // interval
-    return total_blocks
+    return apply_then_combine(spell, lambda interval: width // interval)
 
 
 def reverse_engineer_spell(fragment: str) -> list[int]:

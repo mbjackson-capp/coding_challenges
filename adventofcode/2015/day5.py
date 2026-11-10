@@ -2,7 +2,7 @@ import re
 
 from aocd import get_data
 
-input = get_data(day=5, year=2015).split("\n")
+from myutils import apply_then_combine
 
 
 def has_three_vowels(str) -> bool:
@@ -40,13 +40,7 @@ def is_nice(str, part=1) -> bool:
     elif part == 2:
         return has_repeated_2gram(str) and has_aba_pattern(str)
 
-
-def count_nice(input, part=1):
-    count = 0
-    for str in input:
-        count += is_nice(str, part=part)
-    return count
-
-
-print(f"Part 1 solution: {count_nice(input)}")
-print(f"Part 2 solution: {count_nice(input, part=2)}")
+if __name__ == '__main__':
+    input = get_data(day=5, year=2015).split("\n")
+    print(f"Part 1 solution: {apply_then_combine(input, lambda x: is_nice(x, part=1))}")
+    print(f"Part 1 solution: {apply_then_combine(input, lambda x: is_nice(x, part=2))}")

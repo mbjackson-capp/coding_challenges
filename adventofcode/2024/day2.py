@@ -2,6 +2,8 @@ from copy import deepcopy
 
 from aocd import get_data
 
+from myutils import apply_then_combine
+
 input = get_data(day=2, year=2024).split("\n")
 input = [i.split(" ") for i in input]
 input = [[int(i) for i in line] for line in input]
@@ -26,13 +28,6 @@ def is_monotonic(changes: list[int]) -> bool:
     return has_increase ^ has_decrease
 
 
-def part1():
-    count_safe = 0
-    for report in input:
-        count_safe += is_safe(report)
-    return count_safe
-
-
 def part2():
     count_safe = 0
     for report in input:
@@ -49,5 +44,5 @@ def part2():
 
 
 if __name__ == "__main__":
-    print(f"Part 1 solution: {part1()}")
+    print(f"Part 1 solution: {apply_then_combine(input, is_safe)}")
     print(f"Part 2 solution: {part2()}")

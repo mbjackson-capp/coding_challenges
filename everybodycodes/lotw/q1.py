@@ -1,6 +1,10 @@
 from math import sqrt, ceil
 
 from input_data import q1_p1, q1_p2, q1_p3
+from myutils import apply_then_combine
+
+def parse_outputsts(input) -> list[int]:
+    return [int(o) for o in input.split(",")]
 
 def next_square(i: int) -> int:
     """Returns the lowest square number greater than or equal to i."""
@@ -27,14 +31,17 @@ def next_oneempty_fort(i: int) -> int:
         return int((sqrt(i)+2) ** 2 - 1)
     return next_square(i) - 1
 
-def solve(outposts: str, func) -> int:
-    total = 0
-    outposts = [int(i) for i in outposts.split(",")]
-    for o in outposts:
-        total += func(o) - o
-    return total
 
 if __name__ == '__main__':
-    print(f"Part 1 answer: {solve(q1_p1, next_square)}")
-    print(f"Part 2 answer: {solve(q1_p2, next_hollow_fort)}")
-    print(f"Part 3 answer: {solve(q1_p3, next_oneempty_fort)}")
+    print(f"Part 1 answer: {apply_then_combine(
+        parse_outputsts(q1_p1), 
+        lambda o: next_square(o) - o)}"
+    )
+    print(f"Part 2 answer: {apply_then_combine(
+        parse_outputsts(q1_p2), 
+        lambda o: next_hollow_fort(o) - o)}"
+    )
+    print(f"Part 3 answer: {apply_then_combine(
+        parse_outputsts(q1_p3), 
+        lambda o: next_oneempty_fort(o) - o)}"
+    )

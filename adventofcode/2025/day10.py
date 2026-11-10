@@ -5,7 +5,8 @@ import pulp
 from aocd import get_data
 from tqdm import tqdm
 
-input = get_data(day=10, year=2025)
+from myutils import apply_then_combine
+
 
 ON = "#"
 OFF = "."
@@ -160,19 +161,8 @@ def min_joltage_button_presses(m: Machine) -> int:
     return min_presses
 
 
-def solve(data: str, part=1) -> int:
-    total_presses = 0
-    m_list = parse_input(data)
-    for m in tqdm(m_list):
-        if part == 1:
-            total_presses += min_presses_to_activate(m)
-        else:
-            total_presses += min_joltage_button_presses(m)
-    return total_presses
-
-
 if __name__ == "__main__":
-    p1_ans = solve(input, part=1)
-    print(f"Part 1 answer: {p1_ans}")
-    p2_ans = solve(input, part=2)
-    print(f"Part 2 answer: {p2_ans}")
+    input = get_data(day=10, year=2025)
+    data = parse_input(input)
+    print(f"Part 1 answer: {apply_then_combine(tqdm(data), min_presses_to_activate)}")
+    print(f"Part 2 answer: {apply_then_combine(tqdm(data), min_joltage_button_presses)}")

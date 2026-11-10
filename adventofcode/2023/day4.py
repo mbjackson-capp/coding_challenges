@@ -3,6 +3,8 @@ from math import floor
 
 from aocd import get_data
 
+from myutils import apply_then_combine
+
 input = get_data(day=4, year=2023).split("\n")
 
 
@@ -41,12 +43,8 @@ def num_matches(card):
     return len(match_nums)
 
 
-def part1(scratch_cards):
-    total_points = 0
-    for _, card in enumerate(scratch_cards):
-        this_card_points = floor(2 ** (num_matches(card) - 1))
-        total_points += this_card_points
-    return total_points
+def card_points(card):
+    return floor(2 ** (num_matches(card) - 1))
 
 
 def part2(scratch_cards):
@@ -68,5 +66,5 @@ def part2(scratch_cards):
 
 
 if __name__ == "__main__":
-    print(f"Part 1 answer: {part1(scratch_cards)}")
+    print(f"Part 1 answer: {apply_then_combine(scratch_cards, card_points)}")
     print(f"Part 2 answer: {part2(scratch_cards)}")

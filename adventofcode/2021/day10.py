@@ -3,18 +3,16 @@ from statistics import median
 
 from aocd import get_data
 
+from myutils import apply_then_combine
+
 input = get_data(day=10, year=2021).split("\n")
 
 ATOMIC_CHUNKS = r"\(\)|\[\]|\<\>|\{\}"
 CLOSE_BRACKETS = r"\)|\]|\>|\}"
 
 
-def part1():
-    return sum([status2(row) for row in input])
-
-
-def status2(str):
-    reduced = reduce(str)
+def status(str):
+    reduced = reduce_chunks(str)
     if len(reduced) == 0:  # valid
         return 0
     elif (not has_chunks(reduced)) and has_closing_chars(reduced):  # corrupt
@@ -23,13 +21,13 @@ def status2(str):
         return 0
 
 
-def reduce(str):
+def reduce_chunks(str):
     """Repeated passes to eliminate all atomic chunks -- e.g. (), [], {} --
     until none are left."""
     if str == re.sub(ATOMIC_CHUNKS, "", str):
         return str
     else:
-        return reduce(re.sub(ATOMIC_CHUNKS, "", str))
+        return reduce_chunks(re.sub(ATOMIC_CHUNKS, "", str))
 
 
 def has_chunks(str):
@@ -44,15 +42,6 @@ def syntax_error_score(str):
     error_scores = {")": 3, "]": 57, "}": 1197, ">": 25137}
     first_illegal_char = re.findall(CLOSE_BRACKETS, str)[0]
     return error_scores[first_illegal_char]
-
-
-def part2():
-    all_scores = []
-    for row in input:
-        if status2(row) == 0:
-            addend = completion_seq(reduce(row))
-            all_scores.append(completion_score(addend))
-    return median(all_scores)
 
 
 def completion_seq(reduced_str):
@@ -70,6 +59,15 @@ def completion_score(addend):
     return total
 
 
+def part2():
+    all_scores = []
+    for row in input:
+        if status(row) == 0:
+            addend = completion_seq(reduce_chunks(row))
+            all_scores.append(completion_score(addend))
+    return median(all_scores)
+
+
 if __name__ == "__main__":
-    print(f"Part 1 answer: {part1()}")
+    print(f"Part 1 answer: {apply_then_combine(input, status)}")
     print(f"Part 2 answer: {part2()}")

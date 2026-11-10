@@ -3,6 +3,8 @@ from operator import add, mul
 
 from aocd import get_data
 
+from myutils import apply_then_combine
+
 input = get_data(day=7, year=2024).split("\n")
 
 
@@ -62,14 +64,7 @@ def do_all_ops(order, values):
     return func(a, do_all_ops(order, values))
 
 
-def run_all(lines, part=1):
-    calibration_result = 0
-    for line in lines:
-        calibration_result += run_line(line, part=part)
-    return calibration_result
-
-
 if __name__ == "__main__":
-    print(f"Part 1 solution: {run_all(input)}")
+    print(f"Part 1 solution: {apply_then_combine(input, run_line)}")
     print("Now running Part 2. This could take a minute...")
-    print(f"Part 2 solution: {run_all(input, part=2)}")
+    print(f"Part 1 solution: {apply_then_combine(input, lambda x: run_line(x, part=2))}")

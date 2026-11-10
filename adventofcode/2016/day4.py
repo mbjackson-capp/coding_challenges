@@ -3,6 +3,8 @@ from collections import Counter
 
 from aocd import get_data
 
+from myutils import apply_then_combine
+
 input = get_data(day=4, year=2016).split("\n")
 SUBCOMPONENTS_RE = r"[a-z\-]+(?=\d)|\d+|(?<=\[)[a-z]{5}(?=\])"
 
@@ -23,15 +25,6 @@ def sector_id_if_valid(line: str):
     return 0
 
 
-def part1():
-    count = 0
-    real_rooms = []
-    for line in input:
-        count += sector_id_if_valid(line)
-        real_rooms.append(line)
-    return count, real_rooms
-
-
 def decrypt_room_name(room):
     encrypted_name, sector_id, _ = re.findall(SUBCOMPONENTS_RE, room)
     sector_id = int(sector_id)
@@ -49,10 +42,10 @@ def decrypt_room_name(room):
 
 
 if __name__ == "__main__":
-    part1_solution, part2_rooms = part1()
+    part1_solution = apply_then_combine(input, sector_id_if_valid)
     print(f"Part 1 solution: {part1_solution}")
     DESIRED_ROOM = "northpole object storage"  # revealed by inspecting decrypted names
-    for room in part2_rooms:
+    for room in input: # just go through all of them, it won't have id 0
         decrypted_name, this_sectorid = decrypt_room_name(room)
         if decrypted_name == DESIRED_ROOM:
             break
