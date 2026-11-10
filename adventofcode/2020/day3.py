@@ -1,4 +1,4 @@
-from functools import reduce
+from math import prod
 
 from aocd import get_data
 
@@ -22,4 +22,4 @@ for slope in SLOPES:
     tree_counts.append(tree_count)
 
 print(f"Part 1 solution: {tree_counts[1]}")
-print(f"Part 2 solution: {reduce(lambda x, y: x * y, tree_counts)}")
+print(f"Part 2 solution: {prod(tree_counts)}")

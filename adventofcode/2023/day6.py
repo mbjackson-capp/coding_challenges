@@ -1,9 +1,9 @@
 import re
-from functools import reduce
+from math import prod
 
 from aocd import get_data
 
-input = get_data(day=6, year=2023).split("\n")
+from myutils import apply_then_combine
 
 
 def split_and_intify(str):
@@ -14,10 +14,6 @@ def split_and_intify(str):
     splitted = re.split(r"\s+", str)
     splitted = [int(i) for i in splitted if i.isnumeric()]
     return splitted
-
-
-times, distances = [split_and_intify(i) for i in input]
-races = list(zip(times, distances))  # you can just keep it as a zip object
 
 
 def can_win(hold_time: int, race) -> bool:
@@ -47,14 +43,17 @@ def ways_to_win(race) -> int:
             break
     return ways
 
+if __name__ == "__main__":
+    input = get_data(day=6, year=2023).split("\n")
+    times, distances = [split_and_intify(i) for i in input]
+    races = zip(times, distances)
 
-part1 = reduce(lambda a, b: a * b, [ways_to_win(race) for race in races])
-print(f"Part 1 answer: {part1}")
+    print(f"Part 1 answer: {apply_then_combine(races, ways_to_win, combine_func=prod)}")
 
-part2_time = int("".join([str(t) for t in times]))
-part2_dist = int("".join([str(d) for d in distances]))
-part2_race = (part2_time, part2_dist)
+    part2_time = int("".join([str(t) for t in times]))
+    part2_dist = int("".join([str(d) for d in distances]))
+    part2_race = (part2_time, part2_dist)
 
-# Takes ~5-6 seconds to run. Consider replacing one or both helper functions
-# with closed form formula to speed up evaluation
-print(f"Part 2 answer: {ways_to_win(part2_race)}")
+    # Takes ~5-6 seconds to run. Consider replacing one or both helper functions
+    # with closed form formula to speed up evaluation
+    print(f"Part 2 answer: {ways_to_win(part2_race)}")
