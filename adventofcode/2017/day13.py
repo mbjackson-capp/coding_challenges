@@ -1,3 +1,5 @@
+from time import sleep
+
 from aocd import get_data
 
 
@@ -26,23 +28,6 @@ class Layer:
         return f"Layer(d={self.depth}, r={self.v_range})"
 
 
-L = Layer(0, 3)
-L.scanner_position_at_time(0)
-
-
-def test_scanner_positions():
-    assert Layer(0, 3).scanner_position_at_time(2) == 2
-    assert Layer(1, 1).scanner_position_at_time(2) == 0
-    assert Layer(4, 4).scanner_position_at_time(4) == 1
-    assert Layer(6, 4).scanner_position_at_time(6) == 1
-
-
-test_input = """0: 3
-1: 2
-4: 4
-6: 4"""
-
-
 def make_firewall(input: str) -> dict:
     firewall = {}
     for line in input.split("\n"):
@@ -51,36 +36,50 @@ def make_firewall(input: str) -> dict:
     return firewall
 
 
-def whole_trip_severity(fw: dict, delay: int = 0) -> int:
-    print(fw)
-    t = 0
+def simulate_trip(fw: dict, delay: int = 0) -> tuple[bool, int]:
+    t = delay
+    got_caught = False
     total_severity = 0
-    # your packet enters layer t at vertical coordinate 0 at picosecond t
-    while t <= max(fw):
-        # print(f"Picosecond {t}")
-        if t in fw:
-            cur_fw = fw[t]
-            # scanner arrives AFTER you do
+    while True:
+        pos = max(0, t - delay)
+        if pos > max(fw):  # packet cleared the last firewall layer
+            break
+        if t >= delay and pos in fw:
+            cur_fw = fw[pos]
             if cur_fw.scanner_position_at_time(t) == 0:
-                print(
-                    f"You are caught at layer {t}! Add severity of {cur_fw} = {cur_fw.severity} to total"
-                )
+                got_caught = True
                 total_severity += cur_fw.severity
+        # TODO: should be possible to increment directly to next firewall layer time
+        # can create an iterator of firewall depths (keys) and advance t using next()
+        # but have to be careful about always including 0
+        # scanner arrives AFTER you do, so time increments AFTER scanner check
         t += 1
-    if total_severity == 0:
+    if not got_caught:
         print("You were never caught! Hooray")
-    return total_severity
+    return got_caught, total_severity
 
 
 def part2(fw: dict) -> int:
     delay = 0
     while True:
-        if whole_trip_severity(fw, delay=delay) == 0:
+        if delay % 1000 == 0:
+            print(f"Testing delay of {delay} picoseconds")
+        got_caught, _ = simulate_trip(fw, delay=delay)
+        if not got_caught:
             return delay
         delay += 1
 
 
+# there should be a way to check for repetitious times and skip them
+# based on scanner positions at that time
+# and cache those?
+
 if __name__ == "__main__":
     input = get_data(year=2017, day=13)
     fw = make_firewall(input)
-    print(f"Part 1 answer: {whole_trip_severity(fw)}")
+    _, p1_ans = simulate_trip(fw)
+    print(f"Part 1 answer: {p1_ans}")
+    print(f"Now running Part 2... THIS COULD TAKE SEVERAL MINUTES...")
+    sleep(3)
+    p2_ans = part2(fw)
+    print(f"Part 2 answer: {p2_ans}")
