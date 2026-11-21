@@ -1,6 +1,6 @@
-from time import sleep
-
 from aocd import get_data
+
+from myutils import function_timer
 
 
 class Layer:
@@ -40,39 +40,34 @@ def simulate_trip(fw: dict, delay: int = 0) -> tuple[bool, int]:
     t = delay
     got_caught = False
     total_severity = 0
-    while True:
-        pos = max(0, t - delay)
-        if pos > max(fw):  # packet cleared the last firewall layer
-            break
+    pos = 0
+    for pos in fw:  # only need to check the times when it'd hit a layer
+        t = delay + pos
+        # pos = max(0, t - delay)
         if t >= delay and pos in fw:
             cur_fw = fw[pos]
             if cur_fw.scanner_position_at_time(t) == 0:
                 got_caught = True
                 total_severity += cur_fw.severity
-        # TODO: should be possible to increment directly to next firewall layer time
-        # can create an iterator of firewall depths (keys) and advance t using next()
-        # but have to be careful about always including 0
-        # scanner arrives AFTER you do, so time increments AFTER scanner check
-        t += 1
+        # scanner arrives AFTER you do, so time increment happens in NEXT iteration
     if not got_caught:
         print("You were never caught! Hooray")
     return got_caught, total_severity
 
 
+@function_timer
 def part2(fw: dict) -> int:
+    # TODO: find a 'closed form' that doesn't require iterating through
+    # every possible picosecond or skips repetitious picoseconds
     delay = 0
     while True:
-        if delay % 1000 == 0:
-            print(f"Testing delay of {delay} picoseconds")
+        if delay % 10000 == 0:
+            print(f"Testing delay of {delay} picoseconds...")
         got_caught, _ = simulate_trip(fw, delay=delay)
         if not got_caught:
             return delay
         delay += 1
 
-
-# there should be a way to check for repetitious times and skip them
-# based on scanner positions at that time
-# and cache those?
 
 if __name__ == "__main__":
     input = get_data(year=2017, day=13)
@@ -80,6 +75,5 @@ if __name__ == "__main__":
     _, p1_ans = simulate_trip(fw)
     print(f"Part 1 answer: {p1_ans}")
     print(f"Now running Part 2... THIS COULD TAKE SEVERAL MINUTES...")
-    sleep(3)
     p2_ans = part2(fw)
     print(f"Part 2 answer: {p2_ans}")

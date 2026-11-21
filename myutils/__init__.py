@@ -1,17 +1,20 @@
+import time
+
 import numpy as np
 
 """Utility functions reused in multiple coding challenge problems."""
 
+
 def apply_then_combine(inputs: list, apply_func, combine_func=sum):
     """Starting with a list of inputs, apply a transform function
     elementwise to each input, then use a combining function (default /
-    most common: sum all integers in transformed list) to return a 
+    most common: sum all integers in transformed list) to return a
     single answer.
 
     For now, assumes that input text is already parsed into component entities.
-    
-    Reminiscent of the accumulator design pattern in the sum case. 
-    More generally resembles stages 2 and 3 of the split-apply-combine 
+
+    Reminiscent of the accumulator design pattern in the sum case.
+    More generally resembles stages 2 and 3 of the split-apply-combine
     paradigm from Wickham (2011), https://doi.org/10.18637/jss.v040.i01"""
     results = [apply_func(item) for item in inputs]
     return combine_func(results)
@@ -50,7 +53,12 @@ def neighbor_locs(arr, x, y, include_diag=False):
             else:
                 this_x = x + dx
                 this_y = y + dy
-                if this_x >= 0 and this_y >= 0 and this_x < len(arr) and this_y < len(arr[0]):
+                if (
+                    this_x >= 0
+                    and this_y >= 0
+                    and this_x < len(arr)
+                    and this_y < len(arr[0])
+                ):
                     neighbor_locs.append((this_x, this_y))
     return neighbor_locs
 
@@ -67,3 +75,17 @@ def neighbors(arr, x, y, include_diag=False):
 def manhattan_dist(node_a: tuple[int, int], node_b: tuple[int, int]) -> int:
     """Get the L1 norm / Manhattan distance between two points on a 2D grid."""
     return abs(node_b[0] - node_a[0]) + abs(node_b[1] - node_a[1])
+
+
+def function_timer(func):
+    """Simple decorator to time execution of time-consuming functions."""
+
+    def wrap_func(*args, **kwargs):
+        t1 = time.time()
+        result = func(*args, **kwargs)
+        t2 = time.time()
+        execution_time = t2 - t1
+        print(f"Function {func.__name__} executed in {execution_time:.4f} seconds")
+        return result
+
+    return wrap_func
